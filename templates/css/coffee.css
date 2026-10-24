@@ -1,0 +1,70 @@
+/* Daily Grind — styles */
+/* Style: Coffee-chain warmth — deep green + cream, friendly rounded UI, rewards & store finder */
+:root { --green: #0F5132; --green-2: #1E7A4C; --cream: #F7F2EA; --ink: #1E2B24; --muted: #5E6B63; --gold: #C9A227; --card: #fff; --line: #E3DCCD;
+  --kit-surface: #FFFDF9; --kit-ink: #1E2B24; --kit-muted: #5E6B63; --kit-line: #E3DCCD; --kit-accent: #0F5132; --kit-accent-ink: #fff; --kit-radius: 20px; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cream); color: var(--ink); font: 16px/1.6 "Nunito Sans", system-ui, sans-serif; }
+h1, h2, h3 { font-family: Lora, Georgia, serif; margin: 0; line-height: 1.12; }
+p { margin: 0; }
+button, input { font-family: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 10px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--green); color: #fff; font: 800 15px "Nunito Sans", sans-serif; border: 1.5px solid var(--green); cursor: pointer; text-decoration: none; }
+.btn:hover { background: var(--green-2); }
+.btn.o { background: transparent; color: var(--green); }
+
+nav.top { display: flex; justify-content: space-between; align-items: center; height: 80px; border-bottom: 1px solid var(--line); background: var(--card); padding: 0 24px; gap: 12px; position: sticky; top: 0; z-index: 20; }
+.in-thumb nav.top { position: static; }
+.logo { display: flex; align-items: center; gap: 10px; font: 600 22px Lora, serif; color: var(--green); }
+.logo i { width: 40px; height: 40px; border-radius: 50%; background: var(--green); display: grid; place-items: center; color: var(--cream); font-style: normal; font-weight: 800; }
+nav.top ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-weight: 800; letter-spacing: .04em; font-size: 14px; text-transform: uppercase; }
+nav.top a { color: var(--ink); text-decoration: none; }
+.nr { display: flex; gap: 8px; align-items: center; }
+.pickup { font-size: 13px; color: var(--muted); text-align: right; line-height: 1.3; }
+.pickup b { display: block; color: var(--ink); font-size: 14px; }
+
+.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
+.hero-copy { background: var(--green); color: #fff; padding: 60px 56px; display: flex; flex-direction: column; justify-content: center; }
+.hero-copy small { color: #BFE3CE; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(40px, 5vw, 66px); margin: 14px 0 18px; }
+.hero h1 em { color: var(--gold); }
+.hero p { color: #D7EBDF; font-size: 18px; max-width: 420px; margin-bottom: 28px; }
+.hero .btn { background: var(--cream); color: var(--green); border-color: var(--cream); align-self: flex-start; }
+.hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+section { padding: 60px 0; }
+.sec-h { display: flex; justify-content: space-between; align-items: end; margin-bottom: 22px; gap: 16px; flex-wrap: wrap; }
+.sec-h h2 { font-size: clamp(30px, 3.6vw, 44px); }
+.cats { display: flex; gap: 8px; flex-wrap: wrap; }
+.cat { min-height: 42px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; font: 800 14px "Nunito Sans", sans-serif; cursor: pointer; color: var(--ink); }
+.cat[aria-pressed="true"] { background: var(--green); color: #fff; border-color: var(--green); }
+.drinks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.drink { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.drink .cup { width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--card); border: 6px solid var(--card); box-shadow: 0 10px 30px rgba(30,43,36,.1); padding: 0; cursor: pointer; }
+.drink img { width: 100%; height: 100%; object-fit: cover; }
+.drink h3 { font-size: 20px; margin-top: 14px; }
+.drink p { color: var(--muted); font-size: 14px; }
+.drink .pr { display: block; font-weight: 800; margin: 6px 0 10px; }
+.drink .seasonal { font-size: 12px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; }
+
+.rewards { background: var(--card); border-radius: 28px; padding: 36px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; border: 1px solid var(--line); }
+.rewards h2 { font-size: 36px; }
+.rewards p { color: var(--muted); margin: 10px 0 20px; }
+.card { background: linear-gradient(135deg, var(--green), #0A3A24); color: #fff; border-radius: 22px; padding: 26px; aspect-ratio: 1.6; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 20px 40px rgba(15,81,50,.3); }
+.card .track { height: 12px; border-radius: 6px; background: rgba(255,255,255,.2); overflow: hidden; margin-top: 10px; }
+.card .track i { display: block; height: 100%; background: var(--gold); transition: width .5s; }
+.card b { font: 600 30px Lora, serif; }
+
+.stores { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; }
+.stores input { width: 100%; min-height: 50px; border-radius: 999px; border: 1.5px solid var(--line); padding: 0 20px; font: 16px "Nunito Sans", sans-serif; background: var(--card); }
+.list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.list li { background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.list li.sel { border-color: var(--green); }
+.list li span { color: var(--muted); font-size: 14px; display: block; }
+.open { color: var(--green-2); font-weight: 800; font-size: 13px; }
+.closed { color: #A33; font-weight: 800; font-size: 13px; }
+.stores img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; border-radius: 24px; }
+footer { padding: 30px 24px 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+
+@media (max-width: 960px) { nav.top ul, .pickup { display: none; } .hero, .rewards, .stores { grid-template-columns: 1fr; } .hero img { height: 320px; } .hero-copy { padding: 44px 24px; } .drinks { grid-template-columns: 1fr 1fr; } .rewards { padding: 24px; } }
+@media (max-width: 480px) { .wrap { padding: 0 14px; } nav.top { padding: 0 14px; } .logo { font-size: 18px; } }

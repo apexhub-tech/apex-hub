@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lena Hart — Photography portfolio template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Photography portfolio</span><a class="tpl-use" href="../index.html?template=Photography%20portfolio#contact" target="_top">Use this template</a></div>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main"><b>Lena Hart</b><div class="links"><a href="#work">Work</a><a href="#prints">Prints</a><a href="#commission">Commissions</a><button id="proof-btn">Client login</button><button id="cart-btn">Cart (0)</button></div></nav>
+  <header class="intro"><h1>Light, land <em>&amp;</em> water.</h1><p>Landscape and travel photographer. Every image is available as a signed, archival print — tap any photo.</p></header>
+
+  <div class="filters" role="group" aria-label="Filter photos" id="work">
+    <button aria-pressed="true" data-f="all">All</button><button aria-pressed="false" data-f="mountains">Mountains</button><button aria-pressed="false" data-f="water">Water</button><button aria-pressed="false" data-f="coast">Coast</button><span class="sp"></span><span id="prints" style="color:var(--muted)">Prints from $45 · free worldwide shipping over $150</span>
+  </div>
+  <div class="masonry" id="grid"></div>
+
+  <section class="block two" id="commission">
+    <div>
+      <h2>Commissions &amp; licensing</h2>
+      <p style="margin-top:20px">I photograph hotels, travel brands and editorial stories. Tell me about your project and I'll reply within two days with ideas and a quote.</p>
+      <div class="services"><div><b>Hotel &amp; resort shoot</b><span>from $2,400 / day</span></div><div><b>Editorial assignment</b><span>from $1,200 / day</span></div><div><b>Image licensing</b><span>from $350 / image</span></div></div>
+    </div>
+    <form class="inq" id="inq" novalidate>
+      <div class="row"><div class="f"><label for="i-n">Name</label><input id="i-n" required autocomplete="name"></div><div class="f"><label for="i-e">Email</label><input id="i-e" type="email" required autocomplete="email"></div></div>
+      <div class="row"><div class="f"><label for="i-t">Project type</label><select id="i-t"><option>Hotel &amp; resort shoot</option><option>Editorial assignment</option><option>Image licensing</option><option>Something else</option></select></div><div class="f"><label for="i-d">Ideal date</label><input id="i-d" type="date"></div></div>
+      <div class="f"><label for="i-b">Budget · <span id="i-bv">$3,000</span></label><input id="i-b" type="range" min="500" max="20000" step="500" value="3000"></div>
+      <div class="f"><label for="i-m">About the project</label><textarea id="i-m" required></textarea></div>
+      <button class="btn" type="submit" style="justify-self:start">Send enquiry</button>
+      <p class="msg" id="i-msg" role="status"></p>
+    </form>
+  </section>
+  <footer><span>© Lena Hart Photography</span><span>Sample content — your photos and story go here.</span></footer>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <span class="count" id="lb-n"></span><button class="ctl x" aria-label="Close">×</button><button class="ctl prev" aria-label="Previous photo">‹</button>
+  <figure><img id="lb-img" alt=""><figcaption><span id="lb-cap"></span><button class="btn" id="lb-buy">Buy this print · from $45</button></figcaption></figure>
+  <button class="ctl next" aria-label="Next photo">›</button>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/portfolio.js"></script>
+</body>
+</html>

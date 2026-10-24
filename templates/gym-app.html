@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IronPulse — Gym management template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/gym-app.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Gym management (SaaS)</span><a class="tpl-use" href="../index.html?template=Gym%20management#contact" target="_top">Use this template</a></div>
+
+<div class="app">
+  <aside aria-label="App navigation">
+    <div class="brand">IRON<b>PULSE</b></div>
+    <a href="#/today" data-nav="today">Today</a><a href="#/checkin" data-nav="checkin">Check-in</a><a href="#/schedule" data-nav="schedule">Schedule</a><a href="#/members" data-nav="members">Members</a><a href="#/reports" data-nav="reports">Reports</a>
+    <div class="foot"><span><kbd>Ctrl</kbd> <kbd>K</kbd> · <kbd>?</kbd></span><span>Data saves in this browser.</span><button class="kit-reset" id="reset">Reset demo</button></div>
+  </aside>
+
+  <main>
+    <section data-view="today">
+      <div class="head"><div><h1>Today</h1><p id="today-sub"></p></div><span class="live"><i></i><span id="inside">0</span>&nbsp;members in the gym now</span></div>
+      <div class="kpis">
+        <div class="kpi"><span>Active members</span><b id="k-active"></b><em id="k-new"></em></div>
+        <div class="kpi"><span>Check-ins today</span><b id="k-checkins"></b><em>live</em></div>
+        <div class="kpi"><span>Class spots booked</span><b id="k-booked"></b><em id="k-fill"></em></div>
+        <div class="kpi"><span>Monthly revenue</span><b id="k-mrr"></b><em>recurring</em></div>
+      </div>
+      <div class="grid2">
+        <div class="panel"><h2>Today's classes</h2><ul class="list" id="t-classes"></ul></div>
+        <div class="panel"><h2>Memberships needing attention</h2><ul class="list" id="t-expiring"></ul><h2 style="margin-top:18px">Recent check-ins</h2><ul class="list" id="t-recent"></ul></div>
+      </div>
+    </section>
+
+    <section data-view="checkin" hidden>
+      <div class="kiosk">
+        <h1>Front desk check-in</h1><p>Scan a member card or type a member code or name.</p>
+        <input id="ci" placeholder="IP-1001" autocomplete="off" aria-label="Member code or name">
+        <ul class="suggest" id="suggest"></ul>
+        <div id="ci-result" aria-live="assertive"></div>
+        <div class="quick" id="quick"></div>
+      </div>
+    </section>
+
+    <section data-view="schedule" hidden>
+      <div class="head"><div><h1>Class schedule</h1><p>This week · click a class to manage its class list and waitlist</p></div><button class="btn hot" id="add-class">+ Add class</button></div>
+      <div class="week" id="week"></div>
+    </section>
+
+    <section data-view="members" hidden>
+      <div class="head"><div><h1>Members</h1><p id="m-sub"></p></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><input class="field" id="m-q" placeholder="Search name, code or phone" aria-label="Search members"><select class="field" id="m-st" aria-label="Status"><option value="all">All statuses</option><option value="active">Active</option><option value="soon">Expiring in 7 days</option><option value="frozen">Frozen</option><option value="expired">Expired</option></select><button class="btn" id="m-export">Export</button><button class="btn hot" id="m-add">+ New member</button></div></div>
+      <div class="table-wrap"><table><thead><tr><th>Member</th><th>Code</th><th>Plan</th><th>Status</th><th>Expires</th><th>Visits (30 days)</th><th>Last visit</th></tr></thead><tbody id="m-rows"></tbody></table></div>
+    </section>
+
+    <section data-view="reports" hidden>
+      <div class="head"><div><h1>Reports</h1><p>Live from check-ins and memberships</p></div></div>
+      <div class="kpis">
+        <div class="kpi"><span>Monthly revenue</span><b id="r-mrr"></b><em>active plans</em></div>
+        <div class="kpi"><span>Avg. visits / member</span><b id="r-visits"></b><em>last 30 days</em></div>
+        <div class="kpi"><span>Churn risk</span><b id="r-risk"></b><em>no visit in 14 days</em></div>
+        <div class="kpi"><span>Expired (30 days)</span><b id="r-churn"></b><em>to win back</em></div>
+      </div>
+      <div class="grid2"><div class="panel"><h2>Busiest hours · last 7 days</h2><div id="ch-hours"></div></div><div class="panel"><h2>Plan mix</h2><ul class="list" id="r-plans"></ul></div></div>
+      <div class="panel" style="margin-top:14px"><h2>Check-ins · last 14 days</h2><div id="ch-new"></div></div>
+    </section>
+  </main>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/gym-app.js"></script>
+</body>
+</html>

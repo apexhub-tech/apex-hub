@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nordhem — Furniture store template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/furniture.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Furniture store</span><a class="tpl-use" href="../index.html?template=Furniture%20store#contact" target="_top">Use this template</a></div>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main"><ul><li><a href="#rooms">Rooms</a></li><li><a href="#shop">Bestsellers</a></li><li><a href="#planner">Design help</a></li></ul><span class="logo">Nordhem</span><div class="icons"><button id="wish-btn">Saved (0)</button><button id="bag">Bag (0)</button></div></nav>
+
+  <header class="hero">
+    <div class="hero-copy">
+      <small>The Autumn Collection</small>
+      <h1>Made to be lived with.</h1>
+      <p>Solid oak, natural linen and wool — furniture designed to last decades, not seasons. 100-night home trial.</p>
+      <a class="btn" href="#shop">Shop the collection</a>
+    </div>
+    <img src="https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?auto=format&fit=crop&w=1200&h=900&q=75" alt="Grey sofa beside a wooden coffee table">
+  </header>
+
+  <div class="rooms" id="rooms" role="group" aria-label="Shop by room">
+    <button class="room" data-room="Dining" aria-pressed="false"><img src="https://images.unsplash.com/photo-1772442363851-738a548f6c5c?auto=format&fit=crop&w=500&h=660&q=70" alt="" loading="lazy"><h3>Dining</h3></button>
+    <button class="room" data-room="Living" aria-pressed="false"><img src="https://images.unsplash.com/photo-1759722667550-81316a23d723?auto=format&fit=crop&w=500&h=660&q=70" alt="" loading="lazy"><h3>Living</h3></button>
+    <button class="room" data-room="Decor" aria-pressed="false"><img src="https://images.unsplash.com/photo-1653242370332-e332a8103763?auto=format&fit=crop&w=500&h=660&q=70" alt="" loading="lazy"><h3>Decor</h3></button>
+    <button class="room" data-room="Reading" aria-pressed="false"><img src="https://images.unsplash.com/photo-1763279934323-edb3735f6a6e?auto=format&fit=crop&w=500&h=660&q=70" alt="" loading="lazy"><h3>Reading nook</h3></button>
+  </div>
+
+  <section id="shop">
+    <div class="head"><h2 id="shop-h">Bestsellers</h2><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="sample" id="show-all" hidden>Show all rooms</button><select id="sort" aria-label="Sort"><option value="feat">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div></div>
+    <div class="products" id="products"></div>
+  </section>
+
+  <section class="planner" id="planner">
+    <div><h2>Free interior design help</h2><p>Tell us about your room and one of our designers will send a free plan with 3 layout ideas within 48 hours.</p></div>
+    <form id="pf" novalidate><select id="pf-room" aria-label="Room"><option>Living room</option><option>Dining room</option><option>Bedroom</option><option>Home office</option></select><input id="pf-size" placeholder="Room size, e.g. 4 × 5 m" aria-label="Room size"><input id="pf-email" type="email" placeholder="Your email" aria-label="Email" autocomplete="email"><button class="btn" type="submit">Get my free plan</button><p id="pf-msg" role="status" style="min-height:22px;color:var(--moss);font-weight:500"></p></form>
+  </section>
+
+  <div class="usp"><div><b>10-year guarantee</b><span>On every frame we make.</span></div><div><b>100-night trial</b><span>Live with it before you decide.</span></div><div><b>Sustainably sourced</b><span>FSC-certified oak and recycled fabrics.</span></div></div>
+  <footer><span>© Nordhem Living</span><span>Sample content — your products and photos go here.</span></footer>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/furniture.js"></script>
+</body>
+</html>

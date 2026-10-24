@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge — Fitness club template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/fitness.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Fitness club website</span><a class="tpl-use" href="../index.html?template=Fitness%20club#contact" target="_top">Use this template</a></div>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main"><span class="logo">FORGE<span>.</span></span><ul><li><a href="#classes">Classes</a></li><li><a href="#programs">Programs</a></li><li><a href="#plans">Membership</a></li></ul><span class="member" id="member"></span><a class="btn" href="#plans">Join now</a></nav>
+  <header class="hero">
+    <div>
+      <h1>Stronger<span>every day.</span></h1>
+      <p>Coaching, classes and equipment built for real results. Book classes online — your first day is on us.</p>
+      <div class="acts"><button class="btn" id="trial">Get a free day pass</button><a class="btn ghost" href="#classes">Book a class</a></div>
+    </div>
+    <div class="hero-img" role="img" aria-label="Athlete preparing to lift a barbell"></div>
+  </header>
+</div>
+<div class="ticker-wrap"><div class="ticker" aria-hidden="true"><span>STRENGTH · HIIT · BOXING · MOBILITY · CONDITIONING · OPEN 24/7 · STRENGTH · HIIT · BOXING · MOBILITY · CONDITIONING · OPEN 24/7 ·&nbsp;</span></div></div>
+
+<section id="classes" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="sec-h">Book <span>a class</span></h2>
+    <div class="days" id="days" role="group" aria-label="Day"></div>
+    <div class="filters" id="types" role="group" aria-label="Class type"></div>
+    <div class="classes" id="classlist"></div>
+  </div>
+</section>
+
+<section id="programs" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="sec-h">Train <span>your way</span></h2>
+    <div class="programs" id="progs">
+      <article class="prog" data-p="strength"><img src="https://images.unsplash.com/photo-1761839258420-5c3e2f2e2a74?auto=format&fit=crop&w=700&h=900&q=70" alt="" loading="lazy"><div><h3>Strength</h3><p>Barbell programs coached in small groups.</p></div></article>
+      <article class="prog" data-p="cond"><img src="https://images.unsplash.com/photo-1758875569612-94d5e0f1a35f?auto=format&fit=crop&w=700&h=900&q=70" alt="" loading="lazy"><div><h3>Conditioning</h3><p>45-minute sessions that push your limits.</p></div></article>
+      <article class="prog" data-p="pt"><img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=700&h=900&q=70" alt="" loading="lazy"><div><h3>Personal training</h3><p>One coach, one plan, built around you.</p></div></article>
+    </div>
+    <div class="quiz-cta"><span><b>Not sure where to start?</b> Answer 3 questions and we'll recommend a program.</span><button class="btn" id="quiz">Find my program</button></div>
+  </div>
+</section>
+
+<section id="plans" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="sec-h">Pick <span>your plan</span></h2>
+    <div class="toggle" role="group" aria-label="Billing period"><button aria-pressed="true" data-b="m">Monthly</button><button aria-pressed="false" data-b="y">Yearly — save 20%</button></div>
+    <div class="plans" id="plancards"></div>
+  </div>
+</section>
+<footer><span>© Forge Fitness Club</span><span>Sample content — your gym, coaches and prices go here.</span></footer>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/fitness.js"></script>
+</body>
+</html>

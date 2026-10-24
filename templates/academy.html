@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightpath — Online academy template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/academy.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Online academy (SaaS)</span><a class="tpl-use" href="../index.html?template=Online%20academy#contact" target="_top">Use this template</a></div>
+
+<div class="app">
+  <aside aria-label="Navigation">
+    <div class="brand"><i>★</i>Brightpath</div>
+    <a href="#/home" data-nav="home">My learning</a><a href="#/catalog" data-nav="catalog">Browse courses</a><a href="#/learn" data-nav="learn">Continue lesson</a><a href="#/progress" data-nav="progress">Progress &amp; badges</a>
+    <div class="me"><b>Nour K.</b><span id="me-xp"></span><span id="me-streak"></span><button class="kit-reset" id="reset" style="text-align:left;padding:0">Reset demo</button></div>
+  </aside>
+
+  <main>
+    <section data-view="home">
+      <div class="hello"><div><h1 id="hi">Welcome back, Nour!</h1><p id="hi-sub"></p></div><div class="bubble"><b id="h-streak">0</b>day streak</div><div class="bubble"><b id="h-xp">0</b>XP</div></div>
+      <h2 class="sec">Continue learning <a href="#/catalog" class="btn soft" style="min-height:40px">Find more courses</a></h2>
+      <div class="courses" id="my-courses"></div>
+    </section>
+
+    <section data-view="catalog" hidden>
+      <h2 class="sec" style="margin-top:0">Browse courses</h2>
+      <div class="filters" style="margin-bottom:18px"><input class="search" id="cq" placeholder="Search courses…" aria-label="Search courses"><div class="filters" id="cats"></div><select class="pill" id="lvl" aria-label="Level"><option value="all">All levels</option><option>Beginner</option><option>Intermediate</option></select></div>
+      <div class="courses" id="catalog"></div>
+    </section>
+
+    <section data-view="learn" hidden>
+      <div class="player">
+        <div class="stage lesson" id="lesson"></div>
+        <aside class="outline" id="outline" aria-label="Course outline"></aside>
+      </div>
+    </section>
+
+    <section data-view="progress" hidden>
+      <h2 class="sec" style="margin-top:0">Your progress</h2>
+      <div class="panels">
+        <div class="panel"><h3>Lessons completed · last 5 weeks</h3><div class="heat" id="heat"></div><p class="kit-hint" style="margin-top:10px">Each square is a day. Darker = more lessons.</p></div>
+        <div class="panel"><h3>Weekly goal</h3><div class="filters" id="goal"></div><p id="goal-txt" style="margin-top:12px;color:var(--muted);font-weight:700"></p><div class="track" style="margin-top:10px"><i id="goal-bar"></i></div></div>
+      </div>
+      <div class="panel" style="margin-top:20px"><h3>Badges</h3><div class="badges" id="badges"></div></div>
+      <div class="panel" style="margin-top:20px"><h3>Certificates</h3><div id="certs"></div></div>
+    </section>
+  </main>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/academy.js"></script>
+</body>
+</html>

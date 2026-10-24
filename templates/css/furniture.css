@@ -1,0 +1,69 @@
+/* Nordhem — styles */
+/* Style: Scandinavian warm minimal — oat + oak tones, airy layout, colour swatches */
+:root { --bg: #F5F0E8; --card: #FBF8F3; --ink: #2B2620; --muted: #7A7064; --oak: #B98B5E; --moss: #4F5D46; --line: #E3DACB;
+  --kit-surface: #FBF8F3; --kit-ink: #2B2620; --kit-muted: #7A7064; --kit-line: #E3DACB; --kit-accent: #4F5D46; --kit-accent-ink: #fff; --kit-radius: 6px; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 "DM Sans", system-ui, sans-serif; }
+h1, h2, h3 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; margin: 0; line-height: 1.05; }
+p { margin: 0; }
+button, input, select { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+.wrap { max-width: 1260px; margin: 0 auto; padding: 0 28px; }
+.btn { display: inline-flex; align-items: center; min-height: 50px; padding: 0 26px; background: var(--moss); color: #fff; text-decoration: none; font: 500 15px "DM Sans", sans-serif; border: 0; border-radius: 4px; cursor: pointer; }
+.btn:hover { background: #3E4A37; }
+
+nav.top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 80px; }
+nav.top ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+nav.top a { color: var(--ink); text-decoration: none; }
+.logo { font: 400 30px "DM Serif Display", serif; }
+.icons { justify-self: end; display: flex; gap: 16px; }
+.icons button { background: none; border: 0; font: 500 15px "DM Sans", sans-serif; cursor: pointer; color: var(--ink); }
+
+.hero { display: grid; grid-template-columns: .9fr 1.1fr; min-height: 520px; background: var(--card); }
+.hero-copy { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+.hero-copy small { color: var(--oak); font-weight: 700; letter-spacing: .2em; text-transform: uppercase; font-size: 12px; }
+.hero h1 { font-size: clamp(46px, 5.6vw, 80px); margin: 16px 0 20px; }
+.hero p { color: var(--muted); max-width: 400px; margin-bottom: 30px; }
+.hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.rooms { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 60px 0; }
+.room { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; display: flex; align-items: flex-end; padding: 18px; color: #fff; border: 0; cursor: pointer; text-align: left; font: inherit; }
+.room img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.room::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.55), transparent 50%); }
+.room:hover img { transform: scale(1.05); }
+.room h3 { position: relative; z-index: 1; font-size: 28px; }
+.room[aria-pressed="true"] { outline: 3px solid var(--moss); outline-offset: 3px; }
+
+.head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 26px; gap: 16px; flex-wrap: wrap; }
+.head h2 { font-size: clamp(36px, 4vw, 54px); }
+.head select { min-height: 42px; border: 1px solid var(--line); background: var(--card); padding: 0 10px; font: 14px "DM Sans", sans-serif; }
+.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 22px; padding-bottom: 60px; }
+.prod { position: relative; }
+.prod .ph { aspect-ratio: 1; background: var(--card); overflow: hidden; border-radius: 4px; position: relative; display: block; width: 100%; border: 0; padding: 0; cursor: pointer; }
+.prod .ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter .3s; }
+.prod h3 { font-size: 24px; margin-top: 14px; }
+.prod .line { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; color: var(--muted); }
+.prod .line b { color: var(--ink); font-size: 18px; }
+.sw { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
+.sw button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--line); cursor: pointer; padding: 0; }
+.sw button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink); }
+.sw span { font-size: 13px; color: var(--muted); margin-left: 6px; }
+.acts { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 14px; }
+.add { min-height: 46px; border: 1px solid var(--ink); background: transparent; font: 500 15px "DM Sans", sans-serif; cursor: pointer; border-radius: 4px; color: var(--ink); }
+.add:hover { background: var(--ink); color: #fff; }
+.sample { min-height: 46px; padding: 0 12px; border: 1px dashed var(--muted); background: transparent; font: 500 13px "DM Sans", sans-serif; cursor: pointer; border-radius: 4px; color: var(--muted); }
+.sk-heart { position: absolute; top: 12px; right: 12px; z-index: 2; }
+.delivery { font-size: 13px; color: var(--moss); margin-top: 6px; }
+
+.usp { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding: 40px 0; gap: 24px; }
+.usp b { font: 400 22px "DM Serif Display", serif; display: block; }
+.usp span { color: var(--muted); }
+.planner { background: var(--card); padding: 40px; border-radius: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; margin-bottom: 60px; }
+.planner h2 { font-size: 36px; }
+.planner p { color: var(--muted); margin-top: 10px; }
+.planner form { display: grid; gap: 10px; }
+.planner input, .planner select { min-height: 46px; border: 1px solid var(--line); padding: 0 12px; font: 15px "DM Sans", sans-serif; background: #fff; }
+footer { padding: 30px 0 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 960px) { nav.top ul { display: none; } nav.top { grid-template-columns: auto 1fr; } .hero, .planner { grid-template-columns: 1fr; } .hero img { height: 380px; } .hero-copy { padding: 40px 24px; } .rooms { grid-template-columns: 1fr 1fr; } .products { grid-template-columns: 1fr 1fr; } .usp { grid-template-columns: 1fr; } .planner { padding: 24px; } }
+@media (max-width: 520px) { .wrap { padding: 0 14px; } .products { grid-template-columns: 1fr; } }

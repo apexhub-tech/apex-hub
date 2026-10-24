@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FreshCart — Grocery delivery template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/grocery.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Grocery delivery store</span><a class="tpl-use" href="../index.html?template=Grocery%20delivery#contact" target="_top">Use this template</a></div>
+
+<header class="top"><div class="wrap">
+  <span class="logo">FreshCart</span>
+  <div class="search"><label><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search fruit, veg, bakery…  ( / )" aria-label="Search products"></label></div>
+  <button class="addr" id="addr">Deliver to<b id="addr-l">Home · 24 Harbour St ▾</b></button>
+  <button class="hbtn" id="orders-btn"><span>Orders</span> 📦</button>
+</div></header>
+
+<div class="wrap layout">
+  <main>
+    <section class="banner">
+      <div><span class="pill" id="eta">Delivery in 30 min</span><h1>Farm-fresh groceries, at your door today.</h1><p>Free delivery on orders over $35. Code <b>FRESH5</b> takes $5 off your first order.</p></div>
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&h=500&q=70" alt="Fresh vegetables at a market">
+    </section>
+    <div class="again" id="again" hidden><span style="font-size:22px">↻</span><b id="again-l">Buy your last order again</b><button class="plus" id="again-btn" style="padding:0 16px;font-size:14px">Add all</button></div>
+    <div class="cats" id="cats" role="group" aria-label="Aisles"></div>
+    <div class="sortrow"><span id="count"></span><label>Sort <select id="sort"><option value="pop">Popular</option><option value="low">Price: low to high</option><option value="deal">Deals first</option></select></label></div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <aside class="basket" aria-labelledby="b-title">
+    <h2 id="b-title">Your basket <button id="clear">Clear</button></h2>
+    <ul class="bl" id="bl"></ul>
+    <div class="freebar" id="freebar"></div>
+    <div class="totals" id="totals"></div>
+    <div class="subs"><span style="font-weight:600">If an item is out of stock</span><label><input type="radio" name="subs" value="similar" checked> Replace with a similar item</label><label><input type="radio" name="subs" value="refund"> Refund me</label></div>
+    <button class="checkout" id="go" disabled><span>Checkout</span><span id="tot">$0.00</span></button>
+    <p class="min" id="min"></p>
+  </aside>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/grocery.js"></script>
+</body>
+</html>

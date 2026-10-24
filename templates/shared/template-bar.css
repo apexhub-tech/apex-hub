@@ -1,0 +1,20 @@
+/* Apex Hub demo bar shown on top of every template preview */
+.tpl-bar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 52px; padding: 6px 16px;
+  background: #232733; color: #F5F7FA;
+  font: 500 14px/1.2 "DM Sans", Inter, system-ui, sans-serif;
+}
+.tpl-bar a { color: #A7AEBE; text-decoration: none; }
+.tpl-bar a:hover { color: #F5F7FA; }
+.tpl-bar span { font-weight: 700; }
+.tpl-bar .tpl-use {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px;
+  border-radius: 999px; background: #B3FF00; color: #1B1E28; font-weight: 700;
+}
+.tpl-bar .tpl-use:hover { background: #C6FF3D; color: #1B1E28; }
+.tpl-bar :focus-visible { outline: 3px solid #B3FF00; outline-offset: 2px; }
+/* Hidden inside the landing-page thumbnails */
+.in-thumb .tpl-bar { display: none; }
+@media (max-width: 560px) { .tpl-bar span { display: none; } }

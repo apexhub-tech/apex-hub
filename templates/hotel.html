@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azure Bay — Hotel &amp; resort template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/hotel.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Hotel &amp; resort website</span><a class="tpl-use" href="../index.html?template=Hotel%20%26%20resort#contact" target="_top">Use this template</a></div>
+
+<header class="hero">
+  <nav class="top" aria-label="Main"><span class="logo">AZURE BAY</span><ul><li><a href="#rooms">Rooms</a></li><li><a href="#stay">Experience</a></li><li><button id="nav-stays">My stays</button></li></ul></nav>
+  <div class="hero-copy"><p class="kicker">Resort &amp; Spa · Since 1998</p><h1>Where the <em>mountains</em> meet the sea.</h1></div>
+</header>
+
+<form class="booking" id="book" novalidate>
+  <div class="f"><label for="in">Check in</label><input id="in" type="date" required></div>
+  <div class="f"><label for="out">Check out</label><input id="out" type="date" required></div>
+  <div class="f"><label for="ad">Adults</label><select id="ad"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+  <div class="f"><label for="ch">Children</label><select id="ch"><option>0</option><option>1</option><option>2</option><option>3</option></select></div>
+  <button class="btn" type="submit">Check rates</button>
+</form>
+<p class="nights" id="nights" role="status"></p>
+
+<section id="rooms">
+  <div class="wrap">
+    <div class="results-h"><div><p class="kicker">Rooms &amp; suites</p><h2>Available for your dates</h2></div><p id="best">Best price guaranteed when you book direct.</p></div>
+    <div id="results"></div>
+    <div class="mystays" id="mystays" hidden></div>
+  </div>
+</section>
+
+<section id="stay" style="padding-top:0">
+  <div class="wrap intro">
+    <div>
+      <p class="kicker">The experience</p>
+      <h2>Slow mornings, long swims and sunsets you'll remember.</h2>
+      <p>Forty-two rooms and suites set between pine-covered hills and a quiet private beach. An infinity pool, a spa and a kitchen that cooks with what the season brings.</p>
+      <div class="amen" style="margin-top:26px"><span>✦ Infinity pool</span><span>✦ Private beach</span><span>✦ Spa &amp; hammam</span><span>✦ Free Wi-Fi</span><span>✦ Kids' club</span><span>✦ Airport transfers</span><span>✦ Gym 24/7</span><span>✦ Pet-friendly</span></div>
+    </div>
+    <div class="pics">
+      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&h=840&q=70" alt="Pool surrounded by palm trees" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1778694276945-a3ee92331709?auto=format&fit=crop&w=600&h=680&q=70" alt="Dinner table overlooking the ocean at sunset" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="band"><h2>"The most peaceful week we've had in years."</h2><p>— Guest review, 2025 · 4.9 / 5 from 2,140 stays</p></div>
+<footer><span>© Azure Bay Resort &amp; Spa</span><span>Sample content — your hotel, rooms and photos go here.</span></footer>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/hotel.js"></script>
+</body>
+</html>

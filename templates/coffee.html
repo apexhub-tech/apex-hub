@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Grind — Coffee shop template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/coffee.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Coffee shop chain</span><a class="tpl-use" href="../index.html?template=Coffee%20shop%20chain#contact" target="_top">Use this template</a></div>
+
+<nav class="top" aria-label="Main"><span class="logo"><i>D</i>Daily Grind</span><ul><li><a href="#menu">Menu</a></li><li><a href="#rewards">Rewards</a></li><li><a href="#stores">Find a store</a></li></ul><div class="nr"><span class="pickup">Pick up at<b id="store-l"></b></span><button class="btn" id="bag">Order (0)</button></div></nav>
+
+<header class="hero">
+  <div class="hero-copy">
+    <small>New this autumn</small>
+    <h1>Your <em>cosy</em> season starts here.</h1>
+    <p>Maple oat latte, cinnamon cold brew and fresh pastries — order ahead and skip the queue.</p>
+    <a class="btn" href="#menu">Order ahead</a>
+  </div>
+  <img src="https://images.unsplash.com/photo-1567880905822-56f8e06fe630?auto=format&fit=crop&w=1100&h=900&q=75" alt="Modern coffee shop with curved wooden counter">
+</header>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-h"><h2>Order ahead</h2><div class="cats" id="cats" role="group" aria-label="Menu"></div></div>
+    <div class="drinks" id="drinks"></div>
+  </div>
+</section>
+
+<section id="rewards" style="padding-top:0">
+  <div class="wrap">
+    <div class="rewards">
+      <div><h2>Collect stars. Get free coffee.</h2><p>Earn 2 stars for every $1. 150 stars = any drink free. Stars are added automatically when you order.</p><button class="btn" id="redeem">Redeem a free drink</button></div>
+      <div class="card" aria-live="polite"><span>DAILY GRIND REWARDS</span><div><span id="stars-l"></span><div class="track"><i id="stars-bar"></i></div></div><b>Nour K.</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="stores" style="padding-top:0">
+  <div class="wrap stores">
+    <div>
+      <h2 style="font-size:36px;margin-bottom:16px">Find a store</h2>
+      <input id="s" placeholder="Search by area" aria-label="Search stores">
+      <ul class="list" id="list"></ul>
+    </div>
+    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&h=700&q=70" alt="Customers inside a busy café" loading="lazy">
+  </div>
+</section>
+<footer><span>© Daily Grind Coffee Co.</span><span>Sample content — your drinks, stores and photos go here.</span></footer>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/coffee.js"></script>
+</body>
+</html>

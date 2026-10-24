@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOIR Studio — Fashion store template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Fashion online store</span><a class="tpl-use" href="../index.html?template=Fashion%20online%20store#contact" target="_top">Use this template</a></div>
+<div class="promo">Free delivery over $75 · Code <b>NOIR10</b> for 10% off your first order</div>
+
+<header class="top"><div class="wrap">
+  <nav class="bar" aria-label="Main">
+    <ul id="depts"><li><button aria-pressed="true" data-dept="all">All</button></li><li><button aria-pressed="false" data-dept="women">Women</button></li><li><button aria-pressed="false" data-dept="men">Men</button></li><li><button aria-pressed="false" data-dept="new">New in</button></li></ul>
+    <span class="logo">NOIR</span>
+    <div class="icons">
+      <div class="searchbox"><input id="search" placeholder="Search" aria-label="Search products" autocomplete="off"><ul class="suggest" id="suggest"></ul></div>
+      <button class="icon-btn" id="wish-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg><span class="count" id="wish-n"></span></button>
+      <button class="icon-btn" id="cart-btn" aria-label="Bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 14H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="count" id="cart-n"></span></button>
+    </div>
+  </nav>
+</div></header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1508964801641-4b2410705b73?auto=format&fit=crop&w=1200&q=75" alt="Black and white campaign photo of a model leaning on a wall"></div>
+    <div class="hero-copy"><small>Autumn / Winter collection</small><h1>Wear the quiet.</h1><p>Clean cuts, natural fabrics and colours that go with everything you already own.</p><a class="btn" href="#shop">Shop the collection</a></div>
+  </section>
+</div>
+
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="head"><h2>Shop all</h2><p id="result-n"></p></div>
+    <div class="toolbar">
+      <div class="filters" role="group" aria-label="Filters">
+        <span id="cats"></span>
+        <select class="sel" id="size" aria-label="Size in stock"><option value="">Any size</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>40</option><option>42</option><option>44</option></select>
+        <label class="price-f">Up to <b id="max-l">$250</b><input type="range" id="max" min="30" max="250" step="10" value="250" aria-label="Maximum price"></label>
+        <button class="link" id="clear" hidden>Clear filters</button>
+      </div>
+      <div class="filters"><button class="link" id="size-guide">Size guide</button><select class="sel" id="sort" aria-label="Sort"><option value="feat">Featured</option><option value="new">Newest</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="rate">Top rated</option></select></div>
+    </div>
+    <div class="products" id="grid"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="perks"><div><b>Free shipping</b>On orders over $75</div><div><b>30-day returns</b>No questions asked</div><div><b>Secure checkout</b>Cards &amp; cash on delivery</div></div>
+</div>
+<section class="news"><h2>10% off your first order</h2><p style="color:var(--muted);margin-top:8px">Join the list for new drops and private sales.</p><form id="news" novalidate><input type="email" id="news-e" placeholder="Your email" aria-label="Email address" autocomplete="email"><button class="btn" type="submit">Sign up</button></form><p class="msg" id="news-m" role="status"></p></section>
+<div class="wrap"><footer><span>© NOIR Studio</span><span>Sample content — your products, photos and brand go here.</span></footer></div>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/store.js"></script>
+</body>
+</html>

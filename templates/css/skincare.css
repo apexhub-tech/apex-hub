@@ -1,0 +1,74 @@
+/* Glow Lab — styles */
+/* Style: Pastel beauty — peach & lilac, pill shapes, guided "find your routine" quiz */
+:root { --bg: #FFF7F3; --ink: #3B2A2F; --muted: #85707A; --peach: #FFD9C7; --lilac: #E6DCFF; --mint: #D6F2E6; --rose: #D9577B; --card: #fff;
+  --kit-surface: #FFFBF9; --kit-ink: #3B2A2F; --kit-muted: #85707A; --kit-line: #F0DDD6; --kit-accent: #D9577B; --kit-accent-ink: #fff; --kit-radius: 24px; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Figtree, system-ui, sans-serif; }
+h1, h2, h3 { font-family: "Bricolage Grotesque", sans-serif; margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
+p { margin: 0; }
+button, input { font-family: inherit; }
+:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 12px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px; border-radius: 999px; background: var(--ink); color: #fff; font: 600 15px Figtree, sans-serif; border: 0; cursor: pointer; text-decoration: none; }
+.btn:hover { background: var(--rose); }
+.btn.soft { background: #fff; color: var(--ink); }
+
+.promo { background: var(--ink); color: #fff; text-align: center; font-size: 14px; padding: 8px; }
+nav.top { display: flex; justify-content: space-between; align-items: center; height: 76px; gap: 12px; }
+.logo { font: 700 26px "Bricolage Grotesque", sans-serif; }
+.logo span { color: var(--rose); }
+nav.top ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+nav.top a { color: var(--ink); text-decoration: none; font-weight: 500; }
+.pills { display: flex; gap: 8px; }
+.pill-btn { background: var(--peach); border-radius: 999px; padding: 10px 16px; font: 600 14px Figtree, sans-serif; border: 0; cursor: pointer; color: var(--ink); }
+.pill-btn.l { background: var(--lilac); }
+
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+.hero-copy { background: var(--lilac); border-radius: 36px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; }
+.hero h1 { font-size: clamp(46px, 5.8vw, 82px); margin-bottom: 18px; }
+.hero p { color: var(--muted); font-size: 18px; max-width: 420px; margin-bottom: 30px; }
+.hero-img { border-radius: 36px; overflow: hidden; min-height: 460px; position: relative; }
+.hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sticker { position: absolute; top: 24px; right: 24px; width: 110px; height: 110px; border-radius: 50%; background: var(--rose); color: #fff; display: grid; place-items: center; text-align: center; font: 700 16px/1.1 "Bricolage Grotesque", sans-serif; transform: rotate(12deg); }
+
+.result { margin-top: 28px; background: var(--card); border-radius: 32px; padding: 28px; display: grid; gap: 16px; box-shadow: 0 10px 30px rgba(59,42,47,.06); }
+.result[hidden] { display: none; }
+.result h2 { font-size: 30px; }
+.routine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.routine div { background: var(--bg); border-radius: 20px; padding: 14px; display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; }
+.routine img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; }
+.routine small { display: block; color: var(--muted); }
+.step-n { font-size: 12px; font-weight: 700; color: var(--rose); text-transform: uppercase; letter-spacing: .08em; }
+
+.finder { margin: 48px 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; background: var(--card); border-radius: 999px; padding: 12px 12px 12px 28px; box-shadow: 0 10px 30px rgba(59,42,47,.06); }
+.finder h2 { font-size: 24px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 0; background: var(--bg); color: var(--ink); font: 600 14px Figtree, sans-serif; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--rose); color: #fff; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-bottom: 60px; }
+.prod { background: var(--card); border-radius: 28px; padding: 12px; display: flex; flex-direction: column; position: relative; }
+.prod .ph { border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; position: relative; border: 0; padding: 0; cursor: pointer; display: block; width: 100%; }
+.prod img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tag { position: absolute; top: 12px; left: 12px; background: #fff; border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 600; z-index: 1; }
+.sk-heart { position: absolute; top: 20px; right: 20px; z-index: 2; }
+.prod h3 { font-size: 19px; margin: 14px 6px 2px; }
+.prod .for { color: var(--muted); font-size: 14px; margin: 0 6px; }
+.rating { color: var(--rose); font-size: 14px; margin: 6px 6px 0; }
+.prod .row { display: flex; justify-content: space-between; align-items: center; margin: auto 6px 4px; padding-top: 14px; }
+.prod .pr { font-weight: 700; font-size: 18px; }
+.prod .pr small { display: block; font-size: 12px; color: var(--muted); font-weight: 500; }
+.add { min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--peach); color: var(--ink); font: 600 14px Figtree, sans-serif; cursor: pointer; }
+.add:hover { background: var(--ink); color: #fff; }
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding-bottom: 60px; }
+.reviews blockquote { margin: 0; background: var(--card); border-radius: 24px; padding: 22px; }
+.reviews b { display: block; margin-top: 10px; font-size: 14px; }
+.reviews span { color: var(--rose); }
+.quiz-opts { display: grid; gap: 8px; }
+.quiz-opts button { text-align: left; min-height: 52px; padding: 0 18px; border-radius: 16px; border: 2px solid var(--kit-line); background: #fff; font: 600 15px Figtree, sans-serif; cursor: pointer; color: var(--ink); }
+.quiz-opts button:hover { border-color: var(--rose); }
+.quiz-prog { height: 6px; border-radius: 3px; background: var(--kit-line); overflow: hidden; }
+.quiz-prog i { display: block; height: 100%; background: var(--rose); }
+footer { padding: 30px 0 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } .hero { grid-template-columns: 1fr; } nav.top ul { display: none; } .finder { border-radius: 28px; padding: 20px; } .routine, .reviews { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .wrap { padding: 0 14px; } .hero-copy { padding: 36px 24px; } .grid { gap: 12px; } .prod h3 { font-size: 16px; } }

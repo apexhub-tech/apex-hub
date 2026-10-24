@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DROP/01 — Sneaker store template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/sneakers.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Sneaker drop store</span><a class="tpl-use" href="../index.html?template=Sneaker%20drop%20store#contact" target="_top">Use this template</a></div>
+
+<nav class="top" aria-label="Main"><span class="logo">DROP/01</span><div class="marq" aria-hidden="true"><span>Limited release — 500 pairs worldwide — no restocks — one pair per customer — Limited release — 500 pairs worldwide — no restocks — one pair per customer —&nbsp;</span></div><button class="navbtn" id="wish-btn">Saved [<span id="wish-n">0</span>]</button><button class="navbtn" id="cart-btn">Cart [<span id="cart-n">0</span>]</button></nav>
+
+<header class="hero">
+  <div class="hero-l">
+    <h1>Red<br><span>Line</span><br>Runner</h1>
+    <div>
+      <p style="margin-bottom:12px" id="timer-l">DROP CLOSES IN</p>
+      <div class="meta" aria-live="off"><div><b id="d">02</b><span>Days</span></div><div><b id="h">14</b><span>Hrs</span></div><div><b id="mi">22</b><span>Min</span></div><div><b id="s">09</b><span>Sec</span></div></div>
+      <div class="stock"><span id="left">138 / 500 PAIRS LEFT</span><div><i id="left-bar" style="width:28%"></i></div></div>
+    </div>
+  </div>
+  <div class="hero-r"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&h=1000&q=75" alt="Red running sneaker"><span class="lbl">Ref. DR-01 / $180</span></div>
+</header>
+
+<section class="buy" aria-labelledby="sz">
+  <div><h2 id="sz">Pick size</h2><p>EU sizing. Struck-out sizes are sold out. <button id="fit" style="background:none;border:0;text-decoration:underline;cursor:pointer;font:inherit">Fit guide</button></p>
+    <div class="sizes" role="group" aria-label="Sizes" id="sizes"></div>
+  </div>
+  <div><h2>$180</h2><p>Mesh upper / foam sole / reflective heel tab. Ships in 48h.</p>
+    <button class="cop" id="cop" style="margin-top:16px">Cop now →</button>
+    <p class="say" id="say" role="status"></p>
+    <div class="rules"><span>→ One pair per customer. Bots get cancelled.</span><span>→ Cart holds your pair for 10 minutes.</span><span>→ Free returns within 14 days, unworn.</span></div>
+  </div>
+</section>
+
+<div class="sec-t"><h2>Drops</h2><div class="tabs" role="group" aria-label="Show"><button aria-pressed="true" data-f="all">All</button><button aria-pressed="false" data-f="live">Available</button><button aria-pressed="false" data-f="out">Sold out</button></div></div>
+<section class="shelf" id="shelf"></section>
+<footer><span>© DROP/01 Store</span><span>Sample content — your drops and photos go here.</span></footer>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/sneakers.js"></script>
+</body>
+</html>

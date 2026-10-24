@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parcelo — Delivery tracking template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/tracking.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Delivery tracking (SaaS)</span><a class="tpl-use" href="../index.html?template=Delivery%20tracking#contact" target="_top">Use this template</a></div>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main"><a class="logo" href="#/track">parcelo</a><div class="links"><a href="#/track" data-nav="track">Track a parcel</a><a href="#/shipments" data-nav="shipments">Shipments <b id="ex-n" hidden></b></a><a href="#/notify" data-nav="notify">Notifications</a></div></nav>
+
+  <!-- CUSTOMER -->
+  <section data-view="track">
+    <div class="hero">
+      <div><h1>Where's my <mark>parcel?</mark></h1><p>Live tracking from the warehouse to your door — choose where we leave it, or move the delivery day.</p></div>
+      <form class="track box" id="track">
+        <label for="code">Tracking number</label>
+        <input id="code" placeholder="PCL-2048-77" autocomplete="off" required>
+        <button class="btn" type="submit">Track parcel →</button>
+        <p class="hint" id="hints"></p>
+      </form>
+    </div>
+    <p class="err" id="err" role="alert"></p>
+    <div id="result"></div>
+  </section>
+
+  <!-- MERCHANT -->
+  <section data-view="shipments" hidden>
+    <div class="kpis"><div class="kpi box"><span>In transit</span><b id="k-transit"></b></div><div class="kpi box"><span>Delivered (7 days)</span><b id="k-del"></b></div><div class="kpi box"><span>Exceptions</span><b id="k-ex"></b></div><div class="kpi box"><span>On-time rate</span><b id="k-ontime"></b></div></div>
+    <div class="toolbar">
+      <input class="field" id="q" placeholder="Search tracking #, order or customer" aria-label="Search shipments" style="flex:1;min-width:220px">
+      <select class="field" id="carrier" aria-label="Carrier"><option value="all">All carriers</option></select>
+      <button class="btn y" id="sync">↻ Sync carriers</button><button class="btn w" id="import">Import CSV</button><button class="btn w" id="export">Export</button>
+    </div>
+    <div class="chips" id="chips" style="margin-bottom:14px" role="group" aria-label="Status"></div>
+    <div class="box table"><table><thead><tr><th>Tracking #</th><th>Order</th><th>Customer</th><th>Carrier</th><th>Status</th><th>Progress</th><th>Last update</th><th>ETA</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <p class="kit-hint" style="margin-top:12px">Data saves in this browser · <button class="kit-reset" id="reset">Reset demo</button></p>
+  </section>
+
+  <!-- NOTIFICATIONS -->
+  <section data-view="notify" hidden>
+    <h1 style="font-size:40px;margin-bottom:6px">Customer notifications</h1><p style="margin-bottom:20px">Choose which updates customers get and edit the message. Use {name}, {tracking}, {eta} and {store}.</p>
+    <div class="notif" id="notif"></div>
+  </section>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/tracking.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keystone Homes — Real estate template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/realestate.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Real estate listings</span><a class="tpl-use" href="../index.html?template=Real%20estate%20listings#contact" target="_top">Use this template</a></div>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="top" aria-label="Main"><span class="logo"><i></i>Keystone Homes</span><div class="r"><button class="btn ghost" id="saved-btn">♡ Saved (0)</button><button class="btn" id="list-btn">List your property</button></div></nav>
+    <div class="hero-copy">
+      <h1>Find a home that fits your life.</h1>
+      <p>Verified apartments, villas and offices — real photos, clear prices and agents who answer.</p>
+      <div class="deal-tabs" role="group" aria-label="Buy or rent" id="deal"><button aria-pressed="true" data-d="all">All</button><button aria-pressed="false" data-d="sale">Buy</button><button aria-pressed="false" data-d="rent">Rent</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <form class="search" id="search" role="search">
+    <div class="f"><label for="s-q">Location</label><input id="s-q" placeholder="City, area or compound" list="areas"><datalist id="areas"></datalist></div>
+    <div class="f"><label for="s-type">Type</label><select id="s-type"><option value="all">Any type</option><option>Apartment</option><option>Villa</option><option>Office</option></select></div>
+    <div class="f"><label for="s-beds">Bedrooms</label><select id="s-beds"><option value="0">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
+    <div class="f"><label for="s-max">Max price</label><select id="s-max"><option value="0">No max</option><option value="1500">$1,500 / mo</option><option value="3000">$3,000 / mo</option><option value="150000">$150,000</option><option value="400000">$400,000</option><option value="1000000">$1,000,000</option></select></div>
+    <button class="btn dark" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search</button>
+  </form>
+
+  <div class="bar"><h2 id="count"></h2><div class="r"><select class="sel" id="sort" aria-label="Sort"><option value="new">Newest</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="size">Largest</option></select><div class="seg" role="group" aria-label="View"><button aria-pressed="true" data-v="list">List</button><button aria-pressed="false" data-v="map">Map</button></div><button class="btn line" id="cmp-go" hidden>Compare (0)</button></div></div>
+  <div class="layout" id="layout"><div class="listings" id="list"></div><div class="map" id="map" hidden></div></div>
+  <div class="alert-box"><span><b>🔔 Get new listings first.</b> We'll email you when homes matching this search go live.</span><button class="btn dark" id="alert">Save this search</button></div>
+
+  <div class="tools">
+    <div class="tool"><h2>Mortgage calculator</h2><p>Estimate your monthly payment.</p>
+      <div class="grid2"><label>Home price<input id="mc-p" type="number" value="365000" step="5000" min="0"></label><label>Deposit %<input id="mc-d" type="number" value="20" min="0" max="90"></label><label>Interest rate %<input id="mc-r" type="number" value="5.5" step="0.1" min="0"></label><label>Term<select id="mc-t"><option value="15">15 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></label></div>
+      <p class="out" id="mc-out" aria-live="polite"></p></div>
+    <div class="tool" style="background:var(--gold);color:var(--navy)"><h2>What's your home worth?</h2><p style="color:var(--navy)">Get a free instant estimate, then a precise valuation from a local agent.</p>
+      <div class="grid2"><label style="color:var(--navy)">Area<select id="v-a"></select></label><label style="color:var(--navy)">Size (m²)<input id="v-s" type="number" value="120" min="20"></label></div>
+      <p class="out" id="v-out" style="color:var(--navy)" aria-live="polite"></p><button class="btn dark" id="v-book" style="margin-top:14px">Book a free valuation</button></div>
+  </div>
+  <footer><span>© Keystone Homes</span><span>Sample content — your listings and brand go here.</span></footer>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/realestate.js"></script>
+</body>
+</html>

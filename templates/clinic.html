@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarePoint — Clinic booking template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/clinic.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Clinic booking system</span><a class="tpl-use" href="../index.html?template=Clinic%20booking%20system#contact" target="_top">Use this template</a></div>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a class="logo" href="#/book"><i>+</i>CarePoint</a>
+    <div class="links"><a href="#/book" data-nav="book">Book</a><a href="#/manage" data-nav="manage">Manage booking</a><a href="#/staff" data-nav="staff">Staff dashboard</a></div>
+  </nav>
+</div>
+
+<!-- PATIENT BOOKING -->
+<div data-view="book">
+  <div class="wrap hero">
+    <div>
+      <span class="pill">✓ Same-day appointments available</span>
+      <h1>Book your doctor in under a minute.</h1>
+      <p class="lead">Live availability for every doctor. Instant confirmation, reminders by SMS and easy rescheduling.</p>
+      <div class="trust"><div><b>25+</b><span>Specialist doctors</span></div><div><b>12k</b><span>Patients a year</span></div><div><b>4.8★</b><span>Patient rating</span></div></div>
+      <div class="space"><img src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?auto=format&fit=crop&w=1000&h=440&q=70" alt="Bright, modern clinic waiting room" loading="lazy"></div>
+    </div>
+    <section class="wizard" aria-labelledby="w-title">
+      <ol class="steps" id="steps"></ol>
+      <div class="w-body" id="w-body" aria-live="polite"></div>
+      <div class="w-foot" id="w-foot"><button class="btn ghost" id="w-back">Back</button><button class="btn" id="w-next">Continue</button></div>
+    </section>
+  </div>
+  <section class="block"><div class="wrap">
+    <div class="sec-title"><h2>Meet our doctors</h2><p>Live next-available times.</p></div>
+    <div class="docs" id="docs"></div>
+  </div></section>
+</div>
+
+<!-- MANAGE -->
+<div data-view="manage" hidden>
+  <div class="wrap"><div class="manage" id="manage"></div></div>
+</div>
+
+<!-- STAFF -->
+<div data-view="staff" hidden>
+  <div class="wrap staff">
+    <div class="s-head">
+      <div><h1>Front desk</h1><p style="color:var(--muted)">Click an appointment to check a patient in, complete or reschedule it. <button class="kit-reset" id="reset">Reset demo</button></p></div>
+      <div class="daynav"><button class="icon-btn" id="d-prev" aria-label="Previous day">‹</button><b id="d-label"></b><button class="icon-btn" id="d-next" aria-label="Next day">›</button><button class="btn ghost" id="d-today">Today</button><button class="btn ghost" id="export">Export day</button></div>
+    </div>
+    <div class="kpis"><div class="kpi"><span>Appointments</span><b id="k-all"></b></div><div class="kpi"><span>Checked in / seen</span><b id="k-in"></b></div><div class="kpi"><span>No-shows</span><b id="k-ns"></b></div><div class="kpi"><span>Chair utilisation</span><b id="k-util"></b></div></div>
+    <div class="board">
+      <div class="cal"><div class="cal-grid" id="cal"></div></div>
+      <aside class="side-panel"><h3>Waiting room</h3><ul class="wait" id="wait"></ul><h3 style="margin-top:18px">Up next</h3><ul class="wait" id="upnext"></ul></aside>
+    </div>
+  </div>
+</div>
+
+<div class="wrap"><footer><span>© CarePoint Clinic</span><span>Sample content — your clinic, doctors and branding go here. Bookings save in this browser.</span></footer></div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/clinic.js"></script>
+</body>
+</html>

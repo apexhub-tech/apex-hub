@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crumb &amp; Co. — Bakery online ordering template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/bakery.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Bakery online ordering</span><a class="tpl-use" href="../index.html?template=Bakery%20online%20ordering#contact" target="_top">Use this template</a></div>
+
+<div class="wrap">
+  <nav class="top" aria-label="Main"><span class="logo">Crumb <span>&amp;</span> Co.</span><ul><li><a href="#shop">Shop</a></li><li><a href="#cake">Custom cakes</a></li><li><a href="#visit">Visit</a></li></ul><span class="open-now" id="open-now"></span><button class="bag" id="bag">Basket · 0</button></nav>
+
+  <header class="hero">
+    <div>
+      <span class="cutoff" id="cutoff"></span>
+      <h1>Baked this <span>morning.</span> Yours by noon.</h1>
+      <p>Order fresh pastries, breads and celebration cakes online — collect in store or get same-day local delivery.</p>
+      <a class="btn" href="#cake">Design your cake</a>
+    </div>
+    <div class="pics">
+      <span class="sticker">Fresh daily · 7am</span>
+      <img src="https://images.unsplash.com/photo-1583338917451-face2751d8d5?auto=format&fit=crop&w=800&h=800&q=75" alt="Fruit tarts and chocolate cakes in a bakery display">
+      <img src="https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&w=500&h=500&q=70" alt="Freshly baked croissants">
+    </div>
+  </header>
+</div>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="sec-h"><h2 class="t">Today's bakes</h2><div class="chips" role="group" aria-label="Dietary filter"><button class="chip" aria-pressed="true" data-f="all">All</button><button class="chip" aria-pressed="false" data-f="Vegan">Vegan</button><button class="chip" aria-pressed="false" data-f="Gluten-free">Gluten-free</button><button class="chip" aria-pressed="false" data-f="Nut-free">Nut-free</button></div></div>
+    <div class="shop" id="list"></div>
+  </div>
+</section>
+
+<section id="cake">
+  <div class="wrap">
+    <h2 class="t" style="margin-bottom:24px">Build a celebration cake</h2>
+    <form class="builder" id="builder">
+      <div>
+        <fieldset><legend>1. Size</legend><div class="opts">
+          <label class="opt"><input type="radio" name="Size" value='6" · serves 8' checked><span>6" · serves 8 · $35</span></label>
+          <label class="opt"><input type="radio" name="Size" value='8" · serves 14'><span>8" · serves 14 · $48</span></label>
+          <label class="opt"><input type="radio" name="Size" value='10" · serves 22'><span>10" · serves 22 · $65</span></label></div></fieldset>
+        <fieldset><legend>2. Flavour</legend><div class="opts">
+          <label class="opt"><input type="radio" name="Flavour" value="Chocolate fudge" checked><span>Chocolate fudge</span></label>
+          <label class="opt"><input type="radio" name="Flavour" value="Vanilla berry"><span>Vanilla berry</span></label>
+          <label class="opt"><input type="radio" name="Flavour" value="Rainbow layers"><span>Rainbow layers +$6</span></label></div></fieldset>
+        <fieldset><legend>3. Extras <small>optional</small></legend><div class="opts">
+          <label class="opt"><input type="checkbox" name="Candles"><span>Candles +$3</span></label>
+          <label class="opt"><input type="checkbox" name="Gold topper"><span>Gold topper +$8</span></label>
+          <label class="opt"><input type="checkbox" name="Cupcakes"><span>6 cupcakes +$15</span></label></div></fieldset>
+        <fieldset><legend><label for="msg">4. Message on the cake</label></legend><textarea id="msg" maxlength="40" rows="2" placeholder="e.g. Happy Birthday Lina!"></textarea><p class="note"><span id="msg-n">0</span>/40 characters</p></fieldset>
+        <fieldset><legend><label for="date">5. Collection date</label></legend><input type="date" id="date" required><p class="note">Custom cakes need 48 hours. Closed on Mondays.</p></fieldset>
+      </div>
+      <aside class="preview" aria-live="polite">
+        <img id="pv-img" alt="Selected cake flavour">
+        <ul id="pv-list"></ul>
+        <p class="msg" id="pv-msg"></p>
+        <div class="tot"><span>Total</span><span id="pv-tot"></span></div>
+        <button class="btn" type="submit">Add cake to basket</button>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0"><div class="wrap info"><div><b>Opening hours</b><p>Tue–Sun 7:00–18:00<br>Closed Mondays</p></div><div><b>Find us</b><p>18 Baker's Row, Old Town<br>Free parking behind the shop</p></div><div><b>Allergens</b><p>Every product lists its allergens. Ask us anything — we bake in a kitchen that handles nuts.</p></div></div></section>
+<div class="wrap"><footer><span>© Crumb &amp; Co. Bakery</span><span>Sample content — your bakes, prices and photos go here.</span></footer></div>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/bakery.js"></script>
+</body>
+</html>

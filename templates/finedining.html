@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Noir — Fine dining template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/finedining.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Fine dining restaurant</span><a class="tpl-use" href="../index.html?template=Fine%20dining%20restaurant#contact" target="_top">Use this template</a></div>
+
+<header class="hero">
+  <nav class="top" aria-label="Main"><span class="logo">MAISON NOIR</span><ul><li><a href="#story">Story</a></li><li><a href="#menu">Tasting menu</a></li><li><a href="#reserve">Reserve</a></li><li><button class="lnk" id="nav-gift">Gift</button></li></ul></nav>
+  <div class="hero-c">
+    <p class="k">Seasonal tasting menu · Twenty seats</p>
+    <h1>An evening, composed.</h1>
+    <p>Nine courses guided by the season, the sea and the hands of our kitchen.</p>
+    <a class="btn" href="#reserve">Reserve a table</a>
+  </div>
+  <div class="rule" aria-hidden="true"></div>
+</header>
+
+<section id="story">
+  <div class="wrap story">
+    <img src="https://images.unsplash.com/photo-1750943079462-87bad58cf43e?auto=format&fit=crop&w=900&h=1100&q=70" alt="Chef presenting a plated dish" loading="lazy">
+    <div>
+      <p class="k">The kitchen</p>
+      <h2>Quiet technique. Loud flavour.</h2>
+      <p>Every plate begins with a single ingredient at its peak — a morning catch, a late-summer tomato, the first truffles of autumn.</p>
+      <p>We cook for twenty guests a night, so every course arrives exactly as it should.</p>
+      <p class="sig">— Chef Elias Marin</p>
+    </div>
+  </div>
+</section>
+
+<section id="menu" style="padding-top:0">
+  <div class="wrap tasting">
+    <p class="k">Autumn tasting menu</p>
+    <h2>Nine courses</h2>
+    <div class="menu-tabs" role="group" aria-label="Menu version"><button aria-pressed="true" data-m="classic">Classic</button><button aria-pressed="false" data-m="veg">Vegetarian</button></div>
+    <ol class="courses" id="courses"></ol>
+    <p class="price"><b>$185</b> per guest · Wine pairing <b>$95</b> · Non-alcoholic pairing <b>$60</b></p>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1750943036999-81e666b2296c?auto=format&fit=crop&w=700&h=760&q=70" alt="Plated course with a glass of wine" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1593854989775-ae5e4d9e49e9?auto=format&fit=crop&w=500&h=640&q=70" alt="Course served on a black plate" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1731941465921-eb4285693713?auto=format&fit=crop&w=600&h=760&q=70" alt="Table set with wine glasses and plates" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="reserve" style="padding-top:0">
+  <div class="wrap">
+    <div class="res">
+      <div class="res-top"><p class="k">Reservations</p><h2>Join us at the table</h2><p>Wednesday to Sunday · two seatings · a $50 deposit per guest secures your table and is deducted from your bill.</p></div>
+      <div class="res-grid">
+        <div class="f"><label for="d">Date</label><input id="d" type="date"></div>
+        <div class="f"><label for="g">Guests</label><select id="g"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option></select></div>
+        <div class="f"><label for="menu-v">Menu</label><select id="menu-v"><option>Classic tasting</option><option>Vegetarian tasting</option></select></div>
+      </div>
+      <div class="seatings" id="seatings" role="group" aria-label="Seating"></div>
+      <div class="extras">
+        <div class="box"><span class="lab">Pairing</span><label class="check"><input type="radio" name="pair" value="none" checked> No pairing</label><label class="check"><input type="radio" name="pair" value="Wine pairing"> Wine pairing · $95 pp</label><label class="check"><input type="radio" name="pair" value="Non-alcoholic pairing"> Non-alcoholic · $60 pp</label></div>
+        <div class="box"><label for="diet">Allergies &amp; dietary requirements</label><textarea id="diet" placeholder="e.g. one guest is allergic to shellfish"></textarea><label class="check"><input type="checkbox" id="occ"> We're celebrating something special</label></div>
+      </div>
+      <div class="res-foot"><p class="sum" id="sum"></p><button class="btn" id="book">Continue to deposit</button></div>
+      <div id="mine"></div>
+    </div>
+    <div class="vouch"><div><p class="k">Gift vouchers</p><h3>Give an evening at Maison Noir</h3><p>Choose a tasting menu for two, or any amount. Delivered by email, valid for 12 months.</p></div><button class="btn" id="gift">Buy a voucher</button></div>
+  </div>
+</section>
+<footer><span>© Maison Noir</span><span>Sample content — your menu, chef and photos go here.</span></footer>
+
+<script src="shared/app-kit.js"></script>
+<script src="shared/shop-kit.js"></script>
+<script src="js/finedining.js"></script>
+</body>
+</html>
