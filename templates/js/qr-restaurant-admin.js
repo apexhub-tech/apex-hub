@@ -43,7 +43,7 @@
       const prog = C.buffet && s ? Math.min(100, (Date.now() - s.start) / 6e4 / C.buffet.minutes * 100) : 0;
       return `<button class="tbl t-${cls}" data-t="${t.n}"><span class="tbl-n">${t.n}</span><span class="tbl-seats">${t.seats} seats</span>
         <b>${label}</b>${s ? `<small>${s.adults + s.kids} guests${s.tier ? ' · ' + tierOf(s.tier).name : ''}${s.tea ? ' · ' + s.tea : ''}</small>` : ''}
-        ${C.buffet && s ? `<span class="tbl-prog"><i style="width:${prog}%"></i></span>` : ''}${calls.length ? `<span class="tbl-call">${calls.map((c) => (C.service.find((x) => x[0] === c.kind) || ['', '🧾'])[1]).join(' ')}</span>` : ''}</button>`;
+        ${s ? `<span class="tbl-pin" title="Table PIN · phones connected">🔑 ${s.pin} · 📱 ${s.devices.length}</span>` : ''}${C.buffet && s ? `<span class="tbl-prog"><i style="width:${prog}%"></i></span>` : ''}${calls.length ? `<span class="tbl-call">${calls.map((c) => (C.service.find((x) => x[0] === c.kind) || ['', '🧾'])[1]).join(' ')}</span>` : ''}</button>`;
     }).join('');
     const alerts = S.tables.filter((t) => ['warn', 'bill'].includes(tableState(t)[0])).length; $('n-floor').hidden = !alerts; $('n-floor').textContent = alerts;
   }
@@ -56,16 +56,23 @@
         ${C.buffet ? `<div class="kit-field"><span class="kit-label">Buffet</span><div class="kit-seg" id="st">${C.buffet.tiers.map((x) => `<button type="button" data-v="${x.id}" aria-pressed="${x.id === tier}">${x.name} · ${money(tierPrice(x.id))}</button>`).join('')}</div></div>` : ''}
         ${C.tea ? `<div class="kit-field"><span class="kit-label">Tea</span><div class="kit-seg" id="st">${C.tea.teas.map((x) => `<button type="button" data-v="${x}" aria-pressed="${x === tea}">${x}</button>`).join('')}</div></div>` : ''}`,
         onOpen: (m) => m.querySelector('#st')?.addEventListener('click', (e) => { const b = e.target.closest('[data-v]'); if (!b) return; if (C.buffet) tier = b.dataset.v; else tea = b.dataset.v; m.querySelectorAll('#st button').forEach((x) => x.setAttribute('aria-pressed', x === b)); }),
-        actions: [{ label: 'Cancel' }, { label: 'Seat guests', primary: true, onClick: (m) => { startSession(n, { adults: Math.max(1, +m.querySelector('#sa').value || 1), kids: Math.max(0, +m.querySelector('#sk').value || 0), tier, tea, by: 'staff' }); renderAll(); Kit.toast(`Table ${n} seated${C.buffet ? ` — ${C.buffet.minutes} min timer started` : ''}`, { type: 'success' }); } }] });
+        actions: [{ label: 'Cancel' }, { label: 'Seat guests', primary: true, onClick: (m) => { startSession(n, { adults: Math.max(1, +m.querySelector('#sa').value || 1), kids: Math.max(0, +m.querySelector('#sk').value || 0), tier, tea, by: 'staff' }); renderAll(); setTimeout(() => showPin(n)); } }] });
       return;
     }
     const b = bill(n), tickets = S.tickets.filter((k) => k.session === s.id);
-    Kit.modal({ title: `Table ${n} · ${s.adults + s.kids} guests`, wide: true, body: `<p class="kit-hint">Seated ${Kit.time(s.start)}${s.tier ? ` · ${tierOf(s.tier).name} buffet` : ''}${s.tea ? ` · ${s.tea} tea` : ''}${C.buffet ? ` · ${tableState(t)[1]}` : ''} · QR: <code>${C.guestUrl}?table=${n}</code></p>
+    Kit.modal({ title: `Table ${n} · ${s.adults + s.kids} guests`, wide: true, body: `<div class="pin-row"><span>Table PIN <b>${s.pin}</b></span><span>📱 ${s.devices.length} phone${s.devices.length === 1 ? '' : 's'} connected</span></div><p class="kit-hint">Seated ${Kit.time(s.start)}${s.tier ? ` · ${tierOf(s.tier).name} buffet` : ''}${s.tea ? ` · ${s.tea} tea` : ''}${C.buffet ? ` · ${tableState(t)[1]}` : ''} · QR: <code>${C.guestUrl}?table=${n}</code></p>
       <div class="bill-box">${b.lines.map(([l, v]) => `<div><span>${l}</span><span>${money(v)}</span></div>`).join('')}<div><span>Service ${Math.round(C.serviceRate * 100)}% + ${C.taxLabel}</span><span>${money(b.service + b.tax)}</span></div><div class="g"><span>Total</span><span>${money(b.total)}</span></div></div>
       <p class="kit-hint" style="margin-top:10px">${tickets.length} order${tickets.length === 1 ? '' : 's'} · ${tickets.reduce((a, k) => a + k.items.reduce((x, i) => x + i.qty, 0), 0)} dishes</p>`,
-      actions: [...(C.buffet ? [{ label: '+15 min', onClick: () => { s.start += 15 * 6e4; save(); renderAll(); Kit.toast(`Added 15 minutes to table ${n}`); } }] : []),
+      actions: [{ label: 'New PIN', onClick: () => { const p = changePin(n); renderAll(); Kit.toast(`Table ${n} PIN is now ${p} — all phones were disconnected`, { type: 'success' }); setTimeout(() => showPin(n)); } }, ...(C.buffet ? [{ label: '+15 min', onClick: () => { s.start += 15 * 6e4; save(); renderAll(); Kit.toast(`Added 15 minutes to table ${n}`); } }] : []),
         { label: 'Take payment', onClick: () => { setTimeout(() => PayKit.checkout({ title: `Table ${n} · ${money(b.total)}`, amount: b.total, currency: C.currency, cashLabel: 'Cash at the counter', onPaid: (info) => { closeSession(n, info.detail); save(); renderAll(); Kit.toast(`Table ${n} paid and cleared`, { type: 'success' }); } })); } },
         { label: 'Close table (paid cash)', primary: true, onClick: () => { closeSession(n, 'Cash'); save(); renderAll(); Kit.toast(`Table ${n} cleared — ${money(b.total)} cash`, { type: 'success' }); } }] });
+  }
+
+  // The PIN staff give the party (read aloud or printed on the table slip). Guests need it to order from their phones.
+  function showPin(n) {
+    const s = table(n).session; if (!s) return;
+    Kit.modal({ title: `Table ${n} is open`, body: `<div class="pin-card"><span>Table PIN</span><b>${s.pin}</b><p>Give this to the guests at table ${n}. Phones need it once to start ordering; it stops working when the bill is paid.</p></div>`,
+      actions: [{ label: 'Print table slip', onClick: () => { Kit.toast(`Slip for table ${n} sent to the printer`); return false; } }, { label: 'Done', primary: true }] });
   }
 
   /* ---------- Kitchen display ---------- */

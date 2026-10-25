@@ -57,6 +57,8 @@ Each SaaS app has two pages that share the same data, like a real product. Open 
 
 The three restaurants share one engine (`js/qr-restaurant-core.js`, `qr-restaurant.js`, `qr-restaurant-admin.js`); each brand is a config file (`js/kbbq-data.js`, `thai-data.js`, `dimsum-data.js`) with its menu, rules, currency and taxes.
 
+**Table access.** A printed table QR only identifies the table. Staff seat each party from the staff panel, which creates a 4-digit table PIN; each phone enters it once to order. Paying, closing the table, re-seating it or pressing "New PIN" disconnects every phone, so nobody can keep ordering after they leave (or order onto another party's bill from home). Three wrong PINs lock entry for 30 seconds and alert staff. In this demo the checks run in the browser — a live system must enforce them on the server.
+
 Every demo admin password is `demo1234`; the sign-in screen also has a "Use demo account" button.
 
 ### Payments

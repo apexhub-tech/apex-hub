@@ -4,6 +4,8 @@ const C = window.QR;
 const db = Kit.store(C.key, C.seed), S = db.data, save = () => db.save();
 S.calls = S.calls || []; S.notes = S.notes || []; S.bills = S.bills || []; S.tickets = S.tickets || [];
 if (!S.buffet && C.buffet) S.buffet = C.buffet.tiers.map((t) => ({ id: t.id, price: t.price }));
+// Visits saved before table PINs existed get one now
+if (S.tables.filter((t) => t.session && !t.session.pin).map((t) => { t.session.pin = String(Math.floor(1000 + Math.random() * 9000)); t.session.devices = []; }).length && !Kit.THUMB) save();
 
 const money = (n) => PayKit.fmt(n, C.currency);
 const dish = (id) => S.menu.find((d) => d.id === id);
@@ -42,10 +44,32 @@ function bill(n) {
   return { lines, sub, service, tax, total: sub + service + tax, heads: (s.adults || 0) + (s.kids || 0) };
 }
 
-// Start a dining session on a table (from the guest's phone or by staff)
-function startSession(n, { adults = 2, kids = 0, tier = null, tea = null, by = 'guest' } = {}) {
+/* ---------- Table access: staff-seated visits, table PIN, per-phone tokens ----------
+   A printed table QR only says which table it is. Ordering needs the PIN staff give the party when seating them;
+   each phone that enters it is recorded on that visit. Paying, closing or changing the PIN shuts every phone out.
+   (In this demo the checks run in the browser; a live system must enforce them on the server.) */
+const genPin = () => String(Math.floor(1000 + Math.random() * 9000));
+const DEVICE = (() => { const k = 'apexhub:qr-device'; let id = null; try { id = localStorage.getItem(k); if (!id) { id = Kit.uid() + Kit.uid(); localStorage.setItem(k, id); } } catch (e) { id = 'nostore-' + Kit.uid(); } return id; })();
+const JOINS_KEY = `apexhub:${C.key}:joins`;
+const joins = () => { try { return JSON.parse(localStorage.getItem(JOINS_KEY) || '{}'); } catch (e) { return {}; } };
+const saveJoin = (n, sessionId) => { const j = joins(); j[n] = sessionId; try { localStorage.setItem(JOINS_KEY, JSON.stringify(j)); } catch (e) { /* storage blocked */ } };
+// This phone may order on table n only if it joined the table's current visit and staff haven't removed it
+const joined = (n) => { const s = table(n).session; return !!s && joins()[n] === s.id && s.devices.some((d) => d.id === DEVICE); };
+// Did this phone belong to a visit on table n that has since been paid or closed?
+const closedVisit = (n) => { const id = joins()[n], s = table(n).session; return !!id && (!s || s.id !== id) ? S.bills.find((b) => b.session === id) || { closed: true } : null; };
+function joinTable(n, pin) {
+  const s = table(n).session; if (!s || pin !== s.pin) return false;
+  if (!s.devices.some((d) => d.id === DEVICE)) s.devices.push({ id: DEVICE, ts: Date.now() });
+  saveJoin(n, s.id); Kit.notify(db, `📱 A phone joined table ${n} (${s.devices.length} on this table)`, { table: n });
+  return true;
+}
+// New PIN for a table: every phone currently on it has to re-enter the new one
+function changePin(n) { const s = table(n).session; if (!s) return; s.pin = genPin(); s.devices = []; save(); return s.pin; }
+
+// Start a dining visit on a table — done by staff when they seat the party
+function startSession(n, { adults = 2, kids = 0, tier = null, tea = null, by = 'staff' } = {}) {
   const t = table(n);
-  t.session = { id: Kit.uid(), start: Date.now(), adults, kids, tier, tea, rounds: 0, bill: false };
+  t.session = { id: Kit.uid(), start: Date.now(), adults, kids, tier, tea, rounds: 0, bill: false, pin: genPin(), devices: [] };
   const what = C.buffet ? `${tierOf(tier).name} buffet · ${adults}+${kids} guests` : C.tea ? `${adults + kids} guests · ${tea} tea` : `${adults + kids} guests`;
   Kit.notify(db, `Table ${n} ${by === 'guest' ? 'started' : 'seated'}: ${what}`, { table: n });
 }
@@ -55,7 +79,7 @@ function closeSession(n, method = 'Cash') {
   const t = table(n), b = bill(n); if (!t.session) return;
   const dishes = {};
   S.tickets.filter((k) => k.session === t.session.id).forEach((k) => k.items.forEach((i) => { dishes[i.name] = (dishes[i.name] || 0) + i.qty; }));
-  S.bills.push({ id: Kit.uid(), table: n, ts: Date.now(), total: b.total, heads: b.heads, tier: t.session.tier, method, dishes });
+  S.bills.push({ id: Kit.uid(), session: t.session.id, table: n, ts: Date.now(), total: b.total, heads: b.heads, tier: t.session.tier, method, dishes });
   S.tickets = S.tickets.filter((k) => k.session !== t.session.id);
   S.calls.forEach((c) => { if (c.table === n) c.done = true; });
   t.session = null;

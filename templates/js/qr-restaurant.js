@@ -6,11 +6,11 @@
   const app = $('qr-app');
   let n = +(new URLSearchParams(location.search).get('table') || C.defaultTable);
   if (!table(n)) n = C.defaultTable;
-  let tab = 'menu', cat = C.categories[0][0], cart = [], setup = { adults: 2, kids: 0, tier: C.buffet ? C.buffet.tiers[1].id : null, tea: C.tea ? C.tea.teas[0] : null };
+  let tab = 'menu', cat = C.categories[0][0], cart = [], pinTries = 0, pinLockUntil = 0;
 
   app.innerHTML = `<div class="qr-stage">
     <aside class="qr-note"><span class="qr-ico" aria-hidden="true"></span><h1>${C.pitch}</h1><p>Orders, service calls and payments go straight to the staff panel — open it in another tab to watch them arrive live.</p>
-      <label for="qr-table"><b>Demo: you're sitting at</b></label><select id="qr-table">${S.tables.map((t) => `<option value="${t.n}" ${t.n === n ? 'selected' : ''}>Table ${t.n}</option>`).join('')}</select></aside>
+      <label for="qr-table"><b>Demo: you're sitting at</b></label><select id="qr-table">${S.tables.map((t) => `<option value="${t.n}" ${t.n === n ? 'selected' : ''}>Table ${t.n}</option>`).join('')}</select><div class="qr-demo" id="qr-demo"></div></aside>
     <div class="qr-phone" aria-label="${C.name} guest menu"><div class="qr-screen">
       <header class="qr-head" style="background-image:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.75)),url(https://images.unsplash.com/photo-${C.hero}?auto=format&fit=crop&w=800&h=360&q=70)">
         <div class="qr-head-top"><span class="qr-pill" id="qr-pill"></span><span class="qr-timer" id="qr-timer" hidden></span></div>
@@ -25,7 +25,6 @@
   $('qr-reset').addEventListener('click', async () => { if (await Kit.confirm('Reset demo?', 'Clears test orders for both the guest menu and staff panel.', 'Reset')) db.reset(); });
 
   const session = () => table(n).session;
-  const needsSetup = () => !session() && (C.buffet || C.tea);
   const itemsInCart = () => cart.reduce((a, c) => a + c.qty, 0);
   const roundCap = () => { const s = session(); return C.buffet && s ? C.buffet.perRound * (s.adults + s.kids) : Infinity; };
   const freeInCart = () => cart.filter((c) => c.free).reduce((a, c) => a + c.qty, 0);
@@ -41,31 +40,51 @@
       tm.className = 'qr-timer' + (left <= C.buffet.lastCall ? ' warn' : '');
     }
     const open = S.calls.filter((c) => c.table === n && !c.done).map((c) => c.kind);
-    $('qr-svc').innerHTML = s ? C.service.map(([k, ic, label]) => `<button type="button" data-call="${k}" ${open.includes(k) ? 'disabled' : ''}>${ic} ${open.includes(k) ? 'On the way' : label}</button>`).join('') : '';
+    $('qr-svc').innerHTML = joined(n) ? C.service.map(([k, ic, label]) => `<button type="button" data-call="${k}" ${open.includes(k) ? 'disabled' : ''}>${ic} ${open.includes(k) ? 'On the way' : label}</button>`).join('') : '';
   }
   $('qr-svc').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-call]'); if (!b) return; const [, , label] = C.service.find((x) => x[0] === b.dataset.call);
+    const b = e.target.closest('[data-call]'); if (!b || !guard()) return; const [, , label] = C.service.find((x) => x[0] === b.dataset.call);
     S.calls.push({ id: Kit.uid(), table: n, kind: b.dataset.call, ts: Date.now(), done: false });
     Kit.notify(db, `Table ${n}: ${label}`, { table: n }); render(); Kit.toast(`${label} — a staff member is coming`, { type: 'success' });
   });
 
-  /* ---------- Welcome: buffet tier / headcount / tea before ordering ---------- */
-  function renderSetup() {
-    const heads = setup.adults + setup.kids;
-    const step = (k, label, min) => `<div class="qr-step"><span>${label}</span><div><button type="button" data-dec="${k}" aria-label="Fewer ${label.toLowerCase()}" ${setup[k] <= min ? 'disabled' : ''}>−</button><b>${setup[k]}</b><button type="button" data-inc="${k}" aria-label="More ${label.toLowerCase()}">+</button></div></div>`;
-    let total = 0, html = `<div class="qr-welcome"><h3>${C.welcome}</h3>`;
-    if (C.buffet) {
-      const kidsP = (t) => Math.round(tierPrice(t.id) * C.buffet.kidsFactor);
-      html += `<div class="qr-tiers" role="radiogroup" aria-label="Buffet">${C.buffet.tiers.map((t) => `<label class="qr-tier ${setup.tier === t.id ? 'on' : ''}" style="--tier:${t.color}"><input type="radio" name="tier" value="${t.id}" ${setup.tier === t.id ? 'checked' : ''}><span><b>${t.name}</b><small>${t.desc}</small></span><em>${money(tierPrice(t.id))}<small>/adult</small></em></label>`).join('')}</div>
-        <p class="qr-rule">⏱ ${C.buffet.minutes} min dining · last order ${C.buffet.lastCall} min before · up to ${C.buffet.perRound} dishes per person each round · kids (4–11) ${Math.round(C.buffet.kidsFactor * 100)}%</p>`;
-      total = tierPrice(setup.tier) * setup.adults + kidsP(tierOf(setup.tier)) * setup.kids;
+  /* ---------- Access screens: wait to be seated, enter the table PIN, bill closed ---------- */
+  const rules = () => C.buffet ? `<p class="qr-rule">⏱ ${C.buffet.minutes} min dining · last order ${C.buffet.lastCall} min before · up to ${C.buffet.perRound} dishes per person each round · kids (4–11) ${Math.round(C.buffet.kidsFactor * 100)}%</p>`
+    : C.tea ? `<p class="qr-rule">🫖 Tea ${money(C.tea.perPerson)} per person, free refills</p>` : '';
+  function renderGate() {
+    const s = session(), closed = closedVisit(n);
+    let html;
+    if (closed && !s) html = `<div class="qr-gate"><span class="qr-gate-ic">🙏</span><h3>Your bill is closed</h3><p>${closed.total ? `Paid ${money(closed.total)}${closed.method ? ' · ' + Kit.esc(closed.method) : ''}. ` : ''}${C.thanks}</p><p class="qr-small">Ordering from this table is switched off. Back for another visit? Ask our staff to seat you and give you a new table PIN.</p></div>`;
+    else if (!s) html = `<div class="qr-gate"><span class="qr-gate-ic">🪑</span><h3>Please wait to be seated</h3><p>Our staff will open table ${n} for you and give you a 4-digit table PIN to start ordering.</p>${rules()}</div>`;
+    else {
+      const locked = Date.now() < pinLockUntil;
+      html = `<form class="qr-gate" id="qr-pin-form" novalidate><span class="qr-gate-ic">🔑</span><h3>${closed ? 'This table has a new visit' : `Welcome to ${C.short}`}</h3><p>Enter the table PIN your server gave you to start ordering at table ${n}.</p>
+        <label class="sr" for="qr-pin">Table PIN</label><input id="qr-pin" class="qr-pin" inputmode="numeric" autocomplete="one-time-code" maxlength="4" placeholder="••••" ${locked ? 'disabled' : ''} aria-describedby="qr-pin-err">
+        <p class="qr-pin-err" id="qr-pin-err" role="alert">${locked ? 'Too many tries — please ask a staff member for the PIN.' : ''}</p><button class="qr-cta" type="submit" ${locked ? 'disabled' : ''}>Start ordering</button>${rules()}</form>`;
     }
-    html += `<div class="qr-steps">${step('adults', 'Adults', 1)}${step('kids', C.buffet ? 'Kids (4–11)' : 'Children', 0)}</div>`;
-    if (C.tea) { html += `<div class="qr-teas"><span>Choose your tea · ${money(C.tea.perPerson)} per person, free refills</span><div>${C.tea.teas.map((t) => `<button type="button" data-tea="${t}" aria-pressed="${setup.tea === t}">${t}</button>`).join('')}</div></div>`; total = C.tea.perPerson * heads; }
-    html += `<button class="qr-cta" id="qr-start">${C.buffet ? `Start dining · ${money(total)}` : `Start ordering · tea ${money(total)}`}</button><p class="qr-small">You pay at the end of your meal. ${C.buffet ? 'Food waste over 100 g may be charged.' : ''}</p></div>`;
     $('qr-body').innerHTML = html; $('qr-cartbar').innerHTML = '';
+    const pin = $('qr-pin'); if (pin && !Kit.THUMB) pin.focus();
   }
-  $('qr-body').addEventListener('change', (e) => { if (e.target.name === 'tier') { setup.tier = e.target.value; renderSetup(); } });
+  $('qr-body').addEventListener('submit', (e) => {
+    if (e.target.id !== 'qr-pin-form') return; e.preventDefault();
+    const val = $('qr-pin').value.replace(/\D/g, '');
+    if (val.length !== 4) { $('qr-pin-err').textContent = 'Enter all 4 digits of the table PIN.'; return; }
+    if (joinTable(n, val)) { pinTries = 0; tab = 'menu'; render(); Kit.toast(`You're connected to table ${n} — enjoy your meal!`, { type: 'success' }); return; }
+    pinTries++;
+    if (pinTries >= 3) { pinLockUntil = Date.now() + 30000; Kit.notify(db, `⚠️ Repeated wrong PIN on table ${n}`, { table: n }); setTimeout(render, 30500); render(); return; }
+    $('qr-pin-err').textContent = `That PIN doesn't match table ${n}. Check with your server and try again.`; $('qr-pin').select();
+  });
+  // Every ordering action re-checks access against the latest data (the visit may have been paid or the PIN changed)
+  function guard() { if (joined(n)) return true; cart = []; render(); Kit.toast('This phone is no longer connected to the table — ask staff for the PIN', { type: 'error' }); return false; }
+
+  // Demo helper beside the phone: lets you play the staff member without opening the staff panel
+  function renderDemo() {
+    const s = session();
+    $('qr-demo').innerHTML = !s ? `<p>Table ${n} isn't seated. In a real restaurant staff seat guests from the staff panel.</p><button type="button" class="qr-demo-btn" id="qr-demo-seat">Seat table ${n} as staff (demo)</button>`
+      : joined(n) ? `<p>This phone is connected to table ${n}'s visit. Pay the bill to see the closed-bill lock, or change the PIN in the staff panel.</p>`
+      : `<p>Your server would tell you the PIN. Demo PIN for table ${n}: <b class="qr-demo-pin">${s.pin}</b></p>`;
+  }
+  $('qr-demo').addEventListener('click', (e) => { if (e.target.id === 'qr-demo-seat') { startSession(n, { adults: 2, tier: C.buffet ? C.buffet.tiers[1].id : null, tea: C.tea ? C.tea.teas[0] : null }); render(); } });
 
   /* ---------- Menu ---------- */
   function renderMenu() {
@@ -138,17 +157,13 @@
   /* ---------- Render + events ---------- */
   function render() {
     renderHead();
-    if (needsSetup()) { renderSetup(); return; }
+    renderDemo();
+    if (!joined(n)) { renderGate(); return; }
     $('qr-body').innerHTML = tab === 'menu' ? renderMenu() : renderMenu() + (tab === 'orders' ? renderOrders() : renderBill());
     renderCartBar();
   }
   app.addEventListener('click', (e) => {
     const t = e.target;
-    const dec = t.closest('[data-dec]'), inc = t.closest('[data-inc]'), tea = t.closest('[data-tea]');
-    if (dec) { setup[dec.dataset.dec]--; renderSetup(); return; }
-    if (inc) { setup[inc.dataset.inc] = Math.min(20, setup[inc.dataset.inc] + 1); renderSetup(); return; }
-    if (tea) { setup.tea = tea.dataset.tea; renderSetup(); return; }
-    if (t.closest('#qr-start')) { startSession(n, setup); render(); Kit.toast(C.buffet ? `Enjoy! Your ${C.buffet.minutes} minutes start now` : 'Welcome! Your tea is on its way', { type: 'success' }); return; }
     const tb = t.closest('[data-tab]'); if (tb) { tab = tb.dataset.tab; render(); return; }
     const ch = t.closest('[data-cat]'); if (ch) { cat = ch.dataset.cat; render(); return; }
     const op = t.closest('[data-open]'); if (op) { openDish(dish(op.dataset.open)); return; }
@@ -156,11 +171,11 @@
     const mi = t.closest('[data-minus]'); if (mi) { const line = cart.find((c) => c.mid === mi.dataset.minus); if (line && --line.qty <= 0) cart = cart.filter((c) => c !== line); render(); return; }
     if (t.closest('#qr-send')) { send(); return; }
     if (t.closest('#qr-pay')) { pay(); return; }
-    if (t.closest('#qr-askbill')) { table(n).session.bill = true; S.calls.push({ id: Kit.uid(), table: n, kind: 'bill', ts: Date.now(), done: false }); Kit.notify(db, `🧾 Table ${n} asked for the bill`, { table: n }); render(); }
+    if (t.closest('#qr-askbill') && guard()) { table(n).session.bill = true; S.calls.push({ id: Kit.uid(), table: n, kind: 'bill', ts: Date.now(), done: false }); Kit.notify(db, `🧾 Table ${n} asked for the bill`, { table: n }); render(); }
   });
 
   function send() {
-    if (!session()) startSession(n, { adults: 2 }); // à la carte: the first order opens the table
+    if (!guard()) return; // paid, closed, re-seated or PIN changed since this phone joined
     const s = session();
     if (C.buffet && minutesLeft(s) <= 0) { Kit.toast('Your dining time is over — ask staff to add time', { type: 'error' }); return; }
     const gone = cart.filter((c) => !dish(c.mid).on); if (gone.length) { cart = cart.filter((c) => dish(c.mid).on); Kit.toast(`Sorry — ${gone.map((g) => g.name).join(', ')} just sold out`, { type: 'error' }); render(); return; }
@@ -170,6 +185,7 @@
     cart = []; tab = 'orders'; render(); Kit.toast('Sent to the kitchen — follow it under “My orders”', { type: 'success' });
   }
   function pay() {
+    if (!guard()) return;
     const b = bill(n);
     PayKit.checkout({ title: `Table ${n} · Pay the bill`, amount: b.total, currency: C.currency, note: `${b.heads} guests · includes ${Math.round(C.serviceRate * 100)}% service and ${C.taxLabel}`, cashLabel: 'Pay cash to your server',
       onPaid: (info) => {
@@ -182,11 +198,16 @@
   // Live updates from the staff panel
   let statuses = '';
   const snap = () => { const s = session(); return s ? JSON.stringify(S.tickets.filter((t) => t.session === s.id).map((t) => t.status)) : 'none'; };
+  let wasJoined = joined(n);
   Kit.sync(db, () => {
     const before = statuses; statuses = snap(); render();
-    if (before && before !== statuses && statuses !== 'none') Kit.toast(statuses.includes('served') && !before.includes('served') ? '🍽️ Your food is on its way!' : '👩‍🍳 The kitchen started on your order');
+    const now = joined(n);
+    if (wasJoined && !now) { cart = []; Kit.toast(closedVisit(n) && !session() ? 'Your bill has been closed — thank you!' : 'Staff reset this table — enter the new PIN to keep ordering', { ms: 6000 }); }
+    else if (now && before && before !== statuses && statuses !== 'none') Kit.toast(statuses.includes('served') && !before.includes('served') ? '🍽️ Your food is on its way!' : '👩‍🍳 The kitchen started on your order');
+    wasJoined = now;
   });
   setInterval(renderHead, 1000);
-  statuses = snap(); render();
-  if (Kit.THUMB && !session()) { startSession(n, setup); tab = 'menu'; render(); }
+  // Gallery preview: show a seated, connected table with the menu
+  if (Kit.THUMB) { if (!session()) startSession(n, { adults: 2, tier: C.buffet ? C.buffet.tiers[1].id : null, tea: C.tea ? C.tea.teas[0] : null }); joinTable(n, session().pin); }
+  statuses = snap(); render(); wasJoined = joined(n);
 })();

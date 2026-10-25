@@ -25,6 +25,13 @@ button, input, select { font-family: inherit; }
 .tbl.t-warn .tbl-prog i { background: #E5484D; }
 .tbl-call { position: absolute; top: 10px; right: 10px; font-size: 18px; animation: ring 1.2s ease infinite; }
 @keyframes ring { 50% { transform: scale(1.18); } }
+.tbl-pin { font: 700 12px ui-monospace, monospace; color: var(--kit-muted); margin-top: 4px; }
+.pin-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; padding: 10px 14px; border-radius: 12px; background: var(--adm-bg); margin-bottom: 10px; font-size: 14px; }
+.pin-row b { font: 800 20px ui-monospace, monospace; letter-spacing: .15em; margin-left: 6px; }
+.pin-card { text-align: center; display: grid; gap: 8px; justify-items: center; }
+.pin-card span { font-size: 13px; color: var(--kit-muted); text-transform: uppercase; letter-spacing: .1em; }
+.pin-card b { font: 800 56px/1 ui-monospace, monospace; letter-spacing: .2em; padding-left: .2em; color: var(--kit-accent); }
+.pin-card p { color: var(--kit-muted); max-width: 340px; }
 .bill-box { display: grid; gap: 6px; background: var(--adm-bg); border-radius: 12px; padding: 14px; font-size: 14px; }
 .bill-box div { display: flex; justify-content: space-between; gap: 12px; }
 .bill-box .g { font-weight: 800; font-size: 17px; border-top: 1px solid var(--kit-line); padding-top: 8px; }
