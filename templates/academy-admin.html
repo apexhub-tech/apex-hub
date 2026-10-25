@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightpath Studio — Online academy admin template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<link rel="stylesheet" href="shared/admin-shell.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/academy-admin.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Online academy · <b>Instructor studio</b></span><a class="tpl-switch" href="academy.html" target="_blank" rel="noopener">Open learner app ↗</a><a class="tpl-use" href="../index.html?template=Online%20academy#contact" target="_top">Use this template</a></div>
+
+<div class="adm">
+  <aside class="adm-side" aria-label="Studio navigation">
+    <div class="adm-brand"><i>★</i><div>Brightpath<small>Studio</small></div></div>
+    <a href="#/overview" data-nav="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span>Overview</span></a>
+    <a href="#/courses" data-nav="courses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6.5A2.5 2.5 0 0 0 4 21.5"/><path d="M8 7h8M8 11h6"/></svg><span>Courses</span></a>
+    <a href="#/learners" data-nav="learners"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Learners</span></a>
+    <a href="#/qa" data-nav="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Q&amp;A</span><b class="n" id="n-qa" hidden></b></a>
+    <a href="#/announce" data-nav="announce"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg><span>Announcements</span></a>
+    <div class="foot"><span><kbd>Ctrl</kbd> <kbd>K</kbd> · <kbd>?</kbd></span><a href="academy.html" target="_blank" rel="noopener">Learner app ↗</a><button class="kit-reset" id="reset" style="text-align:left;padding:0">Reset demo data</button></div>
+  </aside>
+
+  <div class="adm-main">
+    <header class="adm-top">
+      <label class="adm-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search learners ( / )" aria-label="Search learners"></label>
+      <div class="kit-admin-tools" id="tools"><span class="kit-live">Live</span></div>
+    </header>
+
+    <section class="adm-view" data-view="overview">
+      <div class="adm-head"><div><h1>Hi, <span id="hello"></span> 👋</h1><p>How your academy is doing.</p></div><div class="adm-tools"><button class="adm-btn primary" id="o-new">+ New course</button></div></div>
+      <div class="adm-kpis"><div class="adm-kpi adm-card"><span>Learners</span><b id="k-learners"></b><em id="k-new"></em></div><div class="adm-kpi adm-card"><span>Enrolments</span><b id="k-enrol"></b></div><div class="adm-kpi adm-card"><span>Completion rate</span><b id="k-comp"></b></div><div class="adm-kpi adm-card"><span>Unanswered questions</span><b id="k-qa"></b></div></div>
+      <div class="adm-grid2">
+        <div class="adm-card adm-panel"><h2>Enrolments by course</h2><div id="ch-enrol"></div></div>
+        <div class="adm-card adm-panel"><h2>Live activity</h2><ul class="adm-feed" id="feed"></ul></div>
+      </div>
+    </section>
+
+    <section class="adm-view" data-view="courses" hidden>
+      <div class="adm-head"><div><h1>Courses</h1><p>Publish, edit and add lessons — learners see changes instantly.</p></div><div class="adm-tools"><button class="adm-btn primary" id="new-course">+ New course</button></div></div>
+      <div class="c-grid" id="c-grid"></div>
+    </section>
+
+    <section class="adm-view" data-view="learners" hidden>
+      <div class="adm-head"><div><h1>Learners</h1><p id="l-sub"></p></div><div class="adm-tools"><select class="adm-field" id="l-course" aria-label="Course"><option value="all">All courses</option></select><button class="adm-btn" id="l-export">Export</button></div></div>
+      <div class="adm-card adm-table-wrap"><table class="adm-table"><thead><tr><th>Learner</th><th>Courses</th><th>Progress</th><th>Joined</th><th>Last active</th></tr></thead><tbody id="l-rows"></tbody></table></div>
+    </section>
+
+    <section class="adm-view" data-view="qa" hidden>
+      <div class="adm-head"><div><h1>Q&amp;A</h1><p>Questions learners ask under lessons.</p></div><div class="adm-tools"><div class="kit-seg" id="qa-f"><button type="button" data-f="open" aria-pressed="true">Unanswered</button><button type="button" data-f="done" aria-pressed="false">Answered</button></div></div></div>
+      <div class="qa-admin" id="qa-list"></div>
+    </section>
+
+    <section class="adm-view" data-view="announce" hidden>
+      <div class="adm-head"><div><h1>Announcements</h1><p>Shown on every learner's home screen.</p></div></div>
+      <form class="adm-card adm-panel an-form" id="an-form"><label for="an-text"><b>New announcement</b></label><textarea id="an-text" rows="3" class="adm-field" placeholder="e.g. Live Q&amp;A session this Thursday at 6pm!" required></textarea><button class="adm-btn primary" type="submit">Post to all learners</button></form>
+      <ul class="adm-feed" id="an-list" style="margin-top:14px"></ul>
+    </section>
+  </div>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/academy-data.js"></script>
+<script src="js/academy-admin.js"></script>
+</body>
+</html>

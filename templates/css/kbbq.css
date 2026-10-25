@@ -1,0 +1,10 @@
+/* Korean BBQ buffet theme — shared by the guest page (kbbq.html) and staff panel (kbbq-admin.html) */
+:root { --r-display: "Black Han Sans"; --r-body: "Noto Sans KR";
+  --r-page: #141210; --r-surface: #1C1A17; --r-ink: #F5EFE6; --r-muted: #A89F92; --r-line: #34302A;
+  --r-accent: #E8452C; --r-accent-ink: #FFFFFF; --r-soft: rgba(232,69,44,.16); --r-accent-deep: #FF8A70;
+  --kit-surface: #FFFFFF; --kit-ink: #1E1B18; --kit-muted: #6B6560; --kit-line: #E9E1D7; --kit-accent: #E8452C; --kit-accent-ink: #FFFFFF; --kit-radius: 16px;
+  --adm-bg: #F7F3EE; --adm-side: #1A1512; --adm-side-ink: #D9CFC2; color-scheme: light; }
+/* Guest page uses the brand surface colours inside dialogs too */
+.qr-page { --kit-surface: #1C1A17; --kit-ink: #F5EFE6; --kit-muted: #A89F92; --kit-line: #34302A; --kit-accent-ink: #FFFFFF; }
+.qr-page { color-scheme: dark; }
+.qr-head h2 { font-size: 26px; letter-spacing: .01em; }

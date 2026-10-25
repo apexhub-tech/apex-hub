@@ -22,26 +22,43 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: "Geist", system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-h1, h2, h3, h4 { font-family: "Space Grotesk", system-ui, sans-serif; line-height: 1.1; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: "Geist", system-ui, sans-serif; font-weight: 500; line-height: 1.05; margin: 0; letter-spacing: -0.04em; text-wrap: balance; }
 p { margin: 0; }
 a { color: inherit; }
 img, svg { display: block; }
 .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 .skip { position: absolute; left: -999px; top: 8px; background: var(--lime); color: var(--on-lime); padding: 8px 14px; border-radius: 8px; z-index: 100; font-weight: 700; }
 .skip:focus { left: 16px; }
+
+/* ---------- Logo intro (js/intro.js) ---------- */
+.intro { display: none; }
+.intro-on .intro { display: grid; place-items: center; position: fixed; inset: 0; z-index: 200; background: var(--bg); transition: background-color .7s ease; }
+.intro-on body { overflow: hidden; }
+.intro-logo { width: min(440px, 72vw); aspect-ratio: 820 / 680; transform-origin: 0 0; will-change: transform; }
+.intro-logo svg { display: block; }
+.intro-logo .lt-word, .intro-logo .lt-tech, .intro-logo .lt-bar { transition: opacity .3s ease; }
+.intro.flying { background-color: transparent; pointer-events: none; }
+.intro.flying .lt-word, .intro.flying .lt-tech, .intro.flying .lt-bar { opacity: 0; }
+.intro-skip { position: absolute; right: 20px; bottom: 20px; background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 999px; padding: 8px 16px; font: 400 12px "Geist Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: opacity .3s; }
+.intro-skip:hover, .intro-skip:focus-visible { color: var(--text); border-color: var(--muted); }
+.intro.flying .intro-skip { opacity: 0; }
+/* The nav logo waits for the flying mark; its text fades in as the mark lands */
+.intro-on .brand svg { opacity: 0; }
+.intro-on .brand > span { opacity: 0; transition: opacity .5s ease .35s; }
+.intro-on.intro-landing .brand > span { opacity: 1; }
 :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
 
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 48px; padding: 0 22px; border-radius: 999px;
-  font: 700 16px/1 "DM Sans", sans-serif; text-decoration: none; cursor: pointer;
+  font: 700 16px/1 "Geist", sans-serif; text-decoration: none; cursor: pointer;
   border: 2px solid transparent; transition: transform .2s var(--ease), background-color .2s var(--ease), border-color .2s var(--ease);
 }
 .btn svg { width: 18px; height: 18px; transition: transform .2s var(--ease); }
@@ -62,8 +79,8 @@ img, svg { display: block; }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
 .brand svg { width: 36px; height: 36px; }
-.brand-name { font: 700 22px/1 "Space Grotesk", sans-serif; letter-spacing: .02em; }
-.brand-sub { display: block; font: 500 11px/1 "DM Sans", sans-serif; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.brand-name { font: 600 21px/1 "Geist", sans-serif; letter-spacing: -0.02em; }
+.brand-sub { display: block; font: 400 10px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
 .nav-links a { display: block; padding: 10px 14px; border-radius: 999px; text-decoration: none; color: var(--muted); font-weight: 500; transition: color .2s, background-color .2s; }
 .nav-links a:hover { color: var(--text); background: var(--surface); }
@@ -71,7 +88,7 @@ img, svg { display: block; }
 .menu-btn svg { width: 22px; height: 22px; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; padding: 72px 0 56px; }
+.hero { position: relative; padding: 72px 0 56px; overflow-x: clip; }
 .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
 .badge {
   display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 10px;
@@ -81,7 +98,7 @@ img, svg { display: block; }
 .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(179,255,0,.18); }
 .badge strong { color: var(--text); white-space: nowrap; }
 .badge .dot { flex-shrink: 0; }
-.hero h1 { font-size: clamp(42px, 6.4vw, 80px); font-weight: 700; margin: 24px 0 22px; }
+.hero h1 { font-size: clamp(42px, 6.4vw, 84px); font-weight: 400; letter-spacing: -0.05em; margin: 24px 0 22px; }
 .hero h1 .hl { color: var(--lime); }
 .hero .lead { font-size: clamp(18px, 1.6vw, 20px); color: var(--muted); max-width: 560px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
@@ -103,12 +120,12 @@ img, svg { display: block; }
 
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 64px; }
 .stat { background: var(--bg); padding: 26px 24px; }
-.stat b { display: block; font: 700 clamp(30px, 3.4vw, 42px)/1 "Space Grotesk", sans-serif; color: var(--lime); }
-.stat span { display: block; margin-top: 8px; color: var(--muted); font-size: 15px; }
+.stat b { display: block; font: 400 clamp(30px, 3.4vw, 46px)/1 "Geist", sans-serif; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--lime); }
+.stat span { display: block; margin-top: 8px; color: var(--muted); font: 400 12px "Geist Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
 
 /* ---------- Sections ---------- */
 section { padding: 96px 0; }
-.eyebrow { display: inline-block; font: 600 13px/1 "DM Sans", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
+.eyebrow { display: inline-block; font: 400 12px/1 "Geist Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
 .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 48px; flex-wrap: wrap; }
 .sec-head h2 { font-size: clamp(32px, 4.2vw, 52px); max-width: 720px; }
 .sec-head p { color: var(--muted); max-width: 420px; }
@@ -153,7 +170,7 @@ section { padding: 96px 0; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .filter {
   min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--border); background: transparent;
-  color: var(--muted); font: 600 15px "DM Sans", sans-serif; cursor: pointer; transition: all .2s var(--ease);
+  color: var(--muted); font: 600 15px "Geist", sans-serif; cursor: pointer; transition: all .2s var(--ease);
 }
 .filter:hover { color: var(--text); border-color: var(--muted); }
 .filter[aria-pressed="true"] { background: var(--lime); color: var(--on-lime); border-color: var(--lime); }
@@ -166,10 +183,10 @@ section { padding: 96px 0; }
 .tpl-shot iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 800px; border: 0; transform-origin: 0 0; transform: scale(var(--s, .3)); pointer-events: none; }
 .tpl-shot::after { content: "Live preview ↗"; position: absolute; right: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: var(--lime); color: var(--on-lime); font-size: 13px; font-weight: 700; opacity: 0; transform: translateY(6px); transition: all .2s var(--ease); }
 .tpl:hover .tpl-shot::after, .tpl-shot:focus-visible::after { opacity: 1; transform: none; }
-.tpl-style { position: absolute; left: 12px; top: 12px; padding: 5px 10px; border-radius: 999px; background: rgba(27,30,40,.88); color: var(--text); font-size: 12px; font-weight: 600; letter-spacing: .02em; border: 1px solid var(--border); }
+.tpl-style { position: absolute; left: 12px; top: 12px; padding: 5px 10px; border-radius: 999px; background: rgba(27,30,40,.88); color: var(--text); font: 400 11px "Geist Mono", monospace; letter-spacing: .04em; border: 1px solid var(--border); }
 .tpl-more-wrap { display: flex; justify-content: center; margin-top: 32px; }
 .subfilters { display: flex; gap: 8px; margin: -12px 0 28px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
-.sub { flex-shrink: 0; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px dashed var(--border); background: transparent; color: var(--muted); font: 500 14px "DM Sans", sans-serif; cursor: pointer; transition: all .2s var(--ease); }
+.sub { flex-shrink: 0; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px dashed var(--border); background: transparent; color: var(--muted); font: 500 14px "Geist", sans-serif; cursor: pointer; transition: all .2s var(--ease); }
 .sub span { display: inline-block; min-width: 22px; margin-left: 4px; padding: 1px 6px; border-radius: 6px; background: var(--surface); font-size: 12px; color: var(--muted); }
 .sub:hover { color: var(--text); border-color: var(--muted); }
 .sub[aria-pressed="true"] { border-style: solid; border-color: var(--lime); color: var(--lime); background: rgba(179,255,0,.08); }
@@ -181,10 +198,14 @@ section { padding: 96px 0; }
 .tpl-info a { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; color: var(--text); transition: all .2s var(--ease); }
 .tpl-info a:hover { background: var(--lime); color: var(--on-lime); border-color: var(--lime); }
 .tpl-info a svg { width: 18px; height: 18px; }
+.tpl-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 20px 20px; margin-top: -6px; }
+.tpl-sides a { display: grid; gap: 2px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; transition: all .2s var(--ease); min-width: 0; }
+.tpl-sides a small { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.tpl-sides a:hover { border-color: var(--lime); background: color-mix(in srgb, var(--lime) 10%, transparent); }
 
 /* Packages */
 .billing { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); margin-bottom: 32px; }
-.bill { min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); font: 600 15px "DM Sans", sans-serif; cursor: pointer; }
+.bill { min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); font: 600 15px "Geist", sans-serif; cursor: pointer; }
 .bill span { font-size: 12px; color: var(--lime); margin-left: 4px; }
 .bill[aria-pressed="true"] { background: var(--lime); color: var(--on-lime); }
 .bill[aria-pressed="true"] span { color: var(--on-lime); }
@@ -193,13 +214,13 @@ section { padding: 96px 0; }
 .pkg.pop { border: 2px solid var(--lime); }
 .pkg.diamond { background: linear-gradient(160deg, #2E3446 0%, #232733 60%); border-color: #5B6683; }
 .pkg .pill { position: absolute; top: -14px; left: 32px; background: var(--lime); color: var(--on-lime); font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
-.tier { display: inline-block; font: 700 26px "Space Grotesk", sans-serif; }
+.tier { display: inline-block; font: 500 26px "Geist", sans-serif; letter-spacing: -0.03em; }
 .t-budget { color: var(--text); }
 .t-premium { color: var(--lime); }
 .t-diamond { background: linear-gradient(90deg, #DDE8FF, #9FC2FF, #E8DDFF); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .pkg .for { color: var(--muted); margin: 6px 0 22px; font-size: 16px; }
 .price { display: flex; align-items: baseline; gap: 6px; }
-.price b { font: 700 46px/1 "Space Grotesk", sans-serif; }
+.price b { font: 400 48px/1 "Geist", sans-serif; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
 .price span { color: var(--muted); }
 .setup { color: var(--muted); font-size: 14px; margin: 8px 0 24px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
 .pkg ul { list-style: none; padding: 0; margin: 0 0 30px; display: grid; gap: 12px; flex: 1; align-content: start; }
@@ -214,7 +235,7 @@ section { padding: 96px 0; }
 .cmp { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; }
 .cmp th, .cmp td { padding: 13px 20px; text-align: center; border-bottom: 1px solid var(--border); }
 .cmp th:first-child, .cmp td:first-child { text-align: left; }
-.cmp thead th { position: sticky; top: 0; background: var(--bg-deep); font: 700 16px "Space Grotesk", sans-serif; }
+.cmp thead th { position: sticky; top: 0; background: var(--bg-deep); font: 700 16px "Geist", sans-serif; }
 .cmp .hl { color: var(--lime); }
 .cmp td:nth-child(3) { background: rgba(179,255,0,.04); }
 .cmp tr.group td { text-align: left; background: var(--surface); color: var(--lime); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
@@ -248,13 +269,13 @@ section { padding: 96px 0; }
 .case h3 { font-size: 22px; }
 .case p { color: var(--muted); font-size: 16px; }
 .case .result { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--border); display: flex; align-items: baseline; gap: 10px; }
-.case .result b { font: 700 36px/1 "Space Grotesk", sans-serif; color: var(--lime); }
+.case .result b { font: 700 36px/1 "Geist", sans-serif; color: var(--lime); }
 .case .result span { color: var(--muted); font-size: 15px; }
 
 /* Process */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; list-style: none; margin: 0; padding: 0; }
 .steps li { padding: 28px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); }
-.steps li::before { counter-increment: step; content: "0" counter(step); display: block; font: 700 40px/1 "Space Grotesk", sans-serif; color: var(--lime); margin-bottom: 24px; }
+.steps li::before { counter-increment: step; content: "0" counter(step); display: block; font: 700 40px/1 "Geist", sans-serif; color: var(--lime); margin-bottom: 24px; }
 .steps h3 { font-size: 20px; margin-bottom: 8px; }
 .steps p { color: var(--muted); font-size: 16px; }
 
@@ -271,7 +292,7 @@ form { background: var(--bg); color: var(--text); border-radius: 20px; padding: 
 .field input, .field select, .field textarea {
   width: 100%; min-height: 48px; padding: 12px 14px; border-radius: var(--radius-sm);
   border: 1px solid var(--border); background: var(--surface); color: var(--text);
-  font: 400 16px "DM Sans", sans-serif; transition: border-color .2s;
+  font: 400 16px "Geist", sans-serif; transition: border-color .2s;
 }
 .field textarea { min-height: 120px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--lime); box-shadow: 0 0 0 3px rgba(179,255,0,.25); }
@@ -356,4 +377,4 @@ footer { padding: 56px 0 40px; border-top: 1px solid var(--border); margin-top: 
 .tpl-note { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: -8px 0 18px; padding: 12px 16px; border-radius: 12px; background: rgba(179,255,0,.08); border: 1px solid rgba(179,255,0,.35); color: var(--text); font-size: 15px; }
 .tpl-note[hidden] { display: none; }
 .tpl-note b { color: var(--lime); }
-.note-clear { margin-left: auto; background: none; border: 0; color: var(--lime); font: 600 14px "DM Sans", sans-serif; text-decoration: underline; cursor: pointer; padding: 4px; }
+.note-clear { margin-left: auto; background: none; border: 0; color: var(--lime); font: 600 14px "Geist", sans-serif; text-decoration: underline; cursor: pointer; padding: 4px; }

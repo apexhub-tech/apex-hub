@@ -130,3 +130,12 @@ footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--muted)
 
 @media (max-width: 1000px) { .hero, .board { grid-template-columns: 1fr; } .docs { grid-template-columns: 1fr 1fr; } .kpis { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .wrap { padding: 0 14px; } nav.top .links a:not([aria-current]) { display: none; } .slots { grid-template-columns: repeat(3, 1fr); } .two { grid-template-columns: 1fr; } .docs { grid-template-columns: 1fr; } .steps li { font-size: 0; } .steps li::before { content: attr(data-n); font-size: 13px; } .w-body { padding: 16px; } }
+
+/* My appointments */
+.mh { font-size: 16px; margin: 22px 0 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.aps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ap { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.ap span { display: block; color: var(--muted); font-size: 14px; }
+.tag { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--bg); color: var(--muted) !important; }
+.t-booked { background: #E0EEFF; color: #2563EB !important; } .t-checked { background: #FFF4DE; color: var(--amber) !important; } .t-done { background: #E3F5EC; color: var(--green) !important; } .t-noshow, .t-cancelled { background: #FDE7E7; color: var(--red) !important; }
+footer a { color: inherit; }

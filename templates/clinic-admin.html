@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarePoint Staff — Clinic booking admin template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<link rel="stylesheet" href="shared/admin-shell.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/clinic-admin.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Clinic booking system · <b>Staff panel</b></span><a class="tpl-switch" href="clinic.html" target="_blank" rel="noopener">Open patient site ↗</a><a class="tpl-use" href="../index.html?template=Clinic%20booking%20system#contact" target="_top">Use this template</a></div>
+
+<div class="adm">
+  <aside class="adm-side" aria-label="Staff navigation">
+    <div class="adm-brand"><i>+</i><div>CarePoint<small>Staff</small></div></div>
+    <a href="#/desk" data-nav="desk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Front desk</span></a>
+    <a href="#/appts" data-nav="appts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Appointments</span><b class="n" id="n-new" hidden></b></a>
+    <a href="#/patients" data-nav="patients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg><span>Patients</span></a>
+    <a href="#/doctors" data-nav="doctors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg><span>Doctors</span></a>
+    <a href="#/settings" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span>Settings</span></a>
+    <div class="foot"><span><kbd>Ctrl</kbd> <kbd>K</kbd> · <kbd>?</kbd></span><a href="clinic.html" target="_blank" rel="noopener">Patient booking site ↗</a><button class="kit-reset" id="reset" style="text-align:left;padding:0">Reset demo data</button></div>
+  </aside>
+
+  <div class="adm-main">
+    <header class="adm-top">
+      <label class="adm-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="gsearch" placeholder="Search patients or references ( / )" aria-label="Search patients or booking references"></label>
+      <div class="kit-admin-tools" id="tools"><span class="kit-live">Live</span></div>
+    </header>
+
+    <!-- FRONT DESK -->
+    <section class="adm-view" data-view="desk">
+      <div class="adm-head"><div><h1>Front desk</h1><p>Click a booking to check a patient in. Click an empty slot to add a walk-in.</p></div>
+        <div class="adm-tools"><button class="adm-btn" id="d-prev" aria-label="Previous day">‹</button><b id="d-label" class="dlabel"></b><button class="adm-btn" id="d-next" aria-label="Next day">›</button><button class="adm-btn" id="d-today">Today</button><button class="adm-btn" id="export">Export day</button></div></div>
+      <div class="adm-kpis"><div class="adm-kpi adm-card"><span>Appointments</span><b id="k-all"></b><em id="k-online"></em></div><div class="adm-kpi adm-card"><span>Checked in / seen</span><b id="k-in"></b></div><div class="adm-kpi adm-card"><span>No-shows</span><b id="k-ns"></b></div><div class="adm-kpi adm-card"><span>Chair utilisation</span><b id="k-util"></b></div></div>
+      <div class="board">
+        <div class="cal adm-card"><div class="cal-grid" id="cal"></div></div>
+        <aside class="adm-card adm-panel side"><h2>Waiting room</h2><ul class="wait" id="wait"></ul><h2 style="margin-top:18px">Up next</h2><ul class="wait" id="upnext"></ul><h2 style="margin-top:18px">Online activity</h2><ul class="adm-feed" id="feed"></ul></aside>
+      </div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section class="adm-view" data-view="appts" hidden>
+      <div class="adm-head"><div><h1>Appointments</h1><p id="ap-sub"></p></div>
+        <div class="adm-tools"><select class="adm-field" id="ap-range" aria-label="Date range"><option value="upcoming">Upcoming</option><option value="today">Today</option><option value="week">Next 7 days</option><option value="past">Past</option><option value="all">All</option></select><select class="adm-field" id="ap-status" aria-label="Status"><option value="all">All statuses</option><option value="booked">Booked</option><option value="checked">Checked in</option><option value="done">Completed</option><option value="noshow">No-show</option><option value="cancelled">Cancelled</option></select><select class="adm-field" id="ap-doc" aria-label="Doctor"><option value="all">All doctors</option></select><button class="adm-btn" id="ap-export">Export</button></div></div>
+      <div class="adm-card adm-table-wrap"><table class="adm-table"><thead><tr><th>Date</th><th>Time</th><th>Patient</th><th>Service</th><th>Doctor</th><th>Source</th><th>Status</th><th>Ref</th></tr></thead><tbody id="ap-rows"></tbody></table></div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section class="adm-view" data-view="patients" hidden>
+      <div class="adm-head"><div><h1>Patients</h1><p id="pt-sub"></p></div><div class="adm-tools"><select class="adm-field" id="pt-sort" aria-label="Sort"><option value="name">Name A–Z</option><option value="visits">Most visits</option><option value="recent">Most recent</option><option value="noshow">Most no-shows</option></select></div></div>
+      <div class="adm-card adm-table-wrap"><table class="adm-table"><thead><tr><th>Patient</th><th>Mobile</th><th>Visits</th><th>No-shows</th><th>Last visit</th><th>Next visit</th><th>Spent</th></tr></thead><tbody id="pt-rows"></tbody></table></div>
+    </section>
+
+    <!-- DOCTORS -->
+    <section class="adm-view" data-view="doctors" hidden>
+      <div class="adm-head"><div><h1>Doctors &amp; availability</h1><p>Changes update the patient booking site instantly.</p></div></div>
+      <div class="docs-admin" id="docs"></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="adm-view" data-view="settings" hidden>
+      <div class="adm-head"><div><h1>Settings</h1><p>Booking rules for the patient site.</p></div></div>
+      <div class="adm-card adm-settings" id="settings"></div>
+    </section>
+  </div>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/clinic-data.js"></script>
+<script src="js/clinic-admin.js"></script>
+</body>
+</html>

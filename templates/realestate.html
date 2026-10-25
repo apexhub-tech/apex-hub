@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
+<link rel="stylesheet" href="shared/pay-kit.css">
 <script src="shared/thumb.js"></script>
 <link rel="stylesheet" href="css/realestate.css">
 </head>
@@ -47,10 +48,12 @@
       <div class="grid2"><label style="color:var(--navy)">Area<select id="v-a"></select></label><label style="color:var(--navy)">Size (m²)<input id="v-s" type="number" value="120" min="20"></label></div>
       <p class="out" id="v-out" style="color:var(--navy)" aria-live="polite"></p><button class="btn dark" id="v-book" style="margin-top:14px">Book a free valuation</button></div>
   </div>
+<section data-paykit aria-label="Payment methods"></section>
   <footer><span>© Keystone Homes</span><span>Sample content — your listings and brand go here.</span></footer>
 </div>
 
 <script src="shared/app-kit.js"></script>
+<script src="shared/pay-kit.js"></script>
 <script src="js/realestate.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
+<link rel="stylesheet" href="shared/pay-kit.css">
 <script src="shared/thumb.js"></script>
 <link rel="stylesheet" href="css/electronics.css">
 </head>
@@ -39,11 +40,13 @@
     <div class="toolbar"><h2>Shop the range</h2><div style="display:flex;gap:8px;flex-wrap:wrap"><input class="field" id="q" placeholder="Search products ( / )" aria-label="Search"><select class="field" id="sort" aria-label="Sort"><option value="feat">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="rate">Best rated</option></select></div></div>
     <div class="grid" id="grid"></div>
   </section>
+<section data-paykit aria-label="Payment methods"></section>
   <footer><span>© Voltix Electronics</span><span>2-year warranty on everything · Sample content</span></footer>
 </div>
 <div class="cbar" id="cbar" hidden><span id="cbar-imgs" style="display:flex;gap:6px"></span><span id="cbar-n"></span><button class="btn" id="cbar-go" style="min-height:40px">Compare</button><button class="btn ghost" id="cbar-x" style="min-height:40px">Clear</button></div>
 
 <script src="shared/app-kit.js"></script>
+<script src="shared/pay-kit.js"></script>
 <script src="shared/shop-kit.js"></script>
 <script src="js/electronics.js"></script>
 </body>

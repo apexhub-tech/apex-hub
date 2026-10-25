@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerly Admin — Invoicing admin template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/invoices.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Invoicing &amp; billing · <b>Business admin</b></span><a class="tpl-switch" href="invoices.html" target="_blank" rel="noopener">Open client portal ↗</a><a class="tpl-use" href="../index.html?template=Invoicing%20%26%20billing#contact" target="_top">Use this template</a></div>
+
+<div class="shell">
+  <header class="app">
+    <div class="logo">Ledgerly<b>.</b></div>
+    <nav aria-label="App"><a href="#/invoices" data-nav="invoices">Invoices</a><a href="#/clients" data-nav="clients">Clients</a><a href="#/messages" data-nav="messages">Messages <b class="badge" id="m-n" hidden></b></a><a href="#/reports" data-nav="reports">Reports</a></nav>
+    <span class="hint"><kbd>N</kbd> new · <kbd>Ctrl</kbd> <kbd>K</kbd> · <button class="kit-reset" id="reset">Reset demo</button></span>
+    <div class="kit-admin-tools" id="tools"><span class="kit-live">Live</span></div>
+  </header>
+
+  <!-- LIST -->
+  <section data-view="invoices">
+    <div class="title"><h1>Invoices</h1><div class="row-btns"><button class="btn line" id="export">Export CSV</button><button class="btn" id="new">New invoice</button></div></div>
+    <div class="stats">
+      <div><span>Outstanding</span><b class="num" id="s-out"></b></div>
+      <div><span>Overdue</span><b class="num red" id="s-over"></b></div>
+      <div><span>Paid · last 30 days</span><b class="num" id="s-paid"></b></div>
+      <div><span>Avg. time to pay</span><b class="num" id="s-days"></b></div>
+    </div>
+    <div class="bar">
+      <div class="tabs" role="tablist" aria-label="Filter invoices" id="tabs"></div>
+      <input class="search" id="q" placeholder="Search client or number" aria-label="Search invoices">
+    </div>
+    <div class="bulk" id="bulk" hidden><b id="bulk-n"></b><button class="act" id="b-send">Mark as sent</button><button class="act" id="b-paid">Mark as paid</button><button class="act" id="b-del">Delete</button><button class="act" id="b-clear">Clear selection</button></div>
+    <div class="wrap-table">
+      <table>
+        <thead><tr><th style="width:30px"><input type="checkbox" id="all" aria-label="Select all"></th><th>No.</th><th>Client</th><th>Issued</th><th>Due</th><th>Status</th><th class="amt">Total</th><th class="amt">Balance</th><th class="amt"><span class="hint">Actions</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- EDITOR -->
+  <section data-view="edit" hidden>
+    <div class="title"><h1 id="ed-title">New invoice</h1><div class="row-btns"><button class="btn line" id="ed-cancel">Back</button><button class="btn line" id="ed-print">Print / PDF</button><button class="btn line" id="ed-save">Save draft</button><button class="btn" id="ed-send">Save &amp; send</button></div></div>
+    <div class="editor">
+      <form class="form" id="ed-form" novalidate>
+        <div class="two"><div class="f"><label for="e-client">Client</label><select id="e-client" required></select></div><div class="f"><label for="e-no">Invoice no.</label><input id="e-no" class="num" readonly></div></div>
+        <div class="three"><div class="f"><label for="e-issued">Issued</label><input id="e-issued" type="date" required></div><div class="f"><label for="e-terms">Terms</label><select id="e-terms"><option value="0">Due on receipt</option><option value="7">Net 7</option><option value="14" selected>Net 14</option><option value="30">Net 30</option></select></div><div class="f"><label for="e-due">Due</label><input id="e-due" type="date" required></div></div>
+        <div><span class="lab">Line items</span>
+          <table class="items"><thead><tr><th style="width:52%">Description</th><th>Qty</th><th>Rate</th><th class="amt">Amount</th><th></th></tr></thead><tbody id="e-items"></tbody></table>
+          <button type="button" class="add-line" id="e-add">+ Add line item</button>
+        </div>
+        <div class="three"><div class="f"><label for="e-tax">Tax %</label><input id="e-tax" type="number" min="0" max="50" step="0.5"></div><div class="f"><label for="e-disc">Discount %</label><input id="e-disc" type="number" min="0" max="100" step="1"></div><div class="f"><label for="e-rec">Repeat</label><select id="e-rec"><option value="none">One-off</option><option value="monthly">Every month</option><option value="quarterly">Every quarter</option></select></div></div>
+        <div class="f"><label for="e-notes">Notes to client</label><textarea id="e-notes"></textarea></div>
+      </form>
+      <article class="doc" id="doc" aria-label="Invoice preview"></article>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section data-view="clients" hidden>
+    <div class="title"><h1>Clients</h1><button class="btn" id="new-client">Add client</button></div>
+    <div class="wrap-table"><table><thead><tr><th>Client</th><th>Email</th><th class="amt">Invoices</th><th class="amt">Billed</th><th class="amt">Outstanding</th><th class="amt"><span class="hint">Actions</span></th></tr></thead><tbody id="c-rows"></tbody></table></div>
+  </section>
+
+  <!-- MESSAGES -->
+  <section data-view="messages" hidden>
+    <div class="title"><h1>Client messages</h1><p class="hint">Questions sent from the client billing portal</p></div>
+    <div class="msgs" id="msgs"></div>
+  </section>
+
+  <!-- REPORTS -->
+  <section data-view="reports" hidden>
+    <div class="title"><h1>Reports</h1></div>
+    <div class="rgrid">
+      <div><h3>Payments received · last 6 months</h3><div id="r-chart"></div></div>
+      <div><h3>Accounts receivable aging</h3><div class="aging" id="r-aging"></div></div>
+    </div>
+    <div class="rgrid">
+      <div><h3>Top clients by revenue</h3><table style="min-width:0"><tbody id="r-top"></tbody></table></div>
+      <div><h3>Collection rate</h3><p class="num" style="font-size:64px;font-weight:700" id="r-rate"></p><p style="color:var(--muted)">of everything invoiced has been paid.</p></div>
+    </div>
+  </section>
+</div>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/invoices-data.js"></script>
+<script src="js/invoices-admin.js"></script>
+</body>
+</html>

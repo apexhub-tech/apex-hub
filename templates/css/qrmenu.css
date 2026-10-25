@@ -104,5 +104,49 @@ nav.tabs a[aria-current="page"] { background: var(--card); color: var(--ink); bo
 .switch:checked::after { transform: translateX(18px); }
 .wrap-x { overflow-x: auto; }
 
+/* Guest page */
+.guest-stage { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 48px; max-width: 1040px; margin: 0 auto; padding: 32px 24px; align-items: center; }
+.scan-note { display: grid; gap: 14px; justify-items: start; }
+.scan-note h1 { font-size: clamp(26px, 3.4vw, 40px); }
+.scan-note p { color: var(--muted); font-size: 17px; }
+.scan-note select { min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: #fff; padding: 0 12px; font: 700 15px Manrope, sans-serif; }
+.qr-ico { width: 64px; height: 64px; border-radius: 14px; background: conic-gradient(from 90deg at 30% 30%, var(--ink) 25%, #fff 0) 0 0 / 16px 16px; border: 6px solid var(--ink); }
+.tbl-pill { align-self: flex-start; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 4px 12px; font-weight: 800; font-size: 13px; }
+.guest .s-head { height: 170px; }
+.svc { display: flex; gap: 6px; }
+.svc button { flex: 1; min-height: 36px; border-radius: 999px; border: 0; background: rgba(255,255,255,.92); color: var(--ink); font: 700 12px Manrope, sans-serif; cursor: pointer; }
+.svc button:disabled { background: rgba(220,252,231,.95); color: #15803D; cursor: default; }
+.ptabs button b { background: var(--orange); color: #fff; font-size: 11px; border-radius: 999px; padding: 0 6px; margin-left: 4px; }
+.osteps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 8px 0; }
+.osteps i { height: 5px; border-radius: 3px; background: var(--line); }
+.osteps i.on { background: var(--orange); }
+.oline { display: block; font-size: 14px; }
+.oline.ok { color: var(--green); }
+.oline small { color: var(--muted); }
+.foot-note { text-align: center; color: var(--muted); font-size: 13px; padding: 0 16px 24px; }
+.foot-note a { color: var(--ink); font-weight: 700; }
+
+/* Staff panel */
+.top .kit-admin-tools { margin-left: 0; }
+nav.tabs a .nb { background: var(--red); color: #fff; font-size: 11px; border-radius: 999px; padding: 0 6px; margin-left: 4px; }
+.page.wide { max-width: 1500px; }
+.tickets.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ticket.fresh { animation: tt-pulse 1.4s ease 3; }
+@keyframes tt-pulse { 50% { box-shadow: 0 0 0 3px var(--orange); } }
+.calls { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 760px; }
+.call { display: flex; align-items: center; gap: 14px; background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+.call.bill { border-color: var(--orange); background: #FFF4EE; }
+.call .ic { font-size: 26px; }
+.call div { flex: 1; }
+.call small { display: block; color: var(--muted); }
+.send.small { width: auto; min-height: 40px; padding: 0 18px; border-radius: 12px; }
+.recall.dark { color: var(--ink); border-color: var(--line); }
+.tbl .ring { font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { .ticket.fresh { animation: none; outline: 3px solid var(--orange); } }
+
+@media (max-width: 1300px) { .tickets.four { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .guest-stage { grid-template-columns: 1fr; padding: 16px; gap: 20px; } .scan-note h1 { font-size: 24px; } }
+@media (max-width: 480px) { .guest-stage { padding: 0; } .scan-note { padding: 16px 16px 0; } .scan-note h1, .scan-note p, .qr-ico { display: none; } .guest .phone { border-radius: 0; padding: 0; box-shadow: none; } .guest .screen { border-radius: 0; height: calc(100vh - 110px); min-height: 560px; } }
 @media (max-width: 1150px) { .stage { grid-template-columns: 1fr; } .phone { position: static; max-width: 390px; margin: 0 auto; width: 100%; } .tickets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .stage, .page { padding: 12px; } .tickets { grid-template-columns: 1fr; } .stats { display: none; } .mtable { min-width: 560px; } }
+@media (max-width: 1000px) { .tickets.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .stage, .page { padding: 12px; } .tickets, .tickets.four { grid-template-columns: 1fr; } .stats { display: none; } .mtable { min-width: 560px; } }

@@ -104,4 +104,14 @@ tbody tr { cursor: pointer; } tbody tr:hover { background: #1B1F2B; }
 .won-lost { display: flex; gap: 8px; }
 .won { background: var(--green) !important; border-color: var(--green) !important; color: #fff !important; }
 
+/* Website lead extras */
+.tabs a b.web-n { background: var(--blue); }
+.web-tag { display: inline-block; font-size: 11px; font-weight: 700; color: var(--blue); background: rgba(76,141,255,.14); border-radius: 6px; padding: 1px 7px; margin-bottom: 6px; }
+.deal.fresh { animation: crm-pulse 1.6s ease 2; }
+@keyframes crm-pulse { 50% { box-shadow: 0 0 0 3px rgba(76,141,255,.55); } }
+.web-note { background: rgba(76,141,255,.1); border: 1px solid rgba(76,141,255,.3); border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+.prop-box { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; background: #232838; border-radius: 10px; padding: 10px 12px; font-size: 13px; }
+.prop-box .link { margin-left: auto; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) { .deal.fresh { animation: none; outline: 2px solid var(--blue); } }
+
 @media (max-width: 900px) { .stats { grid-template-columns: 1fr 1fr; } .grid2 { grid-template-columns: 1fr; } .tabs { order: 3; width: 100%; overflow-x: auto; } .kbd-hint { display: none; } main { padding: 16px; } }

@@ -18,3 +18,8 @@
 /* Hidden inside the landing-page thumbnails */
 .in-thumb .tpl-bar { display: none; }
 @media (max-width: 560px) { .tpl-bar span { display: none; } }
+/* Link between a SaaS app's client side and its admin panel */
+.tpl-bar .tpl-switch { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #4A5163; color: #F5F7FA; font-weight: 600; margin-left: auto; }
+.tpl-bar .tpl-switch:hover { border-color: #B3FF00; color: #B3FF00; }
+.tpl-bar span b { color: #B3FF00; }
+@media (max-width: 560px) { .tpl-bar .tpl-switch { padding: 0 10px; font-size: 13px; } }

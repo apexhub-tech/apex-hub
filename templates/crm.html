@@ -6,65 +6,54 @@
 <title>LeadFlow — CRM template by Apex Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
 <script src="shared/thumb.js"></script>
-<link rel="stylesheet" href="css/crm.css">
+<link rel="stylesheet" href="css/crm-site.css">
 </head>
 <body>
-<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>CRM &amp; leads (SaaS)</span><a class="tpl-use" href="../index.html?template=CRM%20%26%20leads#contact" target="_top">Use this template</a></div>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>CRM &amp; leads · <b>Website (lead capture)</b></span><a class="tpl-switch" href="crm-admin.html">Open sales CRM ↗</a><a class="tpl-use" href="../index.html?template=CRM%20%26%20leads#contact" target="_top">Use this template</a></div>
 
-<header class="app-top">
-  <div class="brand"><i></i>LeadFlow</div>
-  <nav class="tabs" aria-label="App"><a href="#/pipeline" data-nav="pipeline">Pipeline</a><a href="#/contacts" data-nav="contacts">Contacts</a><a href="#/activities" data-nav="activities">Activities <b id="late-n" hidden></b></a><a href="#/reports" data-nav="reports">Reports</a></nav>
-  <div class="right"><span class="kbd-hint"><kbd>Ctrl</kbd> <kbd>K</kbd> · <kbd>?</kbd></span><button class="kit-reset" id="reset">Reset demo</button><span class="av" style="background:#4C8DFF;width:34px;height:34px" title="Signed in as Adam">A</span></div>
-</header>
+<header class="site"><div class="wrap"><a class="logo" href="#/home"><i></i>Apex Studio</a><nav aria-label="Main"><a href="#/home" data-nav="home">Services</a><a href="#/book" data-nav="book">Book a call</a><a href="#/proposal" data-nav="proposal">My proposal</a></nav><a class="btn primary" href="#/home" id="cta-top">Get a quote</a></div></header>
 
 <main>
-  <section data-view="pipeline">
-    <div class="head">
-      <div><h1>Sales pipeline</h1><p>Drag deals between stages. Click a deal for details.</p></div>
-      <div class="tools">
-        <input class="field" id="search" placeholder="Search deals (/)" aria-label="Search deals">
-        <select class="field" id="owner" aria-label="Owner"><option value="all">Everyone</option></select>
-        <button class="btn" id="export">Export CSV</button>
-        <button class="btn primary" id="new-deal">+ New deal (N)</button>
+  <section data-view="home">
+    <div class="wrap hero">
+      <div><span class="eyebrow">Digital agency · 120+ local brands</span><h1>Websites, stores and content that bring in customers.</h1><p class="lead">Tell us what you need — you'll get a tailored proposal within one working day.</p>
+        <div class="proof"><div><b>4.9★</b><span>Google rating</span></div><div><b>14 days</b><span>Average launch</span></div><div><b>2.3×</b><span>More enquiries</span></div></div></div>
+      <form class="quote card" id="quote" novalidate>
+        <h2>Get a free quote</h2>
+        <div class="kit-row"><div class="kit-field"><label for="q-name">Your name</label><input id="q-name" autocomplete="name" required></div><div class="kit-field"><label for="q-co">Business</label><input id="q-co" autocomplete="organization" required></div></div>
+        <div class="kit-row"><div class="kit-field"><label for="q-email">Email</label><input id="q-email" type="email" autocomplete="email" required></div><div class="kit-field"><label for="q-phone">Phone (optional)</label><input id="q-phone" type="tel" autocomplete="tel"></div></div>
+        <div class="kit-field"><span class="kit-label">What do you need?</span><div class="svc-pick" id="q-svc"></div></div>
+        <div class="kit-field"><label for="q-budget">Budget</label><select id="q-budget"><option>Under $2,000</option><option selected>$2,000 – $5,000</option><option>$5,000 – $10,000</option><option>$10,000+</option></select></div>
+        <div class="kit-field"><label for="q-brief">Anything else? (optional)</label><textarea id="q-brief" rows="3" placeholder="e.g. We open a second branch in March and need online booking"></textarea></div>
+        <p class="err" id="q-err" role="alert"></p>
+        <button class="btn primary big" type="submit">Send my request →</button>
+        <p class="fine">No spam — one reply from a real person, usually within 2 hours.</p>
+      </form>
+    </div>
+    <div class="wrap"><h2 class="sec">What we do</h2><div class="services" id="services"></div></div>
+  </section>
+
+  <section data-view="book" hidden>
+    <div class="wrap narrow"><h1 class="pg">Book a free 30-minute discovery call</h1><p class="lead">Pick a time that works for you. We'll send a video link by email.</p>
+      <div class="card book"><div class="days" id="days"></div><div class="slots" id="slots"></div>
+        <form id="book-form" class="book-form" novalidate hidden><p id="b-when" class="when"></p><div class="kit-row"><div class="kit-field"><label for="b-name">Your name</label><input id="b-name" required></div><div class="kit-field"><label for="b-co">Business</label><input id="b-co" required></div></div><div class="kit-field"><label for="b-email">Email</label><input id="b-email" type="email" required></div><button class="btn primary big" type="submit">Confirm call</button></form>
       </div>
     </div>
-    <div class="stats">
-      <div class="stat"><span>Open pipeline</span><b id="s-open"></b></div>
-      <div class="stat"><span>Weighted forecast</span><b id="s-fc"></b></div>
-      <div class="stat"><span>Won this month</span><b id="s-won"></b></div>
-      <div class="stat"><span>Monthly target · $60k</span><b id="s-pct"></b><div class="bar"><i id="s-bar"></i></div></div>
-    </div>
-    <div class="board" id="board"></div>
   </section>
 
-  <section data-view="contacts" hidden>
-    <div class="head"><div><h1>Contacts</h1><p id="c-sub"></p></div><div class="tools"><input class="field" id="c-search" placeholder="Search contacts" aria-label="Search contacts"><button class="btn primary" id="new-contact">+ Add contact</button></div></div>
-    <div class="table-wrap"><table><thead><tr><th><button data-sort="name" aria-sort="ascending">Name</button></th><th><button data-sort="company">Company</button></th><th>Email</th><th>Tags</th><th><button data-sort="value">Open deals</button></th><th><button data-sort="last">Last activity</button></th></tr></thead><tbody id="c-rows"></tbody></table></div>
-  </section>
-
-  <section data-view="activities" hidden>
-    <div class="head"><div><h1>Activities</h1><p>Calls, emails and meetings across all deals.</p></div><div class="tools"><select class="field" id="a-type" aria-label="Type"><option value="all">All types</option><option value="call">Calls</option><option value="email">Emails</option><option value="meeting">Meetings</option></select></div></div>
-    <div class="acts" id="acts"></div>
-  </section>
-
-  <section data-view="reports" hidden>
-    <div class="head"><div><h1>Reports</h1><p>Based on every deal in your pipeline.</p></div></div>
-    <div class="stats">
-      <div class="stat"><span>Win rate</span><b id="r-win"></b></div>
-      <div class="stat"><span>Average deal size</span><b id="r-avg"></b></div>
-      <div class="stat"><span>Avg. days to close</span><b id="r-days"></b></div>
-      <div class="stat"><span>Deals lost</span><b id="r-lost"></b></div>
-    </div>
-    <div class="grid2"><div class="panel"><h3>Revenue won · last 6 months</h3><div id="r-chart"></div></div><div class="panel"><h3>Leaderboard</h3><ul class="leader" id="r-leader"></ul></div></div>
-    <div class="grid2"><div class="panel"><h3>Conversion funnel</h3><div class="funnel" id="r-funnel"></div></div><div class="panel"><h3>Why we lose deals</h3><ul class="leader reasons" id="r-reasons"></ul></div></div>
+  <section data-view="proposal" hidden>
+    <div class="wrap narrow" id="prop"></div>
   </section>
 </main>
 
+<footer class="wrap foot"><span>© Apex Studio · Enquiries go straight into <b>LeadFlow</b> · <a href="crm-admin.html">Team sign-in</a></span><button class="kit-reset" id="reset">Reset demo</button></footer>
+
 <script src="shared/app-kit.js"></script>
+<script src="js/crm-data.js"></script>
 <script src="js/crm.js"></script>
 </body>
 </html>

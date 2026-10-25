@@ -28,12 +28,124 @@
     const k = 'apexhub:' + key;
     let data = null;
     if (!THUMB) { try { data = JSON.parse(localStorage.getItem(k)); } catch (e) { data = null; } }
-    if (!data) data = seed();
-    return {
-      data,
+    const fresh = !data;
+    if (fresh) data = seed();
+    const api = {
+      key: k, data,
       save() { if (THUMB) return; try { localStorage.setItem(k, JSON.stringify(data)); } catch (e) { /* storage blocked: keep working in memory */ } },
       reset() { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } location.hash = ''; location.reload(); },
     };
+    // Save seed data straight away so a client page and its admin page (other tab) share the same records
+    if (fresh) api.save();
+    return api;
+  };
+
+  /* ---------- Live sync between tabs (client site ↔ admin panel) ---------- */
+  // When another tab saves the same store, refresh this tab's data in place and call onChange.
+  Kit.sync = (db, onChange) => {
+    if (THUMB) return;
+    window.addEventListener('storage', (e) => {
+      if (e.key !== db.key || e.newValue == null) return;
+      let next; try { next = JSON.parse(e.newValue); } catch (er) { return; }
+      Object.keys(db.data).forEach((key) => { delete db.data[key]; });
+      Object.assign(db.data, next);
+      onChange && onChange();
+    });
+  };
+
+  /* ---------- Notifications (client actions → admin bell) ---------- */
+  Kit.notify = (db, text, extra = {}) => {
+    db.data.notes = db.data.notes || [];
+    db.data.notes.push({ id: Kit.uid(), text, ts: Date.now(), read: false, ...extra });
+    if (db.data.notes.length > 60) db.data.notes.splice(0, db.data.notes.length - 60);
+    db.save();
+  };
+  // Bell button with unread badge and dropdown. Call .refresh() after data changes; new notes also toast.
+  Kit.bell = (mount, db, { onOpen } = {}) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'kit-bell';
+    wrap.innerHTML = `<button type="button" class="kit-bell-btn" aria-haspopup="true" aria-expanded="false" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><b hidden></b></button>
+      <div class="kit-bell-panel" hidden><header><b>Notifications</b><button type="button" class="kit-reset" data-all>Mark all read</button></header><ul></ul></div>`;
+    mount.appendChild(wrap);
+    const btn = wrap.querySelector('.kit-bell-btn'), panel = wrap.querySelector('.kit-bell-panel'), badge = btn.querySelector('b');
+    let seen = new Set((db.data.notes || []).map((n) => n.id));
+    const render = () => {
+      const notes = (db.data.notes || []).slice().reverse(), unread = notes.filter((n) => !n.read).length;
+      badge.hidden = !unread; badge.textContent = unread > 9 ? '9+' : unread;
+      btn.setAttribute('aria-label', `Notifications, ${unread} unread`);
+      panel.querySelector('ul').innerHTML = notes.slice(0, 20).map((n) => `<li class="${n.read ? '' : 'unread'}" data-id="${n.id}"><span>${Kit.esc(n.text)}</span><small>${Kit.ago(n.ts)}</small></li>`).join('') || '<li class="kit-empty-state">You\'re all caught up.</li>';
+    };
+    const refresh = () => {
+      (db.data.notes || []).forEach((n) => { if (!seen.has(n.id)) { seen.add(n.id); Kit.toast(`🔔 ${n.text}`, { ms: 6000 }); } });
+      render();
+    };
+    const toggle = (open) => { panel.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', () => toggle(panel.hidden));
+    document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) toggle(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) { toggle(false); btn.focus(); } });
+    panel.addEventListener('click', (e) => {
+      if (e.target.closest('[data-all]')) { (db.data.notes || []).forEach((n) => { n.read = true; }); db.save(); render(); return; }
+      const li = e.target.closest('li[data-id]'); if (!li) return;
+      const n = db.data.notes.find((x) => x.id === li.dataset.id); n.read = true; db.save(); render(); toggle(false);
+      onOpen && onOpen(n);
+    });
+    render();
+    return { refresh };
+  };
+
+  /* ---------- Demo staff sign-in for admin panels ---------- */
+  // Shows a sign-in screen until the demo credentials are entered. Previews (?thumb) skip it.
+  Kit.login = ({ app, key, email, password, name, role, accent, clientUrl, clientLabel = 'client site' }) => {
+    const store = 'apexhub-auth:' + key;
+    const signedIn = () => { try { return sessionStorage.getItem(store) || localStorage.getItem(store); } catch (e) { return null; } };
+    Kit.user = { name, role, email };
+    if (THUMB || signedIn()) return;
+    document.documentElement.classList.add('kit-locked');
+    const o = document.createElement('div');
+    o.className = 'kit-login';
+    o.setAttribute('role', 'dialog'); o.setAttribute('aria-modal', 'true'); o.setAttribute('aria-labelledby', 'kit-login-h');
+    o.innerHTML = `<form class="kit-login-card" novalidate>
+      <span class="kit-login-logo" style="background:${accent || 'var(--kit-accent)'}">${Kit.esc(app[0])}</span>
+      <h1 id="kit-login-h">Sign in to ${Kit.esc(app)}</h1><p>Staff &amp; admin access</p>
+      <div class="kit-field"><label for="kl-e">Work email</label><input id="kl-e" type="email" autocomplete="username" required></div>
+      <div class="kit-field"><label for="kl-p">Password</label><div class="kit-pw"><input id="kl-p" type="password" autocomplete="current-password" required><button type="button" class="kit-reset" id="kl-show" aria-label="Show password">Show</button></div></div>
+      <p class="kit-login-err" id="kl-err" role="alert"></p>
+      <label class="kit-check"><input type="checkbox" id="kl-r"> Keep me signed in on this device</label>
+      <button class="kit-btn primary" type="submit">Sign in</button>
+      <div class="kit-login-demo"><b>Demo account</b><span>${Kit.esc(email)} · ${Kit.esc(password)}</span><button type="button" class="kit-btn" id="kl-demo">Use demo account</button></div>
+      <p class="kit-login-foot"><button type="button" class="kit-reset" id="kl-forgot">Forgot password?</button>${clientUrl ? ` · <a href="${clientUrl}">Go to the ${Kit.esc(clientLabel)}</a>` : ''}</p>
+    </form>`;
+    document.body.appendChild(o);
+    const f = o.querySelector('form'), e = o.querySelector('#kl-e'), p = o.querySelector('#kl-p'), err = o.querySelector('#kl-err');
+    e.focus();
+    o.querySelector('#kl-show').onclick = (ev) => { const show = p.type === 'password'; p.type = show ? 'text' : 'password'; ev.target.textContent = show ? 'Hide' : 'Show'; };
+    o.querySelector('#kl-demo').onclick = () => { e.value = email; p.value = password; f.requestSubmit(); };
+    o.querySelector('#kl-forgot').onclick = () => Kit.toast('In a live app this emails a reset link. Use the demo account below.');
+    f.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      if (e.value.trim().toLowerCase() !== email || p.value !== password) { err.textContent = 'That email and password don\'t match. Try the demo account below.'; p.select(); return; }
+      try { (o.querySelector('#kl-r').checked ? localStorage : sessionStorage).setItem(store, '1'); } catch (er) { /* storage blocked */ }
+      o.remove(); document.documentElement.classList.remove('kit-locked');
+      Kit.toast(`Welcome back, ${name.split(' ')[0]}`, { type: 'success' });
+    });
+  };
+  Kit.signOut = (key) => { try { sessionStorage.removeItem('apexhub-auth:' + key); localStorage.removeItem('apexhub-auth:' + key); } catch (e) { /* ignore */ } location.reload(); };
+
+  // Avatar button with a menu: name, role, link to the client site, shortcuts, sign out
+  Kit.userMenu = (mount, { key, clientUrl, clientLabel = 'client site' }) => {
+    const u = Kit.user || { name: 'Admin', role: 'Owner' };
+    const w = document.createElement('div');
+    w.className = 'kit-user';
+    w.innerHTML = `<button type="button" class="kit-user-btn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu for ${Kit.esc(u.name)}">${Kit.esc(u.name.split(' ').map((x) => x[0]).join('').slice(0, 2))}</button>
+      <div class="kit-user-panel" hidden><b>${Kit.esc(u.name)}</b><small>${Kit.esc(u.role || '')}</small>
+      ${clientUrl ? `<a href="${clientUrl}" target="_blank" rel="noopener">Open ${Kit.esc(clientLabel)} ↗</a>` : ''}<button type="button" data-k="help">Keyboard shortcuts</button><button type="button" data-k="out">Sign out</button></div>`;
+    mount.appendChild(w);
+    const b = w.querySelector('.kit-user-btn'), p = w.querySelector('.kit-user-panel');
+    const t = (open) => { p.hidden = !open; b.setAttribute('aria-expanded', String(open)); };
+    b.onclick = () => t(p.hidden);
+    document.addEventListener('click', (e) => { if (!w.contains(e.target)) t(false); });
+    p.addEventListener('click', (e) => { const k = e.target.closest('[data-k]'); if (!k) return; t(false); if (k.dataset.k === 'out') Kit.signOut(key); else Kit.help(); });
   };
 
   /* ---------- Router: <section data-view="x">, links with data-nav="x" ---------- */

@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
+<link rel="stylesheet" href="shared/pay-kit.css">
 <script src="shared/thumb.js"></script>
 <link rel="stylesheet" href="css/grocery.css">
 </head>
@@ -33,6 +34,7 @@
     <div class="sortrow"><span id="count"></span><label>Sort <select id="sort"><option value="pop">Popular</option><option value="low">Price: low to high</option><option value="deal">Deals first</option></select></label></div>
     <div class="grid" id="grid"></div>
   </main>
+<section data-paykit aria-label="Payment methods"></section>
 
   <aside class="basket" aria-labelledby="b-title">
     <h2 id="b-title">Your basket <button id="clear">Clear</button></h2>
@@ -46,6 +48,7 @@
 </div>
 
 <script src="shared/app-kit.js"></script>
+<script src="shared/pay-kit.js"></script>
 <script src="shared/shop-kit.js"></script>
 <script src="js/grocery.js"></script>
 </body>

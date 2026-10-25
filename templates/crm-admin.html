@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeadFlow CRM — CRM admin template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/crm.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>CRM &amp; leads · <b>Sales CRM</b></span><a class="tpl-switch" href="crm.html" target="_blank" rel="noopener">Open website ↗</a><a class="tpl-use" href="../index.html?template=CRM%20%26%20leads#contact" target="_top">Use this template</a></div>
+
+<header class="app-top">
+  <div class="brand"><i></i>LeadFlow</div>
+  <nav class="tabs" aria-label="App"><a href="#/pipeline" data-nav="pipeline">Pipeline <b id="web-n" class="web-n" hidden></b></a><a href="#/contacts" data-nav="contacts">Contacts</a><a href="#/activities" data-nav="activities">Activities <b id="late-n" hidden></b></a><a href="#/reports" data-nav="reports">Reports</a></nav>
+  <div class="right"><span class="kbd-hint"><kbd>Ctrl</kbd> <kbd>K</kbd> · <kbd>?</kbd></span><button class="kit-reset" id="reset">Reset demo</button><div class="kit-admin-tools" id="tools"><span class="kit-live">Live</span></div></div>
+</header>
+
+<main>
+  <section data-view="pipeline">
+    <div class="head">
+      <div><h1>Sales pipeline</h1><p>Drag deals between stages. Website enquiries land in <b>New lead</b> automatically.</p></div>
+      <div class="tools">
+        <input class="field" id="search" placeholder="Search deals (/)" aria-label="Search deals">
+        <select class="field" id="owner" aria-label="Owner"><option value="all">Everyone</option></select>
+        <button class="btn" id="export">Export CSV</button>
+        <button class="btn primary" id="new-deal">+ New deal (N)</button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Open pipeline</span><b id="s-open"></b></div>
+      <div class="stat"><span>Weighted forecast</span><b id="s-fc"></b></div>
+      <div class="stat"><span>Won this month</span><b id="s-won"></b></div>
+      <div class="stat"><span>Monthly target · $60k</span><b id="s-pct"></b><div class="bar"><i id="s-bar"></i></div></div>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section data-view="contacts" hidden>
+    <div class="head"><div><h1>Contacts</h1><p id="c-sub"></p></div><div class="tools"><input class="field" id="c-search" placeholder="Search contacts" aria-label="Search contacts"><button class="btn primary" id="new-contact">+ Add contact</button></div></div>
+    <div class="table-wrap"><table><thead><tr><th><button data-sort="name" aria-sort="ascending">Name</button></th><th><button data-sort="company">Company</button></th><th>Email</th><th>Tags</th><th><button data-sort="value">Open deals</button></th><th><button data-sort="last">Last activity</button></th></tr></thead><tbody id="c-rows"></tbody></table></div>
+  </section>
+
+  <section data-view="activities" hidden>
+    <div class="head"><div><h1>Activities</h1><p>Calls, emails and meetings across all deals — discovery calls booked on the website appear here.</p></div><div class="tools"><select class="field" id="a-type" aria-label="Type"><option value="all">All types</option><option value="call">Calls</option><option value="email">Emails</option><option value="meeting">Meetings</option></select></div></div>
+    <div class="acts" id="acts"></div>
+  </section>
+
+  <section data-view="reports" hidden>
+    <div class="head"><div><h1>Reports</h1><p>Based on every deal in your pipeline.</p></div></div>
+    <div class="stats">
+      <div class="stat"><span>Win rate</span><b id="r-win"></b></div>
+      <div class="stat"><span>Average deal size</span><b id="r-avg"></b></div>
+      <div class="stat"><span>Avg. days to close</span><b id="r-days"></b></div>
+      <div class="stat"><span>Website leads</span><b id="r-web"></b></div>
+    </div>
+    <div class="grid2"><div class="panel"><h3>Revenue won · last 6 months</h3><div id="r-chart"></div></div><div class="panel"><h3>Leaderboard</h3><ul class="leader" id="r-leader"></ul></div></div>
+    <div class="grid2"><div class="panel"><h3>Conversion funnel</h3><div class="funnel" id="r-funnel"></div></div><div class="panel"><h3>Why we lose deals</h3><ul class="leader reasons" id="r-reasons"></ul></div></div>
+  </section>
+</main>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/crm-data.js"></script>
+<script src="js/crm-admin.js"></script>
+</body>
+</html>

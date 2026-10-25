@@ -138,7 +138,7 @@
     function checkout() {
       if (!S.cart.length) return;
       const F = Object.assign({ email: '', name: '', phone: '', address: '', city: '', ship: C.shipping[0].id, slot: '', pay: 'card', card: '', exp: '', cvc: '', note: '' }, S.lastDetails || {}, { card: '', exp: '', cvc: '' });
-      let step = 0;
+      let step = 0, pk = null;
       const needsAddress = () => !(C.shipping.find((s) => s.id === F.ship) || {}).pickup;
       const field = (id, label, attrs = '', full) => `<div class="kit-field ${full ? 'sk-full' : ''}" data-f="${id}"><label for="sk-${id}">${label}</label><input id="sk-${id}" ${attrs} value="${Kit.esc(F[id])}"><span class="sk-err" role="alert"></span></div>`;
       const steps = ['Details', C.deliveryLabel || 'Delivery', 'Payment'];
@@ -158,7 +158,8 @@
           if (needsAddress()) html += `<div class="sk-grid">${field('address', 'Street address', 'autocomplete="street-address" required', true)}${field('city', 'City / area', 'autocomplete="address-level2" required')}</div>`;
           html += `<div class="kit-field"><label for="sk-note">Note ${C.noteLabel ? '(' + C.noteLabel + ')' : '(optional)'}</label><input id="sk-note" value="${Kit.esc(F.note)}"></div>`;
         }
-        if (step === 2) html += `<div class="kit-field"><span class="kit-label">Payment</span><div class="kit-seg" id="sk-pay"><button type="button" data-p="card" aria-pressed="${F.pay === 'card'}">Card</button><button type="button" data-p="cash" aria-pressed="${F.pay === 'cash'}">${(C.shipping.find((s) => s.id === F.ship) || {}).pickup ? 'Pay in store' : 'Cash on delivery'}</button></div></div>
+        if (step === 2 && window.PayKit) html += '<div id="sk-paykit"></div>';
+        else if (step === 2) html += `<div class="kit-field"><span class="kit-label">Payment</span><div class="kit-seg" id="sk-pay"><button type="button" data-p="card" aria-pressed="${F.pay === 'card'}">Card</button><button type="button" data-p="cash" aria-pressed="${F.pay === 'cash'}">${(C.shipping.find((s) => s.id === F.ship) || {}).pickup ? 'Pay in store' : 'Cash on delivery'}</button></div></div>
           ${F.pay === 'card' ? `<div class="sk-grid">${field('card', 'Card number', 'inputmode="numeric" autocomplete="off" placeholder="4242 4242 4242 4242" maxlength="23"', true)}${field('exp', 'Expiry (MM/YY)', 'inputmode="numeric" placeholder="12/28" maxlength="5"')}${field('cvc', 'Security code', 'inputmode="numeric" placeholder="123" maxlength="4"')}</div><p class="sk-demo">🔒 Demo checkout — no real payment is taken. Use test card 4242 4242 4242 4242.</p>` : '<p class="kit-hint">Pay when you receive your order.</p>'}`;
         box.innerHTML = html + `</div>${summary}</div>`;
         box.querySelectorAll('input:not([type=radio])').forEach((i) => i.addEventListener('input', () => {
@@ -172,6 +173,10 @@
         box.querySelectorAll('[name=sk-ship]').forEach((r) => r.addEventListener('change', () => { F.ship = r.value; draw(m); }));
         const sl = box.querySelector('#sk-slots'); if (sl) sl.onclick = (e) => { const b = e.target.closest('[data-s]'); if (b) { F.slot = b.dataset.s; draw(m); } };
         const pay = box.querySelector('#sk-pay'); if (pay) pay.onclick = (e) => { const b = e.target.closest('[data-p]'); if (b) { F.pay = b.dataset.p; draw(m); } };
+        // Full payment picker (cards, Thai and Myanmar QR/banking, transfer, cash) when PayKit is loaded
+        const pkBox = box.querySelector('#sk-paykit'); pk = null;
+        if (pkBox) pk = PayKit.picker(pkBox, { amount: t.total, cashLabel: (C.shipping.find((s) => s.id === F.ship) || {}).pickup ? 'Pay in store when you collect' : 'Cash on delivery',
+          onChange: (api) => { m.querySelectorAll('footer .kit-btn')[1].textContent = api.paidNow() ? `Pay ${money(t.total)}` : `Place ${L.orderVerb.toLowerCase()} · ${money(t.total)}`; } });
         const first = box.querySelector('.sk-co-main input:not([type=radio])'); if (first && !first.value) first.focus();
       }
       const RULES = {
@@ -186,6 +191,7 @@
       };
       function validate(k) { const f = d.querySelector(`[data-f="${k}"]`); if (!f) return true; const ok = RULES[k][0](F[k] || ''); f.classList.toggle('bad', !ok); f.querySelector('.sk-err').textContent = ok ? '' : RULES[k][1]; return ok; }
       function next(m) {
+        if (step === 2 && pk) { if (pk.validate()) return false; place(); return true; }
         const need = step === 0 ? ['email', 'name', 'phone'] : step === 1 ? (needsAddress() ? ['address', 'city'] : []) : F.pay === 'card' ? ['card', 'exp', 'cvc'] : [];
         const okAll = need.map(validate).every(Boolean);
         if (step === 1) { F.note = m.querySelector('#sk-note').value; if (C.slots && !F.slot) { m.querySelector('#sk-slot-err').textContent = `Choose a ${C.slots.label.toLowerCase()}.`; return false; } }
@@ -196,11 +202,12 @@
       function place() {
         const t = totals(F.ship), no = (C.orderPrefix || '#') + (1000 + S.orders.length + Math.floor(Math.random() * 90));
         const ship = t.shipOpt;
-        const o = { no, ts: Date.now(), items: S.cart.map((l) => ({ ...l, name: prod(l.id).name, unit: unit(l) })), total: t.total, ship: `${ship.label}${F.slot ? ' · ' + F.slot : ''}${needsAddress() ? ' · ' + F.city : ''}`, pay: F.pay, email: F.email };
+        const o = { no, ts: Date.now(), items: S.cart.map((l) => ({ ...l, name: prod(l.id).name, unit: unit(l) })), total: t.total, ship: `${ship.label}${F.slot ? ' · ' + F.slot : ''}${needsAddress() ? ' · ' + F.city : ''}`, pay: pk ? pk.summary() : F.pay, email: F.email };
+        const paidNow = pk ? pk.paidNow() : F.pay === 'card';
         S.orders.push(o); S.lastDetails = { email: F.email, name: F.name, phone: F.phone, address: F.address, city: F.city };
         S.cart = []; S.promo = null; save();
         Kit.modal({ title: `${L.orderVerb} confirmed`, body: `<div class="sk-done"><span>✓</span><h3>Thank you, ${Kit.esc(F.name.split(' ')[0])}!</h3><p>${L.orderVerb} <b>${no}</b> is confirmed. A receipt is on its way to ${Kit.esc(F.email)}.</p>
-          <div class="sk-sum" style="text-align:left"><span>${Kit.esc(ship.label)}</span><span>${Kit.esc(F.slot || ship.note || '')}</span><b>Total paid</b><b>${F.pay === 'card' ? money(t.total) : money(0) + ' (pay later)'}</b></div></div>`,
+          <div class="sk-sum" style="text-align:left"><span>${Kit.esc(ship.label)}</span><span>${Kit.esc(F.slot || ship.note || '')}</span><span>Payment</span><span>${Kit.esc(o.pay === 'card' ? 'Card' : o.pay === 'cash' ? 'Cash' : o.pay)}</span><b>${paidNow ? 'Total paid' : 'To pay'}</b><b>${money(t.total)}${paidNow ? '' : pk && pk.method().kind === 'bank' ? ' (slip received — confirming)' : ' (pay later)'}</b></div></div>`,
           actions: [{ label: 'View my orders', onClick: () => { setTimeout(() => openDrawer('orders')); } }, { label: 'Keep shopping', primary: true }] });
       }
     }

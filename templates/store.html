@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
+<link rel="stylesheet" href="shared/pay-kit.css">
 <script src="shared/thumb.js"></script>
 <link rel="stylesheet" href="css/store.css">
 </head>
@@ -55,9 +56,11 @@
   <div class="perks"><div><b>Free shipping</b>On orders over $75</div><div><b>30-day returns</b>No questions asked</div><div><b>Secure checkout</b>Cards &amp; cash on delivery</div></div>
 </div>
 <section class="news"><h2>10% off your first order</h2><p style="color:var(--muted);margin-top:8px">Join the list for new drops and private sales.</p><form id="news" novalidate><input type="email" id="news-e" placeholder="Your email" aria-label="Email address" autocomplete="email"><button class="btn" type="submit">Sign up</button></form><p class="msg" id="news-m" role="status"></p></section>
+<section data-paykit aria-label="Payment methods"></section>
 <div class="wrap"><footer><span>© NOIR Studio</span><span>Sample content — your products, photos and brand go here.</span></footer></div>
 
 <script src="shared/app-kit.js"></script>
+<script src="shared/pay-kit.js"></script>
 <script src="shared/shop-kit.js"></script>
 <script src="js/store.js"></script>
 </body>

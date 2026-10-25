@@ -1,0 +1,64 @@
+/* QR restaurant engine — staff panel styles (on top of shared/admin-shell.css). Brands set the --kit-* and --adm-* colours. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--adm-bg); color: var(--kit-ink); font: 15px/1.5 var(--r-body), system-ui, sans-serif; }
+h1, h2, h3 { line-height: 1.2; font-family: var(--r-display), var(--r-body), sans-serif; }
+p { margin: 0; }
+button, input, select { font-family: inherit; }
+:focus-visible { outline: 3px solid var(--kit-accent); outline-offset: 2px; }
+.adm-brand i { font-style: normal; }
+.legend { display: flex; gap: 6px 12px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--kit-muted); }
+.legend i { width: 12px; height: 12px; border-radius: 4px; display: inline-block; margin-right: -6px; border: 2px solid; }
+.l-free { border-style: dashed !important; border-color: var(--kit-line) !important; } .l-dining { border-color: #22A06B !important; } .l-warn { border-color: #E5484D !important; } .l-bill { border-color: #F59E0B !important; background: #FEF3C7; }
+
+.floor { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.tbl { position: relative; text-align: left; min-height: 140px; padding: 14px; border-radius: 16px; border: 2px solid var(--kit-line); background: var(--kit-surface); color: var(--kit-ink); cursor: pointer; display: flex; flex-direction: column; gap: 2px; font: inherit; }
+.tbl-n { font-size: 26px; font-weight: 800; line-height: 1; }
+.tbl-seats { font-size: 12px; color: var(--kit-muted); margin-bottom: auto; }
+.tbl b { font-size: 14px; }
+.tbl small { color: var(--kit-muted); font-size: 12px; }
+.tbl.t-free { border-style: dashed; }
+.tbl.t-dining { border-color: #22A06B; }
+.tbl.t-warn { border-color: #E5484D; background: #FFF5F5; }
+.tbl.t-bill { border-color: #F59E0B; background: #FFFBEB; }
+.tbl-prog { height: 5px; border-radius: 3px; background: var(--kit-line); overflow: hidden; margin-top: 6px; }
+.tbl-prog i { display: block; height: 100%; background: var(--kit-accent); }
+.tbl.t-warn .tbl-prog i { background: #E5484D; }
+.tbl-call { position: absolute; top: 10px; right: 10px; font-size: 18px; animation: ring 1.2s ease infinite; }
+@keyframes ring { 50% { transform: scale(1.18); } }
+.bill-box { display: grid; gap: 6px; background: var(--adm-bg); border-radius: 12px; padding: 14px; font-size: 14px; }
+.bill-box div { display: flex; justify-content: space-between; gap: 12px; }
+.bill-box .g { font-weight: 800; font-size: 17px; border-top: 1px solid var(--kit-line); padding-top: 8px; }
+
+.kds { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; align-items: start; }
+.tk { background: #15171E; color: #EEF0F6; border-radius: 14px; overflow: hidden; border-top: 6px solid #3A8DFF; }
+.tk.slow { border-top-color: #F2A516; } .tk.late { border-top-color: #E5484D; box-shadow: inset 0 0 0 1px #E5484D; }
+.tk.fresh { animation: tk-pulse 1.3s ease 3; }
+@keyframes tk-pulse { 50% { box-shadow: 0 0 0 3px var(--kit-accent); } }
+.tk header { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 12px; border-bottom: 1px solid #2A2E3A; }
+.tk header b { font-size: 17px; } .tk header span { font-size: 12px; color: #A4AABB; } .tk .tm { font: 800 14px ui-monospace, monospace; color: #EEF0F6; }
+.tk ul { list-style: none; margin: 0; padding: 6px; }
+.tk li button { width: 100%; text-align: left; background: none; border: 0; color: inherit; padding: 7px 6px; border-radius: 8px; cursor: pointer; font: 600 14px/1.35 var(--r-body), sans-serif; display: grid; grid-template-columns: auto 1fr; gap: 0 6px; }
+.tk li button:hover { background: #232733; }
+.tk li b { color: #FF9C6B; }
+.tk li small, .tk li em { grid-column: 2; font-size: 12px; color: #A4AABB; font-style: normal; } .tk li .nt { color: #FFB020; }
+.tk li.done button { text-decoration: line-through; color: #6B7186; }
+.bump { width: calc(100% - 12px); margin: 0 6px 6px; min-height: 42px; border: 0; border-radius: 10px; background: #2A2E3A; color: #fff; font-weight: 800; cursor: pointer; }
+.tk:not(.slow):not(.late) .bump:hover { filter: brightness(1.2); }
+
+.calls { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 760px; }
+.call { display: flex; align-items: center; gap: 14px; padding: 12px 14px; }
+.call .ic { font-size: 26px; } .call div { flex: 1; } .call small { display: block; color: var(--kit-muted); }
+
+.tiers-admin { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.tier-card { padding: 14px 16px; border-left: 5px solid var(--tier); display: grid; gap: 6px; }
+.tier-card small { color: var(--kit-muted); font-size: 12px; }
+.tier-card label { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 600; }
+.tier-card input { width: 110px; }
+.dish-cell { display: flex; align-items: center; gap: 10px; }
+.dish-cell img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+.dish-cell small { display: block; color: var(--kit-muted); font-size: 12px; }
+.adm-field.price { width: 110px; }
+.bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.bars li { display: grid; grid-template-columns: 1fr auto; gap: 4px; font-size: 14px; }
+.bars li i { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: var(--kit-accent); display: block; }
+@media (prefers-reduced-motion: reduce) { .tbl-call, .tk.fresh { animation: none; } }

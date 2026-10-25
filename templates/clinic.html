@@ -13,12 +13,12 @@
 <link rel="stylesheet" href="css/clinic.css">
 </head>
 <body>
-<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Clinic booking system</span><a class="tpl-use" href="../index.html?template=Clinic%20booking%20system#contact" target="_top">Use this template</a></div>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Clinic booking system · <b>Patient site</b></span><a class="tpl-switch" href="clinic-admin.html">Open staff panel ↗</a><a class="tpl-use" href="../index.html?template=Clinic%20booking%20system#contact" target="_top">Use this template</a></div>
 
 <div class="wrap">
   <nav class="top" aria-label="Main">
     <a class="logo" href="#/book"><i>+</i>CarePoint</a>
-    <div class="links"><a href="#/book" data-nav="book">Book</a><a href="#/manage" data-nav="manage">Manage booking</a><a href="#/staff" data-nav="staff">Staff dashboard</a></div>
+    <div class="links"><a href="#/book" data-nav="book">Book</a><a href="#/mine" data-nav="mine">My appointments</a><a href="#/manage" data-nav="manage">Manage booking</a></div>
   </nav>
 </div>
 
@@ -26,7 +26,7 @@
 <div data-view="book">
   <div class="wrap hero">
     <div>
-      <span class="pill">✓ Same-day appointments available</span>
+      <span class="pill" id="pill">✓ Same-day appointments available</span>
       <h1>Book your doctor in under a minute.</h1>
       <p class="lead">Live availability for every doctor. Instant confirmation, reminders by SMS and easy rescheduling.</p>
       <div class="trust"><div><b>25+</b><span>Specialist doctors</span></div><div><b>12k</b><span>Patients a year</span></div><div><b>4.8★</b><span>Patient rating</span></div></div>
@@ -44,29 +44,20 @@
   </div></section>
 </div>
 
+<!-- MY APPOINTMENTS -->
+<div data-view="mine" hidden>
+  <div class="wrap"><div class="manage" id="mine"></div></div>
+</div>
+
 <!-- MANAGE -->
 <div data-view="manage" hidden>
   <div class="wrap"><div class="manage" id="manage"></div></div>
 </div>
 
-<!-- STAFF -->
-<div data-view="staff" hidden>
-  <div class="wrap staff">
-    <div class="s-head">
-      <div><h1>Front desk</h1><p style="color:var(--muted)">Click an appointment to check a patient in, complete or reschedule it. <button class="kit-reset" id="reset">Reset demo</button></p></div>
-      <div class="daynav"><button class="icon-btn" id="d-prev" aria-label="Previous day">‹</button><b id="d-label"></b><button class="icon-btn" id="d-next" aria-label="Next day">›</button><button class="btn ghost" id="d-today">Today</button><button class="btn ghost" id="export">Export day</button></div>
-    </div>
-    <div class="kpis"><div class="kpi"><span>Appointments</span><b id="k-all"></b></div><div class="kpi"><span>Checked in / seen</span><b id="k-in"></b></div><div class="kpi"><span>No-shows</span><b id="k-ns"></b></div><div class="kpi"><span>Chair utilisation</span><b id="k-util"></b></div></div>
-    <div class="board">
-      <div class="cal"><div class="cal-grid" id="cal"></div></div>
-      <aside class="side-panel"><h3>Waiting room</h3><ul class="wait" id="wait"></ul><h3 style="margin-top:18px">Up next</h3><ul class="wait" id="upnext"></ul></aside>
-    </div>
-  </div>
-</div>
-
-<div class="wrap"><footer><span>© CarePoint Clinic</span><span>Sample content — your clinic, doctors and branding go here. Bookings save in this browser.</span></footer></div>
+<div class="wrap"><footer><span>© CarePoint Clinic · <a href="clinic-admin.html">Staff sign-in</a></span><span>Sample content — your clinic, doctors and branding go here. Bookings save in this browser. <button class="kit-reset" id="reset">Reset demo</button></span></footer></div>
 
 <script src="shared/app-kit.js"></script>
+<script src="js/clinic-data.js"></script>
 <script src="js/clinic.js"></script>
 </body>
 </html>

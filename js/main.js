@@ -21,9 +21,12 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && links.cl
 const TEMPLATES = [
   // [type, file, name, features, design style, industry]
   ['saas', 'clinic', 'Clinic booking system', 'Clinics, salons, services', 'Clean medical', 'Health & beauty'],
-  ['saas', 'pos', 'POS & inventory', 'Retail, cafés, restaurants', 'App dashboard', 'Food & drink'],
-  ['saas', 'qrmenu', 'QR menu & table ordering', 'Guest phone + kitchen display', 'Split-screen demo', 'Food & drink'],
-  ['saas', 'crm', 'CRM & leads', 'Sales teams, agencies', 'Dark kanban', 'Business services'],
+  ['saas', 'pos', 'POS & inventory', 'Register + order-ahead pickup', 'Café ordering', 'Food & drink'],
+  ['saas', 'qrmenu', 'QR menu & table ordering', 'Guest phone + kitchen display', 'Mobile-first menu', 'Food & drink'],
+  ['saas', 'kbbq', 'Korean BBQ buffet', 'Buffet tiers, timer & QR rounds', 'Charcoal grill', 'Food & drink'],
+  ['saas', 'thai', 'Thai restaurant', 'QR ordering with spice levels', 'Warm Thai', 'Food & drink'],
+  ['saas', 'dimsum', 'Dim sum restaurant', 'Tea service & tick-sheet QR', 'Cantonese red', 'Food & drink'],
+  ['saas', 'crm', 'CRM & leads', 'Lead capture site + sales pipeline', 'Clean SaaS', 'Business services'],
   ['saas', 'invoices', 'Invoicing & billing', 'Freelancers, agencies, shops', 'Swiss minimal', 'Business services'],
   ['saas', 'academy', 'Online academy', 'Courses, schools, coaches', 'Claymorphism', 'Education'],
   ['saas', 'gym-app', 'Gym management', 'Gyms, studios, clubs', 'Dark neon', 'Fitness'],
@@ -48,6 +51,9 @@ const TEMPLATES = [
   ['store', 'skincare', 'Skincare & beauty store', 'Skin-type routine finder', 'Pastel beauty', 'Health & beauty'],
 ];
 const KIND = { saas: 'SaaS', web: 'Website', store: 'Online store' };
+// SaaS templates come as two pages that share live data: [client side label, admin side label]
+const SIDES = { clinic: ['Patient site', 'Staff panel'], pos: ['Order-ahead page', 'Staff register'], qrmenu: ['Guest menu', 'Staff panel'], crm: ['Website & proposals', 'Sales CRM'], invoices: ['Client portal', 'Business admin'],
+  academy: ['Learner app', 'Instructor studio'], kbbq: ['Guest QR menu', 'Staff panel'], thai: ['Guest QR menu', 'Staff panel'], dimsum: ['Guest QR menu', 'Staff panel'], 'gym-app': ['Member app', 'Staff panel'], scheduler: ['Client portal', 'Agency workspace'], tracking: ['Customer page', 'Merchant panel'] };
 const PAGE = 9;
 const esc = (s) => s.replace(/&/g, '&amp;');
 const grid = document.getElementById('tpl-grid');
@@ -60,7 +66,11 @@ grid.innerHTML = TEMPLATES.map(([cat, file, name, sub, style, ind]) => `
         <div class="tpl-info">
           <div><h3>${esc(name)}</h3><span>${KIND[cat]} · ${esc(ind)} · ${esc(sub)}</span></div>
           <a href="templates/${file}.html" target="_blank" rel="noopener" aria-label="Open live preview of the ${esc(name)} template"><svg aria-hidden="true"><use href="#i-up-right"/></svg></a>
-        </div>
+        </div>${SIDES[file] ? `
+        <div class="tpl-sides" aria-label="${esc(name)} pages">
+          <a href="templates/${file}.html" target="_blank" rel="noopener"><small>Client side</small>${SIDES[file][0]} ↗</a>
+          <a href="templates/${file}-admin.html" target="_blank" rel="noopener"><small>Admin side</small>${SIDES[file][1]} ↗</a>
+        </div>` : ''}
       </article>`).join('');
 
 const filters = document.querySelectorAll('.filter');

@@ -142,3 +142,45 @@ kbd { display: inline-block; min-width: 24px; padding: 2px 7px; border-radius: 6
 .sk-heart[aria-pressed="true"] { color: #E0245E; }
 @media (max-width: 720px) { .sk-qv, .sk-co, .sk-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .sk-drawer, .sk-scrim { transition: none; } }
+
+/* ---------- Admin shell: sign-in, notifications bell, user menu ---------- */
+.kit-locked body { overflow: hidden; }
+.kit-login { position: fixed; inset: 0; z-index: 950; display: grid; place-items: center; padding: 20px; background: color-mix(in srgb, var(--kit-ink, #15171F) 55%, transparent); backdrop-filter: blur(10px); overflow-y: auto; }
+.kit-login-card { width: min(420px, 100%); background: var(--kit-surface, #fff); color: var(--kit-ink, #15171F); border: 1px solid var(--kit-line, #E3E5EC); border-radius: var(--kit-radius, 16px); padding: 30px; display: grid; gap: 14px; box-shadow: 0 30px 80px rgba(0, 0, 0, .35); }
+.kit-login-card h1 { font-size: 24px; margin: 0; }
+.kit-login-card > p { margin: -8px 0 4px; color: var(--kit-muted, #6B7080); }
+.kit-login-logo { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 22px; }
+.kit-login-card input:not([type=checkbox]) { width: 100%; min-height: 46px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--kit-line, #E3E5EC); background: transparent; color: inherit; font: inherit; }
+.kit-login-card input:focus { outline: none; border-color: var(--kit-accent, #5B4CF0); box-shadow: 0 0 0 3px color-mix(in srgb, var(--kit-accent, #5B4CF0) 25%, transparent); }
+.kit-pw { position: relative; }
+.kit-pw button { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); }
+.kit-login-err { color: #D93B3B; font-size: 14px; min-height: 0; margin: 0; }
+.kit-check { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--kit-muted, #6B7080); cursor: pointer; }
+.kit-check input { width: 18px; height: 18px; accent-color: var(--kit-accent, #5B4CF0); }
+.kit-login-card .kit-btn.primary { min-height: 48px; font-size: 15px; }
+.kit-login-demo { display: grid; gap: 6px; padding: 12px 14px; border-radius: 12px; background: color-mix(in srgb, var(--kit-accent, #5B4CF0) 9%, transparent); font-size: 13px; }
+.kit-login-demo span { font-family: ui-monospace, monospace; color: var(--kit-muted, #6B7080); }
+.kit-login-foot { margin: 0; font-size: 13px; color: var(--kit-muted, #6B7080); text-align: center; }
+.kit-login-foot a { color: inherit; }
+.kit-bell, .kit-user { position: relative; }
+.kit-bell-btn, .kit-user-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--kit-line, #E3E5EC); background: var(--kit-surface, #fff); color: var(--kit-ink, #15171F); display: grid; place-items: center; cursor: pointer; font-weight: 700; font-size: 13px; font-family: inherit; }
+.kit-user-btn { background: var(--kit-accent, #5B4CF0); color: var(--kit-accent-ink, #fff); border-color: transparent; }
+.kit-bell-btn b { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; border-radius: 9px; background: #E5484D; color: #fff; font-size: 11px; display: grid; place-items: center; padding: 0 4px; }
+.kit-bell-panel, .kit-user-panel { position: absolute; right: 0; top: 48px; z-index: 300; background: var(--kit-surface, #fff); color: var(--kit-ink, #15171F); border: 1px solid var(--kit-line, #E3E5EC); border-radius: 14px; box-shadow: 0 20px 50px rgba(0, 0, 0, .2); }
+.kit-bell-panel { width: min(340px, calc(100vw - 24px)); }
+.kit-bell-panel header { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--kit-line, #E3E5EC); }
+.kit-bell-panel ul { list-style: none; margin: 0; padding: 6px; max-height: 360px; overflow-y: auto; }
+.kit-bell-panel li { padding: 10px; border-radius: 10px; cursor: pointer; display: grid; gap: 2px; font-size: 14px; }
+.kit-bell-panel li:hover { background: color-mix(in srgb, var(--kit-accent, #5B4CF0) 8%, transparent); }
+.kit-bell-panel li.unread span { font-weight: 700; }
+.kit-bell-panel li.unread::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--kit-accent, #5B4CF0); position: absolute; margin: 6px 0 0 -2px; }
+.kit-bell-panel li small { color: var(--kit-muted, #6B7080); font-size: 12px; }
+.kit-user-panel { width: 220px; padding: 8px; display: grid; }
+.kit-user-panel b { padding: 6px 10px 0; }
+.kit-user-panel small { padding: 0 10px 8px; color: var(--kit-muted, #6B7080); border-bottom: 1px solid var(--kit-line, #E3E5EC); margin-bottom: 4px; }
+.kit-user-panel a, .kit-user-panel button { text-align: left; padding: 9px 10px; border-radius: 8px; border: 0; background: none; color: inherit; font: inherit; font-size: 14px; cursor: pointer; text-decoration: none; }
+.kit-user-panel a:hover, .kit-user-panel button:hover { background: color-mix(in srgb, var(--kit-accent, #5B4CF0) 8%, transparent); }
+.kit-admin-tools { display: flex; align-items: center; gap: 8px; }
+.kit-live { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--kit-muted, #6B7080); }
+.kit-live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #2FBF71; box-shadow: 0 0 0 3px rgba(47, 191, 113, .2); }
+.in-thumb .kit-login { display: none; }

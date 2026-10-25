@@ -13,18 +13,19 @@
 <link rel="stylesheet" href="css/academy.css">
 </head>
 <body>
-<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Online academy (SaaS)</span><a class="tpl-use" href="../index.html?template=Online%20academy#contact" target="_top">Use this template</a></div>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Online academy · <b>Learner app</b></span><a class="tpl-switch" href="academy-admin.html">Open instructor studio ↗</a><a class="tpl-use" href="../index.html?template=Online%20academy#contact" target="_top">Use this template</a></div>
 
 <div class="app">
   <aside aria-label="Navigation">
     <div class="brand"><i>★</i>Brightpath</div>
-    <a href="#/home" data-nav="home">My learning</a><a href="#/catalog" data-nav="catalog">Browse courses</a><a href="#/learn" data-nav="learn">Continue lesson</a><a href="#/progress" data-nav="progress">Progress &amp; badges</a>
-    <div class="me"><b>Nour K.</b><span id="me-xp"></span><span id="me-streak"></span><button class="kit-reset" id="reset" style="text-align:left;padding:0">Reset demo</button></div>
+    <a href="#/home" data-nav="home">My learning</a><a href="#/catalog" data-nav="catalog">Browse courses</a><a href="#/learn" data-nav="learn">Continue lesson</a><a href="#/progress" data-nav="progress">Progress &amp; badges</a><a href="#/questions" data-nav="questions">My questions <b class="nb" id="qa-n" hidden></b></a>
+    <div class="me"><b>Nour K.</b><span id="me-xp"></span><span id="me-streak"></span><a href="academy-admin.html" style="padding:0">Instructor sign-in</a><button class="kit-reset" id="reset" style="text-align:left;padding:0">Reset demo</button></div>
   </aside>
 
   <main>
     <section data-view="home">
       <div class="hello"><div><h1 id="hi">Welcome back, Nour!</h1><p id="hi-sub"></p></div><div class="bubble"><b id="h-streak">0</b>day streak</div><div class="bubble"><b id="h-xp">0</b>XP</div></div>
+      <div id="announce"></div>
       <h2 class="sec">Continue learning <a href="#/catalog" class="btn soft" style="min-height:40px">Find more courses</a></h2>
       <div class="courses" id="my-courses"></div>
     </section>
@@ -51,10 +52,16 @@
       <div class="panel" style="margin-top:20px"><h3>Badges</h3><div class="badges" id="badges"></div></div>
       <div class="panel" style="margin-top:20px"><h3>Certificates</h3><div id="certs"></div></div>
     </section>
+
+    <section data-view="questions" hidden>
+      <h2 class="sec" style="margin-top:0">My questions</h2>
+      <div class="qa-list" id="my-qs"></div>
+    </section>
   </main>
 </div>
 
 <script src="shared/app-kit.js"></script>
+<script src="js/academy-data.js"></script>
 <script src="js/academy.js"></script>
 </body>
 </html>

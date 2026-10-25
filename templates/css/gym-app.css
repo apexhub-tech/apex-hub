@@ -92,4 +92,12 @@ tbody tr { cursor: pointer; } tbody tr:hover td { background: var(--card); }
 .kit-chart { color: var(--neon); }
 #ch-new .kit-chart { color: var(--cyan); }
 
+/* Staff panel extras */
+.mtop { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-bottom: 14px; }
+aside a .nb { background: var(--neon); color: #fff; font-size: 11px; padding: 0 6px; margin-left: 6px; }
+aside .foot a { padding: 0; border: 0; text-transform: none; letter-spacing: 0; font-size: 12px; }
+.reqs li.approved, .reqs li.declined { opacity: .6; }
+.wk { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wk b { min-width: 130px; text-align: center; font-family: "Chakra Petch", sans-serif; }
+
 @media (max-width: 1000px) { .app { grid-template-columns: 1fr; } aside { flex-direction: row; overflow-x: auto; padding: 8px; position: sticky; top: 0; z-index: 4; border-right: 0; border-bottom: 1px solid var(--line); } .brand, aside .foot { display: none; } aside a { border-left: 0; border-bottom: 3px solid transparent; white-space: nowrap; } aside a[aria-current="page"] { border-bottom-color: var(--neon); } .grid2 { grid-template-columns: 1fr; } .kpis { grid-template-columns: 1fr 1fr; } main { padding: 14px; } }

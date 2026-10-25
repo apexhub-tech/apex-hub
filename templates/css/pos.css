@@ -113,6 +113,32 @@ td.r, th.r { text-align: right; }
 .receipt .r { display: flex; justify-content: space-between; gap: 12px; }
 .receipt hr { border: 0; border-top: 1px dashed #CCC; margin: 8px 0; }
 
+/* Staff extras: online order queue */
+main { min-width: 0; }
+.mtop { display: flex; justify-content: flex-end; padding: 14px 22px 0; }
+.side .foot a { padding: 0; font-weight: 500; }
+.side a b.hot { animation: pos-blink 1.2s ease infinite; }
+@keyframes pos-blink { 50% { opacity: .45; } }
+.toggle { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.lane h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; align-items: center; }
+.lane h2 span { background: var(--ink); color: #fff; border-radius: 999px; padding: 0 8px; font-size: 12px; }
+.lane-empty { color: var(--muted); border: 1px dashed var(--line); border-radius: 14px; padding: 24px; text-align: center; }
+.oo { padding: 14px; margin-bottom: 10px; display: grid; gap: 8px; }
+.oo.late { border-color: var(--red); }
+.oo.fresh { animation: pos-pulse 1.4s ease 3; }
+@keyframes pos-pulse { 50% { box-shadow: 0 0 0 3px var(--brand); } }
+.oo header { display: flex; justify-content: space-between; gap: 8px; }
+.oo header span { color: var(--muted); font-size: 13px; font-weight: 600; }
+.oo.late header span { color: var(--red); }
+.oo ul { margin: 0; padding-left: 18px; font-size: 14px; }
+.oo ul small { color: var(--muted); }
+.oo .note { font-size: 13px; color: var(--amber); }
+.oo footer { display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding-top: 10px; }
+.oo footer span { margin-right: auto; color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .oo.fresh, .side a b.hot { animation: none; } }
+@media (max-width: 1000px) { .lanes { grid-template-columns: 1fr; } }
+
 @media (max-width: 1100px) { .app { grid-template-columns: 72px 1fr; } .side a span, .brand span, .side .foot { display: none; } .side a { justify-content: center; } .brand { padding: 0 0 20px; justify-content: center; } .register { grid-template-columns: 1fr; } .ticket { position: static; max-height: none; } .kpis { grid-template-columns: 1fr 1fr; } .grid2 { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .app { grid-template-columns: 1fr; } aside.side { flex-direction: row; overflow-x: auto; padding: 8px; position: sticky; top: 0; z-index: 5; } .brand { display: none; } .side a { padding: 10px; } .view { padding: 14px; } .search { min-width: 0; width: 100%; } }
 @media print { body * { visibility: hidden; } .receipt, .receipt * { visibility: visible; } .receipt { position: fixed; left: 0; top: 0; width: 80mm; border: 0; } }

@@ -13,43 +13,51 @@
 <link rel="stylesheet" href="css/scheduler.css">
 </head>
 <body>
-<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Social media scheduler (SaaS)</span><a class="tpl-use" href="../index.html?template=Social%20media%20scheduler#contact" target="_top">Use this template</a></div>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Social media scheduler · <b>Client portal</b></span><a class="tpl-switch" href="scheduler-admin.html">Open agency workspace ↗</a><a class="tpl-use" href="../index.html?template=Social%20media%20scheduler#contact" target="_top">Use this template</a></div>
 
 <div class="wrap">
   <header class="top glass">
-    <div class="brand"><i></i>Postly</div>
-    <nav class="tabs" aria-label="App"><a href="#/calendar" data-nav="calendar">Calendar</a><a href="#/queue" data-nav="queue">Queue</a><a href="#/approvals" data-nav="approvals">Approvals <b id="ap-n" hidden></b></a><a href="#/analytics" data-nav="analytics">Analytics</a></nav>
-    <div class="accounts" aria-label="Connected accounts"><span class="acc" style="background:#E1306C">IG</span><span class="acc" style="background:#1877F2">FB</span><span class="acc" style="background:#0A66C2">IN</span><span class="acc" style="background:#111">X</span><span class="acc" style="background:#00C2B8">TT</span><button class="btn primary" id="new" style="margin-left:6px">+ Create post</button></div>
+    <div class="brand client"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=80&h=80&q=65" alt=""><div>Olive &amp; Ember<small>Content portal · managed by Apex Studio</small></div></div>
+    <nav class="tabs" aria-label="Portal"><a href="#/review" data-nav="review">To review <b id="rv-n" hidden></b></a><a href="#/calendar" data-nav="calendar">Upcoming</a><a href="#/report" data-nav="report">Monthly report</a><a href="#/requests" data-nav="requests">Request a post</a></nav>
   </header>
 
-  <section class="glass" data-view="calendar">
-    <div class="head"><div><h1>Content calendar</h1><p>Drag a post to another day to reschedule it.</p></div>
-      <div class="weeknav"><button class="icon-btn" id="w-prev" aria-label="Previous week">‹</button><b id="w-label"></b><button class="icon-btn" id="w-next" aria-label="Next week">›</button><button class="btn" id="w-today">This week</button></div></div>
-    <div class="inner"><div class="legend" style="margin-bottom:12px"><span><i style="background:#E8E3FF"></i>Scheduled</span><span><i style="outline:2px dashed var(--amber)"></i>Waiting for approval</span><span><i style="outline:2px dashed #B9B3D9"></i>Draft</span><span><i style="background:#DCFCE7"></i>Published</span><span class="kit-reset" style="text-decoration:none">·</span><button class="kit-reset" id="reset">Reset demo</button></div>
-      <div class="week" id="week"></div></div>
+  <section class="glass" data-view="review">
+    <div class="head"><div><h1>Posts waiting for your OK</h1><p id="rv-sub"></p></div><button class="btn primary" id="approve-all" hidden>Approve all</button></div>
+    <div class="inner"><div class="review" id="review"></div></div>
   </section>
 
-  <section class="glass" data-view="queue" hidden>
-    <div class="head"><div><h1>Queue</h1><p id="q-sub"></p></div><div style="display:flex;gap:8px"><select class="btn" id="q-net" aria-label="Network"><option value="all">All networks</option></select><select class="btn" id="q-st" aria-label="Status"><option value="upcoming">Upcoming</option><option value="draft">Drafts</option><option value="published">Published</option></select></div></div>
-    <div class="inner" id="queue"></div>
+  <section class="glass" data-view="calendar" hidden>
+    <div class="head"><div><h1>Upcoming posts</h1><p>Everything planned for the next two weeks.</p></div></div>
+    <div class="inner" id="upcoming"></div>
   </section>
 
-  <section class="glass" data-view="approvals" hidden>
-    <div class="head"><div><h1>Client approvals</h1><p>Posts your team created that need the client's OK before they go live.</p></div></div>
-    <div class="inner"><ul class="list" id="approvals"></ul></div>
-  </section>
-
-  <section class="glass" data-view="analytics" hidden>
-    <div class="head"><div><h1>Analytics</h1><p>Published posts · last 30 days</p></div><button class="btn" id="export">Export report</button></div>
+  <section class="glass" data-view="report" hidden>
+    <div class="head"><div><h1>Your social report</h1><p>Last 30 days across every network</p></div><button class="btn" id="dl">Download report</button></div>
     <div class="inner">
-      <div class="kpis"><div class="kpi"><span>Reach</span><b id="a-reach"></b><em>+18% vs previous</em></div><div class="kpi"><span>Engagement rate</span><b id="a-eng"></b><em>industry avg 3.1%</em></div><div class="kpi"><span>Posts published</span><b id="a-posts"></b><em>&nbsp;</em></div><div class="kpi"><span>Link clicks</span><b id="a-clicks"></b><em>&nbsp;</em></div></div>
-      <div class="grid2"><div class="card"><h3>Engagement per day</h3><div id="a-chart"></div></div><div class="card"><h3>Best time to post</h3><div class="heat" id="a-heat"></div></div></div>
-      <div class="card" style="margin-top:14px"><h3>Top posts</h3><ul class="list" id="a-top"></ul></div>
+      <div class="kpis"><div class="kpi"><span>People reached</span><b id="r-reach"></b><em>+18% vs last month</em></div><div class="kpi"><span>Engagement rate</span><b id="r-eng"></b><em>industry avg 3.1%</em></div><div class="kpi"><span>Posts published</span><b id="r-posts"></b><em>&nbsp;</em></div><div class="kpi"><span>Website clicks</span><b id="r-clicks"></b><em>&nbsp;</em></div></div>
+      <div class="grid2"><div class="card"><h3>Engagement per day</h3><div id="r-chart"></div></div><div class="card"><h3>Agency notes</h3><p class="note-txt">Evening posts (18:00–21:00) keep beating lunchtime. Next month we'll test two Reels a week and a weekend giveaway. — Maya, Apex Studio</p></div></div>
+      <div class="card" style="margin-top:14px"><h3>Your best posts</h3><ul class="list" id="r-top"></ul></div>
     </div>
   </section>
+
+  <section class="glass" data-view="requests" hidden>
+    <div class="head"><div><h1>Request a post</h1><p>Got news, a special or an event? Tell the team and they'll draft it for you.</p></div></div>
+    <div class="inner req-grid">
+      <form class="card" id="req-form" novalidate>
+        <div class="kit-field"><label for="rq-idea">What should we post about?</label><textarea id="rq-idea" rows="4" required placeholder="e.g. Live music this Friday from 8pm — table bookings open"></textarea></div>
+        <div class="kit-field"><label for="rq-date">Best day to post (optional)</label><input id="rq-date" type="date"></div>
+        <div class="kit-field"><span class="kit-label">Where?</span><div class="netpick" id="rq-nets"></div></div>
+        <button class="btn primary" type="submit">Send request</button>
+      </form>
+      <div class="card"><h3>Your requests</h3><ul class="list" id="my-reqs"></ul></div>
+    </div>
+  </section>
+
+  <p class="foot-note">Signed in as Rania Saad · Olive &amp; Ember · <a href="scheduler-admin.html">Agency sign-in</a> · <button class="kit-reset" id="reset">Reset demo</button></p>
 </div>
 
 <script src="shared/app-kit.js"></script>
+<script src="js/scheduler-data.js"></script>
 <script src="js/scheduler.js"></script>
 </body>
 </html>

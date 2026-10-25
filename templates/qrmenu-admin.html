@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TableTap Staff — QR menu admin template by Apex Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/template-bar.css">
+<link rel="stylesheet" href="shared/app-kit.css">
+<script src="shared/thumb.js"></script>
+<link rel="stylesheet" href="css/qrmenu.css">
+</head>
+<body>
+<div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>QR menu &amp; table ordering · <b>Staff panel</b></span><a class="tpl-switch" href="qrmenu.html" target="_blank" rel="noopener">Open guest menu ↗</a><a class="tpl-use" href="../index.html?template=QR%20menu%20%26%20table%20ordering#contact" target="_top">Use this template</a></div>
+
+<header class="top">
+  <span class="brand"><i>TT</i>TableTap</span>
+  <nav class="tabs" aria-label="App"><a href="#/kitchen" data-nav="kitchen">Kitchen display</a><a href="#/calls" data-nav="calls">Service calls <b class="nb" id="c-n" hidden></b></a><a href="#/tables" data-nav="tables">Tables</a><a href="#/menu" data-nav="menu">Menu manager</a></nav>
+  <div class="stats"><span>Open tickets <b id="st-open">0</b></span><span>Avg. ticket time <b id="st-avg">—</b></span><span>Sales today <b id="st-sales">$0</b></span></div>
+  <div class="kit-admin-tools" id="tools"><span class="kit-live">Live</span></div>
+</header>
+
+<section class="page wide" data-view="kitchen">
+  <section class="kds" aria-labelledby="kds-title">
+    <div class="kds-head">
+      <div><h2 id="kds-title">Kitchen display</h2><span id="kds-sub"></span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><div class="stations" role="group" aria-label="Station"><button aria-pressed="true" data-s="all">All</button><button aria-pressed="false" data-s="kitchen">Kitchen</button><button aria-pressed="false" data-s="bar">Bar</button></div><button class="recall" id="recall">↶ Recall</button></div>
+    </div>
+    <div class="tickets four" id="tickets"></div>
+  </section>
+</section>
+
+<section class="page" data-view="calls" hidden>
+  <h1>Service calls</h1><p>Waiter calls and bill requests from guests' phones. Oldest first.</p>
+  <ul class="calls" id="calls"></ul>
+</section>
+
+<section class="page" data-view="tables" hidden>
+  <h1>Floor plan</h1><p>Tap a table to see its orders, take payment or clear it. Each table has its own QR code.</p>
+  <div class="legend"><span><i style="border-color:var(--line);border-style:dashed"></i>Free</span><span><i style="border-color:#3A8DFF"></i>Order in kitchen</span><span><i style="border-color:var(--green)"></i>Eating</span><span><i style="border-color:var(--orange)"></i>Bill requested</span></div>
+  <div class="floor" id="floor"></div>
+</section>
+
+<section class="page" data-view="menu" hidden>
+  <h1>Menu manager</h1><p>Switch a dish off when it sells out (it's marked "Sold out" on guests' phones instantly) and change prices.</p>
+  <div class="wrap-x"><table class="mtable"><thead><tr><th>Dish</th><th>Section</th><th>Station</th><th>Price</th><th>Available</th></tr></thead><tbody id="mrows"></tbody></table></div>
+  <p class="foot-note" style="text-align:left"><button class="kit-reset" id="reset">Reset demo</button></p>
+</section>
+
+<script src="shared/app-kit.js"></script>
+<script src="js/qrmenu-data.js"></script>
+<script src="js/qrmenu-admin.js"></script>
+</body>
+</html>
