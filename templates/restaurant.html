@@ -6,7 +6,7 @@
 <title>Olive &amp; Ember — Restaurant template by Apex Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
 <link rel="stylesheet" href="shared/pay-kit.css">
@@ -16,94 +16,101 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Mediterranean restaurant</span><a class="tpl-use" href="../index.html?template=Restaurant%20website#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main">
-    <a class="logo" href="#">Olive <span>&amp;</span> Ember</a>
-    <ul><li><a href="#menu">Menu</a></li><li><a href="#reserve">Reservations</a></li><li><a href="#extras">Events &amp; gifts</a></li></ul>
-    <span class="status" id="status"></span>
-    <div class="navr"><button class="btn ghost bagbtn" id="bag">Order <b id="bag-n"></b></button><a class="btn" href="#reserve">Book a table</a></div>
+<header class="site">
+  <nav class="top wrap" aria-label="Main">
+    <a class="logo" href="#">Olive &amp; Ember</a>
+    <ul><li><a href="#menu">Menu</a></li><li><a href="#reserve">Reservations</a></li><li><a href="#extras">Events &amp; gifts</a></li><li><a href="#visit">Visit</a></li></ul>
+    <div class="navr"><span class="status" id="status"></span><button class="btn ghost bagbtn" id="bag">Order <b id="bag-n"></b></button><a class="btn" href="#reserve">Book a table</a></div>
   </nav>
+</header>
 
-  <header class="hero">
-    <div>
-      <span class="kicker">Wood-fired Mediterranean kitchen</span>
-      <h1>Slow fire, <em>honest</em> food.</h1>
-      <p>Seasonal plates cooked over olive wood. Book a table, or order takeaway and delivery straight from our menu.</p>
-      <div class="actions"><a class="btn" href="#reserve">Reserve a table</a><a class="btn ghost" href="#menu">Order online</a></div>
+<section class="hero" aria-labelledby="hero-title">
+  <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2000&q=75" alt="Plated signature dish on a candlelit table">
+  <div class="wrap hero-in">
+    <p class="kicker">Wood-fired Mediterranean kitchen · 24 Harbour Street</p>
+    <h1 id="hero-title">Slow fire,<br><em>honest</em> food.</h1>
+    <div class="hero-foot">
+      <div class="actions"><a class="btn light" href="#reserve">Reserve a table</a><a class="btn ghost light" href="#menu">Order online</a></div>
+      <p class="rating"><b>4.9 ★</b> from 1,200+ guest reviews</p>
     </div>
-    <div class="plate">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=75" alt="Plated signature dish">
-      <div class="tag"><b>4.9 ★</b><span>from 1,200+ guest reviews</span></div>
-    </div>
-  </header>
-</div>
+  </div>
+</section>
 
-<section id="menu">
-  <div class="wrap">
-    <div class="center"><h2>Our menu</h2><p>Tap + to order for takeaway or delivery. Changes with the seasons.</p></div>
+<section id="menu" class="wrap sec" aria-labelledby="menu-title">
+  <div class="sec-head">
+    <h2 id="menu-title">Menu</h2>
     <div class="menu-bar" role="tablist" aria-label="Menu sections" id="tabs"></div>
+  </div>
+  <div class="menu-tools">
+    <p>Tap + to order for takeaway or delivery. Changes with the seasons.</p>
     <div class="diet" role="group" aria-label="Dietary filters"><label><input type="checkbox" value="V"> Vegetarian</label><label><input type="checkbox" value="VG"> Vegan</label><label><input type="checkbox" value="GF"> Gluten-free</label></div>
-    <div class="menu" id="dishes" role="tabpanel"></div>
   </div>
+  <div class="menu" id="dishes" role="tabpanel"></div>
 </section>
 
-<section aria-labelledby="g-title" style="padding-top:0">
-  <div class="wrap">
-    <div class="center" style="margin-bottom:36px"><h2 id="g-title">From our kitchen</h2><p>Made fresh, shared at the table.</p></div>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1783447036642-90a65ff85a0f?auto=format&fit=crop&w=900&q=75" alt="Restaurant dining room with bar and warm lighting" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1771285119318-b342c3ecc51c?auto=format&fit=crop&w=600&q=75" alt="Platter of grilled meats and vegetables" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1672636401225-ec3d4025a4af?auto=format&fit=crop&w=600&q=75" alt="Clams with a glass of white wine" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1785734290864-eca98549d0b6?auto=format&fit=crop&w=1000&q=75" alt="Table spread with mezze dishes and drinks" loading="lazy">
+<section class="gallery" aria-label="From our kitchen">
+  <img src="https://images.unsplash.com/photo-1783447036642-90a65ff85a0f?auto=format&fit=crop&w=1200&q=75" alt="Restaurant dining room with bar and warm lighting" loading="lazy">
+  <img src="https://images.unsplash.com/photo-1771285119318-b342c3ecc51c?auto=format&fit=crop&w=800&q=75" alt="Platter of grilled meats and vegetables" loading="lazy">
+  <img src="https://images.unsplash.com/photo-1672636401225-ec3d4025a4af?auto=format&fit=crop&w=800&q=75" alt="Clams with a glass of white wine" loading="lazy">
+  <img src="https://images.unsplash.com/photo-1785734290864-eca98549d0b6?auto=format&fit=crop&w=1200&q=75" alt="Table spread with mezze dishes and drinks" loading="lazy">
+</section>
+
+<section id="reserve" class="reserve" aria-labelledby="res-title">
+  <div class="wrap reserve-in">
+    <div>
+      <h2 id="res-title">Reserve your table</h2>
+      <p>Live availability — times update as tables are booked. Groups of 9 or more, please use the events form.</p>
+      <dl class="hours"><div><dt>Mon – Thu</dt><dd>12:00 – 23:00</dd></div><div><dt>Fri – Sat</dt><dd>12:00 – 01:00</dd></div><div><dt>Sunday</dt><dd>13:00 – 22:00</dd></div></dl>
+      <div id="mybookings"></div>
     </div>
-  </div>
-</section>
-
-<section id="reserve">
-  <div class="wrap">
-    <div class="reserve">
-      <div>
-        <h2>Reserve your table</h2>
-        <p>Live availability — times update as tables are booked. Groups of 9+ please use the events form.</p>
-        <div class="hours"><span><b>Mon – Thu</b>12:00 – 23:00</span><span><b>Fri – Sat</b>12:00 – 01:00</span><span><b>Sunday</b>13:00 – 22:00</span><span><b>Address</b>24 Harbour Street</span></div>
-        <div id="mybookings"></div>
+    <form class="res-form" id="res-form" novalidate>
+      <div class="row3">
+        <div class="f"><label for="r-date">Date</label><input id="r-date" type="date" required></div>
+        <div class="f"><label for="r-guests">Guests</label><select id="r-guests"></select></div>
+        <div class="f"><label for="r-area">Seating</label><select id="r-area"><option>Indoor</option><option>Terrace</option><option>Bar</option></select></div>
       </div>
-      <form class="res-form" id="res-form" novalidate>
-        <div class="row3">
-          <div class="f"><label for="r-date">Date</label><input id="r-date" type="date" required></div>
-          <div class="f"><label for="r-guests">Guests</label><select id="r-guests"></select></div>
-          <div class="f"><label for="r-area">Seating</label><select id="r-area"><option>Indoor</option><option>Terrace</option><option>Bar</option></select></div>
-        </div>
-        <div><span class="lbl">Available times</span><div class="times" id="times" role="group" aria-label="Times"></div></div>
-        <div class="row3" style="grid-template-columns:1fr 1fr">
-          <div class="f"><label for="r-name">Name</label><input id="r-name" autocomplete="name" required></div>
-          <div class="f"><label for="r-phone">Mobile</label><input id="r-phone" type="tel" autocomplete="tel" required></div>
-        </div>
-        <div class="f"><label for="r-occ">Occasion (optional)</label><select id="r-occ"><option value="">None</option><option>Birthday</option><option>Anniversary</option><option>Business</option><option>Date night</option></select></div>
-        <button class="btn" type="submit" id="r-go">Confirm reservation</button>
-        <p class="res-note" id="r-msg" role="status"></p>
-      </form>
-    </div>
+      <div><span class="lbl">Available times</span><div class="times" id="times" role="group" aria-label="Times"></div></div>
+      <div class="row2">
+        <div class="f"><label for="r-name">Name</label><input id="r-name" autocomplete="name" required></div>
+        <div class="f"><label for="r-phone">Mobile</label><input id="r-phone" type="tel" autocomplete="tel" required></div>
+      </div>
+      <div class="f"><label for="r-occ">Occasion (optional)</label><select id="r-occ"><option value="">None</option><option>Birthday</option><option>Anniversary</option><option>Business</option><option>Date night</option></select></div>
+      <button class="btn light" type="submit" id="r-go">Confirm reservation</button>
+      <p class="res-note" id="r-msg" role="status"></p>
+    </form>
   </div>
 </section>
 
-<section id="extras" style="padding-top:0">
+<section id="extras" class="wrap sec" aria-label="Events, gifts and takeaway">
+  <div class="extras">
+    <div class="extra"><span class="n">01</span><h3>Gift cards</h3><p>Give a dinner they'll remember. Delivered instantly by email, valid for 12 months.</p><button class="btn ghost" id="gift">Buy a gift card</button></div>
+    <div class="extra"><span class="n">02</span><h3>Private dining</h3><p>Our upstairs room seats 24 — for birthdays, weddings and company dinners.</p><button class="btn ghost" id="event">Enquire about an event</button></div>
+    <div class="extra"><span class="n">03</span><h3>Takeaway &amp; delivery</h3><p>Order from the menu above. Collection in 25 minutes, delivery within 5 km.</p><a class="btn ghost" href="#menu">Start an order</a></div>
+  </div>
+</section>
+
+<section class="reviews-sec" aria-labelledby="rev-title">
   <div class="wrap">
-    <div class="extras">
-      <div class="extra"><h3>Gift cards</h3><p>Give a dinner they'll remember. Delivered instantly by email, valid for 12 months.</p><button class="btn" id="gift">Buy a gift card</button></div>
-      <div class="extra"><h3>Private dining</h3><p>Our upstairs room seats 24 — perfect for birthdays, weddings and company dinners.</p><button class="btn ghost" id="event">Enquire about an event</button></div>
-      <div class="extra"><h3>Takeaway &amp; delivery</h3><p>Order from the menu above. Collection in 25 minutes, delivery within 5 km.</p><a class="btn ghost" href="#menu">Start an order</a></div>
-    </div>
+    <h2 id="rev-title">What guests say</h2>
     <div class="reviews">
-      <blockquote><span>★★★★★</span><p>"The lamb shoulder is unreal. Booked online in seconds and they remembered it was our anniversary."</p><b>— Nadia R.</b></blockquote>
-      <blockquote><span>★★★★★</span><p>"Best mezze in the city, and the takeaway arrives still warm."</p><b>— Karim A.</b></blockquote>
-      <blockquote><span>★★★★☆</span><p>"Beautiful terrace at sunset. Book ahead on weekends — it fills up fast."</p><b>— Lea M.</b></blockquote>
+      <blockquote><p>“The lamb shoulder is unreal. Booked online in seconds and they remembered it was our anniversary.”</p><footer><span aria-label="5 out of 5">★★★★★</span> Nadia R.</footer></blockquote>
+      <blockquote><p>“Best mezze in the city, and the takeaway arrives still warm.”</p><footer><span aria-label="5 out of 5">★★★★★</span> Karim A.</footer></blockquote>
+      <blockquote><p>“Beautiful terrace at sunset. Book ahead on weekends — it fills up fast.”</p><footer><span aria-label="4 out of 5">★★★★☆</span> Lea M.</footer></blockquote>
     </div>
   </div>
 </section>
 
 <section data-paykit aria-label="Payment methods"></section>
-<div class="wrap"><footer><span>© Olive &amp; Ember</span><span>Sample content — your brand, menu and photos go here.</span></footer></div>
+
+<footer class="site-foot" id="visit">
+  <div class="wrap foot">
+    <div><a class="logo" href="#">Olive &amp; Ember</a><p>Seasonal plates cooked over olive wood.</p></div>
+    <div><h3>Visit</h3><p>24 Harbour Street<br>Old Town</p></div>
+    <div><h3>Hours</h3><p>Mon – Thu 12:00 – 23:00<br>Fri – Sat 12:00 – 01:00<br>Sunday 13:00 – 22:00</p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>hello@oliveandember.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Olive &amp; Ember</span><span>Sample content — your brand, menu and photos go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

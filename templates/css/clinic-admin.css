@@ -1,6 +1,6 @@
 /* CarePoint Staff — styles */
 :root { --bg: #F4F8FA; --ink: #0F2A36; --muted: #557080; --teal: #0E7C86; --line: #DCE7EC; --amber: #B7791F; --red: #C53030; --green: #2F855A;
-  --kit-surface: #fff; --kit-ink: #0F2A36; --kit-muted: #557080; --kit-line: #DCE7EC; --kit-accent: #0E7C86; --kit-accent-ink: #fff; --kit-radius: 16px;
+  --kit-surface: #fff; --kit-ink: #0F2A36; --kit-muted: #557080; --kit-line: #DCE7EC; --kit-accent: #0E7C86; --kit-accent-ink: #fff; --kit-radius: 4px; --kit-pill: 4px;
   --adm-bg: #F4F8FA; --adm-side: #0B3A40; --adm-side-ink: #BFDDE0; color-scheme: light; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 Figtree, system-ui, sans-serif; }
@@ -22,7 +22,7 @@ button, input, select, textarea { font-family: inherit; }
 .ccell { border-bottom: 1px solid #EEF3F5; border-left: 1px solid #EEF3F5; height: 44px; position: relative; cursor: copy; }
 .ccell.off { background: repeating-linear-gradient(45deg, #F7FAFB 0 6px, #EEF3F5 6px 12px); cursor: not-allowed; }
 .ccell:not(.off):hover { background: #F2F9FA; }
-.appt { position: absolute; inset: 2px 4px; border-radius: 8px; padding: 4px 8px; font-size: 12px; text-align: left; border: 0; cursor: pointer; overflow: hidden; color: var(--ink); font-family: inherit; line-height: 1.3; }
+.appt { position: absolute; inset: 2px 4px; border-radius: 2px; padding: 4px 8px; font-size: 12px; text-align: left; border: 0; cursor: pointer; overflow: hidden; color: var(--ink); font-family: inherit; line-height: 1.3; }
 .appt b { display: block; font-size: 13px; }
 .appt .web { position: absolute; top: 4px; right: 6px; font-size: 10px; font-weight: 700; color: var(--teal); }
 .appt.fresh { animation: pulse 1.6s ease 2; }
@@ -31,27 +31,31 @@ button, input, select, textarea { font-family: inherit; }
 .a-noshow { background: #FDE7E7; border-left: 3px solid var(--red); text-decoration: line-through; } .a-cancelled { display: none; }
 .now-line { position: absolute; left: 70px; right: 0; height: 2px; background: var(--red); z-index: 1; pointer-events: none; }
 .side { max-height: calc(100vh - 260px); overflow-y: auto; }
-.wait { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.wait li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px; border-radius: 10px; background: var(--bg); font-size: 14px; }
+.wait { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.wait li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 .wait small { display: block; color: var(--muted); }
 .wait .mins { font-weight: 700; color: var(--amber); white-space: nowrap; }
-.summary { background: var(--bg); border-radius: 14px; padding: 16px; display: grid; gap: 8px; }
-.summary div { display: flex; justify-content: space-between; gap: 12px; }
+.summary { border-top: 1px solid var(--line); display: grid; }
+.summary div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .summary span { color: var(--muted); }
 
 /* Doctors */
 .docs-admin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .doc-card { padding: 18px; display: grid; gap: 14px; }
 .doc-card header { display: flex; gap: 12px; align-items: center; }
-.doc-card img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: top; }
+.doc-card img { width: 56px; height: 56px; border-radius: 4px; object-fit: cover; object-position: top; }
 .doc-card header small { display: block; color: var(--muted); }
 .daychips { display: flex; gap: 6px; flex-wrap: wrap; }
-.daychips button { min-width: 48px; min-height: 38px; border-radius: 10px; border: 1px solid var(--line); background: #fff; font: 600 13px Figtree, sans-serif; cursor: pointer; color: var(--muted); }
+.daychips button { min-width: 48px; min-height: 40px; border-radius: 4px; border: 1px solid var(--line); background: #fff; font: 600 13px Figtree, sans-serif; cursor: pointer; color: var(--muted); }
 .daychips button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
 .away { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-.away span { font-size: 13px; background: #FFF4DE; color: var(--amber); border-radius: 999px; padding: 3px 4px 3px 10px; display: inline-flex; gap: 4px; align-items: center; }
+.away span { font-size: 13px; background: #FFF4DE; color: var(--amber); border-radius: 2px; padding: 4px 4px 4px 8px; display: inline-flex; gap: 4px; align-items: center; }
 .away span button { border: 0; background: none; cursor: pointer; color: inherit; font-size: 14px; }
 .doc-stats { display: flex; gap: 18px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
 .doc-stats b { color: var(--ink); font-size: 16px; display: block; }
 
 @media (max-width: 1100px) { .board { grid-template-columns: 1fr; } .cal, .side { max-height: none; } .docs-admin { grid-template-columns: 1fr; } }
+
+/* Flat panels: sidebar items and KPI cards follow the 4px radius from --kit-radius; side panel headings get a hairline */
+.side h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.adm-kpi b { font-weight: 600; font-variant-numeric: tabular-nums; }

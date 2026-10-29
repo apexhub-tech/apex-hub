@@ -16,33 +16,42 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Electronics store</span><a class="tpl-use" href="../index.html?template=Electronics%20store#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main"><span class="logo">voltix<span>.</span></span>
+<header class="site">
+  <nav class="top wrap" aria-label="Main"><span class="logo">voltix<span>.</span></span>
     <ul id="depts"><li><button aria-pressed="true" data-c="all">All</button></li><li><button aria-pressed="false" data-c="audio">Audio</button></li><li><button aria-pressed="false" data-c="wear">Wearables</button></li><li><button aria-pressed="false" data-c="comp">Computing</button></li></ul>
     <div class="icons"><button class="icon-btn" id="wish-btn" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg><b id="wish-n"></b></button><button class="icon-btn" id="cart-btn" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 14H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><b id="cart-n"></b></button></div></nav>
+</header>
 
-  <header class="hero">
-    <div>
-      <span class="eyebrow">New · Studio Pro headphones</span>
-      <h1><span>Hear every detail.</span></h1>
-      <p>Adaptive noise cancelling, 40-hour battery and studio-grade sound. Free 2-day delivery.</p>
-      <button class="btn" data-qv="a1">Buy now — $299</button> <button class="btn ghost" data-qv="a1">Choose colour</button>
-      <p class="fin">or $25/month for 12 months at 0% APR</p>
-    </div>
-    <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&h=900&q=75" alt="Wireless over-ear headphones">
-      <div class="spec" style="top:20px;left:20px"><b>40h</b>Battery life</div>
-      <div class="spec" style="bottom:20px;right:20px"><b>-35dB</b>Noise cancelling</div>
-    </div>
-  </header>
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">New · Studio Pro headphones</span>
+    <h1>Hear every detail.</h1>
+    <p>Adaptive noise cancelling, 40-hour battery and studio-grade sound. Free 2-day delivery.</p>
+    <div class="hero-act"><button class="btn" data-qv="a1">Buy now — $299</button><button class="btn ghost" data-qv="a1">Choose colour</button></div>
+    <p class="fin">or $25/month for 12 months at 0% APR</p>
+    <dl class="specs"><div><dt>Battery life</dt><dd>40h</dd></div><div><dt>Noise cancelling</dt><dd>-35dB</dd></div><div><dt>Delivery</dt><dd>2 days</dd></div></dl>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&h=1400&q=75" alt="Wireless over-ear headphones">
+  </div>
+</section>
 
+<div class="wrap">
   <section id="shop">
     <div class="toolbar"><h2>Shop the range</h2><div style="display:flex;gap:8px;flex-wrap:wrap"><input class="field" id="q" placeholder="Search products ( / )" aria-label="Search"><select class="field" id="sort" aria-label="Sort"><option value="feat">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="rate">Best rated</option></select></div></div>
     <div class="grid" id="grid"></div>
   </section>
-<section data-paykit aria-label="Payment methods"></section>
-  <footer><span>© Voltix Electronics</span><span>2-year warranty on everything · Sample content</span></footer>
 </div>
+<section data-paykit aria-label="Payment methods"></section>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">voltix<span>.</span></span><p>Audio, wearables and computing with a 2-year warranty on everything.</p></div>
+    <div><h3>Shop</h3><p>Audio<br>Wearables<br>Computing</p></div>
+    <div><h3>Support</h3><p>Delivery &amp; returns<br>Warranty<br>Track an order</p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>help@voltix.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Voltix Electronics</span><span>Sample content — your products and brand go here.</span></div>
+</footer>
 <div class="cbar" id="cbar" hidden><span id="cbar-imgs" style="display:flex;gap:6px"></span><span id="cbar-n"></span><button class="btn" id="cbar-go" style="min-height:40px">Compare</button><button class="btn ghost" id="cbar-x" style="min-height:40px">Clear</button></div>
 
 <script src="shared/app-kit.js"></script>

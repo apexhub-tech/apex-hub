@@ -16,18 +16,21 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Furniture store</span><a class="tpl-use" href="../index.html?template=Furniture%20store#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main"><ul><li><a href="#rooms">Rooms</a></li><li><a href="#shop">Bestsellers</a></li><li><a href="#planner">Design help</a></li></ul><span class="logo">Nordhem</span><div class="icons"><button id="wish-btn">Saved (0)</button><button id="bag">Bag (0)</button></div></nav>
+<header class="site">
+  <nav class="top wrap" aria-label="Main"><ul><li><a href="#rooms">Rooms</a></li><li><a href="#shop">Bestsellers</a></li><li><a href="#planner">Design help</a></li></ul><span class="logo">Nordhem</span><div class="icons"><button id="wish-btn">Saved (0)</button><button id="bag">Bag (0)</button></div></nav>
+</header>
 
-  <header class="hero">
-    <div class="hero-copy">
-      <small>The Autumn Collection</small>
-      <h1>Made to be lived with.</h1>
-      <p>Solid oak, natural linen and wool — furniture designed to last decades, not seasons. 100-night home trial.</p>
-      <a class="btn" href="#shop">Shop the collection</a>
-    </div>
-    <img src="https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?auto=format&fit=crop&w=1200&h=900&q=75" alt="Grey sofa beside a wooden coffee table">
-  </header>
+<section class="hero">
+  <div class="hero-copy">
+    <small>The Autumn Collection</small>
+    <h1>Made to be lived with.</h1>
+    <p>Solid oak, natural linen and wool — furniture designed to last decades, not seasons. 100-night home trial.</p>
+    <a class="btn" href="#shop">Shop the collection</a>
+  </div>
+  <img src="https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?auto=format&fit=crop&w=1800&h=1200&q=75" alt="Grey sofa beside a wooden coffee table">
+</section>
+
+<div class="wrap">
 
   <div class="rooms" id="rooms" role="group" aria-label="Shop by room">
     <button class="room" data-room="Dining" aria-pressed="false"><img src="https://images.unsplash.com/photo-1772442363851-738a548f6c5c?auto=format&fit=crop&w=500&h=660&q=70" alt="" loading="lazy"><h3>Dining</h3></button>
@@ -47,9 +50,17 @@
   </section>
 
   <div class="usp"><div><b>10-year guarantee</b><span>On every frame we make.</span></div><div><b>100-night trial</b><span>Live with it before you decide.</span></div><div><b>Sustainably sourced</b><span>FSC-certified oak and recycled fabrics.</span></div></div>
-<section data-paykit aria-label="Payment methods"></section>
-  <footer><span>© Nordhem Living</span><span>Sample content — your products and photos go here.</span></footer>
 </div>
+<section data-paykit aria-label="Payment methods"></section>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">Nordhem</span><p>Solid oak, linen and wool furniture, made to last decades.</p></div>
+    <div><h3>Shop</h3><p><a href="#rooms">Rooms</a><br><a href="#shop">Bestsellers</a></p></div>
+    <div><h3>Help</h3><p><a href="#planner">Free design help</a><br>Delivery &amp; 100-night trial</p></div>
+    <div><h3>Showroom</h3><p>21 Fjord Street<br>hello@nordhem.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Nordhem Living</span><span>Sample content — your products and photos go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

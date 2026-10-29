@@ -16,24 +16,21 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Fast food restaurant</span><a class="tpl-use" href="../index.html?template=Fast%20food%20restaurant#contact" target="_top">Use this template</a></div>
 
-<header class="top"><div class="wrap"><span class="logo">BLAZE</span><ul><li><a href="#menu">Menu</a></li><li><a href="#deals">Deals</a></li><li><a href="#app">Rewards</a></li></ul><div class="hr"><button class="store" id="store">📍 <span id="store-l">Harbour St · open</span></button><button class="bag" id="bag">Order · 0</button></div></div></header>
+<header class="top"><div class="wrap"><span class="logo">BLAZE</span><ul><li><a href="#menu">Menu</a></li><li><a href="#deals">Deals</a></li><li><a href="#app">Rewards</a></li></ul><div class="hr"><button class="store" id="store"><span id="store-l">Harbour St · open</span></button><button class="bag" id="bag">Order · 0</button></div></div></header>
 
 <section class="hero">
-  <div class="wrap">
-    <div class="copy">
-      <h1>Flame-grilled. Never boring.</h1>
-      <p>100% beef, grilled over real flame and stacked the way you like it. Delivery or pick-up in 15 minutes.</p>
-      <a class="btn y" href="#menu">Order now</a>
-    </div>
-    <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&h=900&q=75" alt="Flame-grilled burger with lettuce and tomato">
-      <div class="price-burst"><span><small>Only</small>$5.99</span></div>
-    </div>
+  <div class="copy">
+    <h1>Flame-grilled. Never boring.</h1>
+    <p>100% beef, grilled over real flame and stacked the way you like it. Delivery or pick-up in 15 minutes.</p>
+    <div class="hero-act"><a class="btn y" href="#menu">Order now</a><span class="from">Burgers from <b>$5.99</b></span></div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1400&h=1200&q=75" alt="Flame-grilled burger with lettuce and tomato">
   </div>
 </section>
 
 <div class="wrap">
-  <div class="rewards-bar" id="app"><span>🔥 Blaze Rewards</span><b id="flames">0 flames</b><div class="track"><i id="flames-bar"></i></div><span id="flames-next"></span></div>
+  <div class="rewards-bar" id="app"><span>Blaze Rewards</span><b id="flames">0 flames</b><div class="track"><i id="flames-bar"></i></div><span id="flames-next"></span></div>
   <div class="deals" id="deals">
     <button class="deal" data-deal="TWO4TEN"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=200&h=200&q=70" alt="" loading="lazy"><div><b>2 for $10</b>Any two burgers.<small>Code TWO4TEN · tap to apply</small></div></button>
     <button class="deal" data-deal="FREEFRIES"><img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=200&h=200&q=70" alt="" loading="lazy"><div><b>Free fries</b>On orders over $12.<small>Code FREEFRIES · tap to apply</small></div></button>
@@ -46,9 +43,17 @@
   </section>
 
   <div class="app"><div><h2>Earn flames, get free food.</h2><p>Every $1 = 10 flames. 600 flames = a free burger. Flames are added when you order.</p></div><button class="btn y" id="redeem">Redeem a free burger</button></div>
-<section data-paykit aria-label="Payment methods"></section>
-  <footer><span>© Blaze Burger</span><span>Sample content — your menu, prices and photos go here.</span></footer>
 </div>
+<section data-paykit aria-label="Payment methods"></section>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">BLAZE</span><p>Flame-grilled burgers, fries and shakes.</p></div>
+    <div><h3>Order</h3><p><a href="#menu">Menu</a><br><a href="#deals">Deals</a><br><a href="#app">Rewards</a></p></div>
+    <div><h3>Restaurants</h3><p>Harbour St · 10:00–23:00<br>Central Mall · 10:00–22:00</p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>hello@blazeburger.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Blaze Burger</span><span>Sample content — your menu, prices and photos go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

@@ -16,23 +16,22 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Bakery online ordering</span><a class="tpl-use" href="../index.html?template=Bakery%20online%20ordering#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main"><span class="logo">Crumb <span>&amp;</span> Co.</span><ul><li><a href="#shop">Shop</a></li><li><a href="#cake">Custom cakes</a></li><li><a href="#visit">Visit</a></li></ul><span class="open-now" id="open-now"></span><button class="bag" id="bag">Basket · 0</button></nav>
+<header class="site">
+  <nav class="top wrap" aria-label="Main"><span class="logo">Crumb &amp; Co.</span><ul><li><a href="#shop">Shop</a></li><li><a href="#cake">Custom cakes</a></li><li><a href="#visit">Visit</a></li></ul><span class="open-now" id="open-now"></span><button class="bag" id="bag">Basket · 0</button></nav>
+</header>
 
-  <header class="hero">
-    <div>
-      <span class="cutoff" id="cutoff"></span>
-      <h1>Baked this <span>morning.</span> Yours by noon.</h1>
-      <p>Order fresh pastries, breads and celebration cakes online — collect in store or get same-day local delivery.</p>
-      <a class="btn" href="#cake">Design your cake</a>
-    </div>
-    <div class="pics">
-      <span class="sticker">Fresh daily · 7am</span>
-      <img src="https://images.unsplash.com/photo-1583338917451-face2751d8d5?auto=format&fit=crop&w=800&h=800&q=75" alt="Fruit tarts and chocolate cakes in a bakery display">
-      <img src="https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&w=500&h=500&q=70" alt="Freshly baked croissants">
-    </div>
-  </header>
-</div>
+<section class="hero">
+  <div class="hero-copy">
+    <span class="cutoff" id="cutoff"></span>
+    <h1>Baked this <em>morning.</em> Yours by noon.</h1>
+    <p>Order fresh pastries, breads and celebration cakes online — collect in store or get same-day local delivery.</p>
+    <div class="hero-act"><a class="btn" href="#shop">Order today's bakes</a><a class="btn ghost" href="#cake">Design your cake</a></div>
+  </div>
+  <div class="pics">
+    <img src="https://images.unsplash.com/photo-1583338917451-face2751d8d5?auto=format&fit=crop&w=1200&h=1200&q=75" alt="Fruit tarts and chocolate cakes in a bakery display">
+    <img src="https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&w=700&h=700&q=70" alt="Freshly baked croissants">
+  </div>
+</section>
 
 <section id="shop">
   <div class="wrap">
@@ -72,9 +71,17 @@
   </div>
 </section>
 
-<section id="visit" style="padding-top:0"><div class="wrap info"><div><b>Opening hours</b><p>Tue–Sun 7:00–18:00<br>Closed Mondays</p></div><div><b>Find us</b><p>18 Baker's Row, Old Town<br>Free parking behind the shop</p></div><div><b>Allergens</b><p>Every product lists its allergens. Ask us anything — we bake in a kitchen that handles nuts.</p></div></div></section>
+<section id="visit" class="visit"><div class="wrap info"><div><b>Opening hours</b><p>Tue–Sun 7:00–18:00<br>Closed Mondays</p></div><div><b>Find us</b><p>18 Baker's Row, Old Town<br>Free parking behind the shop</p></div><div><b>Allergens</b><p>Every product lists its allergens. Ask us anything — we bake in a kitchen that handles nuts.</p></div></div></section>
 <section data-paykit aria-label="Payment methods"></section>
-<div class="wrap"><footer><span>© Crumb &amp; Co. Bakery</span><span>Sample content — your bakes, prices and photos go here.</span></footer></div>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">Crumb &amp; Co.</span><p>Small-batch breads, pastries and celebration cakes.</p></div>
+    <div><h3>Shop</h3><p><a href="#shop">Today's bakes</a><br><a href="#cake">Custom cakes</a></p></div>
+    <div><h3>Visit</h3><p>18 Baker's Row, Old Town<br>Tue–Sun 7:00–18:00</p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>hello@crumbandco.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Crumb &amp; Co. Bakery</span><span>Sample content — your bakes, prices and photos go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

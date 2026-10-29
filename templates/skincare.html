@@ -17,17 +17,21 @@
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Skincare &amp; beauty store</span><a class="tpl-use" href="../index.html?template=Skincare%20%26%20beauty%20store#contact" target="_top">Use this template</a></div>
 <div class="promo">Free samples with every order · Subscribe &amp; save 15% · Cruelty-free &amp; vegan</div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main"><span class="logo">glow<span>lab</span></span><ul><li><a href="#shop">Shop</a></li><li><a href="#quiz" id="nav-quiz">Skin quiz</a></li><li><a href="#reviews">Reviews</a></li></ul><div class="pills"><button class="pill-btn l" id="wish-btn">♡ 0</button><button class="pill-btn" id="bag">Bag · 0</button></div></nav>
+<header class="site">
+  <nav class="top wrap" aria-label="Main"><span class="logo">glow<span>lab</span></span><ul><li><a href="#shop">Shop</a></li><li><a href="#quiz" id="nav-quiz">Skin quiz</a></li><li><a href="#reviews">Reviews</a></li></ul><div class="pills"><button class="pill-btn l" id="wish-btn">♡ 0</button><button class="pill-btn" id="bag">Bag · 0</button></div></nav>
+</header>
 
-  <header class="hero" id="quiz">
-    <div class="hero-copy">
-      <h1>Skin that feels like you.</h1>
-      <p>Gentle, science-backed formulas made for real skin. Take the 3-question quiz and we'll build your routine.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="start-quiz">Find my routine</button><a class="btn soft" href="#shop">Shop all</a></div>
-    </div>
-    <div class="hero-img"><img src="https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?auto=format&fit=crop&w=1000&h=900&q=75" alt="Skincare bottles arranged with pink petals"><div class="sticker">New<br>Rose<br>serum</div></div>
-  </header>
+<section class="hero" id="quiz">
+  <div class="hero-copy">
+    <span class="new">New · Rose serum</span>
+    <h1>Skin that feels like you.</h1>
+    <p>Gentle, science-backed formulas made for real skin. Take the 3-question quiz and we'll build your routine.</p>
+    <div class="hero-act"><button class="btn" id="start-quiz">Find my routine</button><a class="btn soft" href="#shop">Shop all</a></div>
+  </div>
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?auto=format&fit=crop&w=1600&h=1300&q=75" alt="Skincare bottles arranged with pink petals"></div>
+</section>
+
+<div class="wrap">
   <section class="result" id="result" hidden aria-live="polite"></section>
 
   <div class="finder" id="shop">
@@ -35,15 +39,23 @@
     <div class="chips" role="group" aria-label="Skin type"><button class="chip" aria-pressed="true" data-s="all">All</button><button class="chip" aria-pressed="false" data-s="dry">Dry</button><button class="chip" aria-pressed="false" data-s="oily">Oily</button><button class="chip" aria-pressed="false" data-s="sensitive">Sensitive</button></div>
   </div>
   <div class="grid" id="grid"></div>
-
-  <section id="reviews"><h2 style="font-size:34px;margin-bottom:18px">4.8 ★ from 12,400 reviews</h2><div class="reviews">
-    <blockquote><span>★★★★★</span><p>"My skin has never been this calm. The Calm Cream is a game changer for my redness."</p><b>— Rana, sensitive skin</b></blockquote>
-    <blockquote><span>★★★★★</span><p>"The quiz picked the perfect routine. Subscribing saves me money and I never run out."</p><b>— Joe, oily skin</b></blockquote>
-    <blockquote><span>★★★★☆</span><p>"Hydra Serum soaks in fast and my makeup sits better. Lovely packaging too."</p><b>— Mira, dry skin</b></blockquote>
-  </div></section>
-<section data-paykit aria-label="Payment methods"></section>
-  <footer><span>© Glow Lab Skincare</span><span>Sample content — your products and photos go here.</span></footer>
 </div>
+
+<section id="reviews" class="reviews-sec"><div class="wrap"><h2>4.8 ★ from 12,400 reviews</h2><div class="reviews">
+  <blockquote><p>“My skin has never been this calm. The Calm Cream is a game changer for my redness.”</p><footer><span aria-label="5 out of 5">★★★★★</span> Rana, sensitive skin</footer></blockquote>
+  <blockquote><p>“The quiz picked the perfect routine. Subscribing saves me money and I never run out.”</p><footer><span aria-label="5 out of 5">★★★★★</span> Joe, oily skin</footer></blockquote>
+  <blockquote><p>“Hydra Serum soaks in fast and my makeup sits better. Lovely packaging too.”</p><footer><span aria-label="4 out of 5">★★★★☆</span> Mira, dry skin</footer></blockquote>
+</div></div></section>
+<section data-paykit aria-label="Payment methods"></section>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">glow<span>lab</span></span><p>Gentle, science-backed skincare. Cruelty-free and vegan.</p></div>
+    <div><h3>Shop</h3><p><a href="#shop">All products</a><br><a href="#quiz">Skin quiz</a></p></div>
+    <div><h3>Help</h3><p>Subscriptions<br>Delivery &amp; returns</p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>hello@glowlab.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Glow Lab Skincare</span><span>Sample content — your products and photos go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

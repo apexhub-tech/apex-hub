@@ -2,7 +2,7 @@
 :root { --r-display: "Noto Serif SC"; --r-body: "Noto Sans SC";
   --r-page: #FBF5EB; --r-surface: #FFFFFF; --r-ink: #2A1A12; --r-muted: #7A6A5C; --r-line: #EADFD0;
   --r-accent: #B91C1C; --r-accent-ink: #FFF7E6; --r-soft: #FEE2E2; --r-accent-deep: #991B1B;
-  --kit-surface: #FFFFFF; --kit-ink: #1E1B18; --kit-muted: #6B6560; --kit-line: #EADFD0; --kit-accent: #B91C1C; --kit-accent-ink: #FFFFFF; --kit-radius: 16px;
+  --kit-surface: #FFFFFF; --kit-ink: #1E1B18; --kit-muted: #6B6560; --kit-line: #EADFD0; --kit-accent: #B91C1C; --kit-accent-ink: #FFFFFF; --kit-radius: 6px; --kit-pill: 4px;
   --adm-bg: #FBF6EF; --adm-side: #3B0D0C; --adm-side-ink: #F2D7C9; color-scheme: light; }
 /* Guest page uses the brand surface colours inside dialogs too */
 .qr-page { --kit-surface: #FFFFFF; --kit-ink: #2A1A12; --kit-muted: #7A6A5C; --kit-line: #EADFD0; --kit-accent-ink: #FFF7E6; }

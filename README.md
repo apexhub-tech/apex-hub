@@ -9,7 +9,11 @@ The site is plain HTML, CSS and JavaScript: no build step and no dependencies.
 ```
 index.html            Landing page (services, template gallery, packages, contact)
 css/style.css         Landing page styles
+css/theme-mono.css    "Mono" look layered on top: black, IBM Plex Mono, tilted cards (remove its <link> for the original)
 js/main.js            Gallery filters, packages comparison, contact form
+js/dots.js            Animated dot field behind the hero (Mono theme only)
+js/templates-data.js  Template catalogue shared by the gallery and the dashboard
+admin.html            Agency dashboard (css/admin.css, js/admin.js)
 logo.jpg              Brand logo
 templates/
   *.html              29 working templates (SaaS apps, websites, online stores)
@@ -24,6 +28,24 @@ templates/
     template-bar.css  The "← Apex Hub templates" bar on every template
     thumb.js          Preview mode used by the gallery thumbnails
 ```
+
+### Agency dashboard
+
+`admin.html` (footer link "Team sign-in", demo login `admin@apexhub.info` / `demo1234`) is where the team runs Apex Hub:
+
+- **Overview** — MRR, open pipeline, active projects, unpaid invoices, revenue chart and a "needs attention" list.
+- **Leads** — every contact-form enquiry appears live (bell + toast), tagged with the template it came from. Change stage, owner and value, add notes, and convert a lead into a client with a plan, first project and setup invoice.
+- **Projects** — board from Brief to Live; drag cards between stages.
+- **Calendar** — month view and 14-day agenda of client meetings, plans and deadlines. Project and unpaid invoice due dates appear on it automatically; meetings can be saved to your own calendar (.ics).
+- **Clients & plans** — Budget / Premium / Diamond, monthly or yearly billing, MRR per plan.
+- **Invoices** — mark paid, email reminders, "Bill this month" for every active client, CSV export.
+- **Income & expenses** — paid invoices count as income automatically; record other income and expenses by category, mark costs as monthly and add them each month in one click. Profit, margin, a 6-month chart and CSV export per period.
+- **Templates** — which templates people ask about most, with links to each demo.
+- **Settings** — plan prices, team workload, lead auto-assignment.
+
+**Connected mode (local server).** Run `python server.py` (no packages needed) and open http://localhost:5500. The contact form then posts to the server, and every signed-in dashboard gets new enquiries and edits live, in any browser or device on the network (`python server.py --host 0.0.0.0` to allow other devices). Data is kept as JSON in `data/` (git-ignored). The first run creates the login `admin@apexhub.info` / `demo1234`; set `APEXHUB_ADMIN_EMAIL` / `APEXHUB_ADMIN_PASSWORD` before that first run to choose your own, and add teammates with `python server.py --add-user name@apexhub.info "Full name"`. **Clear all data** in the sidebar empties the dashboard (team, prices and settings go back to their defaults); **Load sample data** in the command palette (Ctrl+K) brings back the demo leads, clients, projects and invoices.
+
+**Static mode.** Opened without the server (e.g. GitHub Pages), the form hands leads to the dashboard through the browser's localStorage, so both must be open in the same browser; the top bar then says "This browser only".
 
 ### Templates
 
@@ -74,16 +96,16 @@ Prices can be in US$, baht (฿) or kyat (Ks); other currencies show an approxim
 
 ## Run it locally
 
-Any static file server works. With Python:
-
 ```bash
-python -m http.server 5500
+python server.py
 ```
+
+This serves the site and connects the contact form to the agency dashboard (see above). Any static file server also works (`python -m http.server 5500`); the dashboard then runs in single-browser mode.
 
 Then open <http://localhost:5500>. Opening `index.html` directly from disk also works, but some browsers block the gallery's live previews that way.
 
 ## Before going live
 
 - Replace the placeholder stats, case-study results, prices and contact details (search the code for `TODO`).
-- Connect the contact forms, bookings and checkouts to a backend (database, payment provider, email/SMS).
+- Connect the template bookings and checkouts to a backend (database, payment provider, email/SMS). `server.py` is for local and in-house use: for the public site, run it behind HTTPS (or move the same endpoints to a hosted backend) and replace the default admin password.
 - Photos are loaded from [Unsplash](https://unsplash.com) under the Unsplash License. Download the ones you keep and host them yourself.

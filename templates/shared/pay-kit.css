@@ -1,10 +1,10 @@
 /* Apex Hub PayKit — payment picker, QR, bank transfer and the "Pay your way" section. Themed with the --kit-* variables. */
 .pk { display: grid; gap: 14px; }
 .pk-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.pk-tabs button { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--kit-line); background: transparent; color: var(--kit-muted); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; }
+.pk-tabs button { min-height: 36px; padding: 0 12px; border-radius: var(--kit-pill, 999px); border: 1px solid var(--kit-line); background: transparent; color: var(--kit-muted); font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; }
 .pk-tabs button[aria-selected="true"] { background: var(--kit-ink); border-color: var(--kit-ink); color: var(--kit-surface); }
 .pk-methods { display: grid; gap: 8px; }
-.pk-method { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border: 1px solid var(--kit-line); border-radius: 12px; cursor: pointer; }
+.pk-method { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border: 1px solid var(--kit-line); border-radius: min(12px, var(--kit-radius, 12px)); cursor: pointer; }
 .pk-method.on { border-color: var(--kit-accent); box-shadow: 0 0 0 1px var(--kit-accent); }
 .pk-method input { accent-color: var(--kit-accent); width: 18px; height: 18px; margin: 0; }
 .pk-mt b { display: block; font-size: 14px; }
@@ -17,7 +17,7 @@
 .pk-f { display: grid; gap: 4px; }
 .pk-full { grid-column: 1 / -1; }
 .pk-f label { font-size: 13px; font-weight: 600; }
-.pk-f input:not([type=file]) { min-height: 42px; border: 1px solid var(--kit-line); border-radius: 10px; padding: 0 12px; font: inherit; background: var(--kit-surface); color: var(--kit-ink); width: 100%; }
+.pk-f input:not([type=file]) { min-height: 42px; border: 1px solid var(--kit-line); border-radius: min(10px, var(--kit-radius, 10px)); padding: 0 12px; font: inherit; background: var(--kit-surface); color: var(--kit-ink); width: 100%; }
 .pk-f.bad input { border-color: #D93B3B; box-shadow: 0 0 0 3px rgba(217,59,59,.14); }
 .pk-cardnum { position: relative; }
 .pk-cardnum .pk-badge { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); }
@@ -37,18 +37,18 @@
 .pk-apps button[aria-pressed="true"] { border-color: var(--kit-accent); }
 .pk-apps .pk-badge { height: 34px; padding: 0 12px; font-size: 12px; }
 .pk-accts { display: grid; gap: 8px; }
-.pk-acct { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--kit-line); border-radius: 10px; font-size: 14px; }
+.pk-acct { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--kit-line); border-radius: min(10px, var(--kit-radius, 10px)); font-size: 14px; }
 .pk-acct small { display: block; color: var(--kit-muted); font-size: 12px; }
 .pk-acct code { font-size: 13px; }
 .pk-copy { border: 1px solid var(--kit-line); background: transparent; color: var(--kit-ink); border-radius: 8px; padding: 4px 10px; font: inherit; font-size: 12px; cursor: pointer; }
 
 /* "Pay your way" section on websites and stores */
 .pk-section { padding: 56px 24px; border-top: 1px solid var(--kit-line); }
-.pk-sec-in { max-width: 1100px; margin: 0 auto; display: grid; gap: 22px; }
+.pk-sec-in { max-width: var(--kit-max, 1100px); margin: 0 auto; display: grid; gap: 22px; }
 .pk-sec-head h2 { margin: 0 0 6px; font-size: clamp(24px, 3vw, 32px); }
 .pk-sec-head p { margin: 0; color: var(--kit-muted); max-width: 640px; }
 .pk-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.pk-group { border: 1px solid var(--kit-line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; background: var(--kit-surface); }
+.pk-group { border: 1px solid var(--kit-line); border-radius: min(14px, var(--kit-radius, 14px)); padding: 14px 16px; display: grid; gap: 10px; background: var(--kit-surface); }
 .pk-group > span { font-size: 13px; font-weight: 700; color: var(--kit-muted); }
 .pk-group > div { display: flex; flex-wrap: wrap; gap: 6px; }
 .pk-trust { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px 22px; flex-wrap: wrap; color: var(--kit-muted); font-size: 14px; }

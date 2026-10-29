@@ -96,11 +96,16 @@
 
   /* ---------- Demo staff sign-in for admin panels ---------- */
   // Shows a sign-in screen until the demo credentials are entered. Previews (?thumb) skip it.
-  Kit.login = ({ app, key, email, password, name, role, accent, clientUrl, clientLabel = 'client site' }) => {
-    const store = 'apexhub-auth:' + key;
-    const signedIn = () => { try { return sessionStorage.getItem(store) || localStorage.getItem(store); } catch (e) { return null; } };
+  // Pass verify(email, password) → token or null to check against a server instead (it throws when the
+  // server can't be reached). Returns a promise of the saved token once signed in.
+  const authKey = (key) => 'apexhub-auth:' + key;
+  Kit.authToken = (key) => { try { return sessionStorage.getItem(authKey(key)) || localStorage.getItem(authKey(key)); } catch (e) { return null; } };
+  Kit.clearAuth = (key) => { try { sessionStorage.removeItem(authKey(key)); localStorage.removeItem(authKey(key)); } catch (e) { /* ignore */ } };
+  Kit.login = ({ app, key, email, password, name, role, accent, clientUrl, clientLabel = 'client site', verify }) => new Promise((resolve) => {
+    const store = authKey(key);
     Kit.user = { name, role, email };
-    if (THUMB || signedIn()) return;
+    if (THUMB) { resolve(''); return; }
+    if (Kit.authToken(key)) { resolve(Kit.authToken(key)); return; }
     document.documentElement.classList.add('kit-locked');
     const o = document.createElement('div');
     o.className = 'kit-login';
@@ -113,24 +118,33 @@
       <p class="kit-login-err" id="kl-err" role="alert"></p>
       <label class="kit-check"><input type="checkbox" id="kl-r"> Keep me signed in on this device</label>
       <button class="kit-btn primary" type="submit">Sign in</button>
-      <div class="kit-login-demo"><b>Demo account</b><span>${Kit.esc(email)} · ${Kit.esc(password)}</span><button type="button" class="kit-btn" id="kl-demo">Use demo account</button></div>
+      ${password ? `<div class="kit-login-demo"><b>Demo account</b><span>${Kit.esc(email)} · ${Kit.esc(password)}</span><button type="button" class="kit-btn" id="kl-demo">Use demo account</button></div>` : ''}
       <p class="kit-login-foot"><button type="button" class="kit-reset" id="kl-forgot">Forgot password?</button>${clientUrl ? ` · <a href="${clientUrl}">Go to the ${Kit.esc(clientLabel)}</a>` : ''}</p>
     </form>`;
     document.body.appendChild(o);
     const f = o.querySelector('form'), e = o.querySelector('#kl-e'), p = o.querySelector('#kl-p'), err = o.querySelector('#kl-err');
     e.focus();
     o.querySelector('#kl-show').onclick = (ev) => { const show = p.type === 'password'; p.type = show ? 'text' : 'password'; ev.target.textContent = show ? 'Hide' : 'Show'; };
-    o.querySelector('#kl-demo').onclick = () => { e.value = email; p.value = password; f.requestSubmit(); };
-    o.querySelector('#kl-forgot').onclick = () => Kit.toast('In a live app this emails a reset link. Use the demo account below.');
-    f.addEventListener('submit', (ev) => {
+    if (password) o.querySelector('#kl-demo').onclick = () => { e.value = email; p.value = password; f.requestSubmit(); };
+    o.querySelector('#kl-forgot').onclick = () => Kit.toast(verify ? 'Ask the account owner to reset your password on the server.' : 'In a live app this emails a reset link. Use the demo account below.');
+    const go = o.querySelector('button[type="submit"]');
+    f.addEventListener('submit', async (ev) => {
       ev.preventDefault();
-      if (e.value.trim().toLowerCase() !== email || p.value !== password) { err.textContent = 'That email and password don\'t match. Try the demo account below.'; p.select(); return; }
-      try { (o.querySelector('#kl-r').checked ? localStorage : sessionStorage).setItem(store, '1'); } catch (er) { /* storage blocked */ }
+      let token = '1';
+      if (verify) {
+        go.disabled = true; err.textContent = '';
+        try { token = await verify(e.value.trim().toLowerCase(), p.value); } catch (er) { token = undefined; }
+        go.disabled = false;
+        if (token === undefined) { err.textContent = 'Couldn\'t reach the server. Check it\'s running, then try again.'; return; }
+      } else if (e.value.trim().toLowerCase() !== email || p.value !== password) token = null;
+      if (!token) { err.textContent = `That email and password don't match.${password ? ' Try the demo account below.' : ''}`; p.select(); return; }
+      try { (o.querySelector('#kl-r').checked ? localStorage : sessionStorage).setItem(store, token); } catch (er) { /* storage blocked */ }
       o.remove(); document.documentElement.classList.remove('kit-locked');
-      Kit.toast(`Welcome back, ${name.split(' ')[0]}`, { type: 'success' });
+      Kit.toast(`Welcome back, ${Kit.user.name.split(' ')[0]}`, { type: 'success' });
+      resolve(token);
     });
-  };
-  Kit.signOut = (key) => { try { sessionStorage.removeItem('apexhub-auth:' + key); localStorage.removeItem('apexhub-auth:' + key); } catch (e) { /* ignore */ } location.reload(); };
+  });
+  Kit.signOut = (key) => { Kit.clearAuth(key); location.reload(); };
 
   // Avatar button with a menu: name, role, link to the client site, shortcuts, sign out
   Kit.userMenu = (mount, { key, clientUrl, clientLabel = 'client site' }) => {

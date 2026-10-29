@@ -6,7 +6,7 @@
 <title>CarePoint — Clinic booking template by Apex Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/template-bar.css">
 <link rel="stylesheet" href="shared/app-kit.css">
 <script src="shared/thumb.js"></script>
@@ -15,29 +15,34 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Clinic booking system · <b>Patient site</b></span><a class="tpl-switch" href="clinic-admin.html">Open staff panel ↗</a><a class="tpl-use" href="../index.html?template=Clinic%20booking%20system#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main">
-    <a class="logo" href="#/book"><i>+</i>CarePoint</a>
+<header class="site">
+  <nav class="top wrap" aria-label="Main">
+    <a class="logo" href="#/book"><i aria-hidden="true">+</i>CarePoint</a>
     <div class="links"><a href="#/book" data-nav="book">Book</a><a href="#/mine" data-nav="mine">My appointments</a><a href="#/manage" data-nav="manage">Manage booking</a></div>
+    <a class="call" href="tel:+000000000">Call +00 000 000 000</a>
   </nav>
-</div>
+</header>
 
 <!-- PATIENT BOOKING -->
 <div data-view="book">
-  <div class="wrap hero">
-    <div>
-      <span class="pill" id="pill">✓ Same-day appointments available</span>
-      <h1>Book your doctor in under a minute.</h1>
-      <p class="lead">Live availability for every doctor. Instant confirmation, reminders by SMS and easy rescheduling.</p>
-      <div class="trust"><div><b>25+</b><span>Specialist doctors</span></div><div><b>12k</b><span>Patients a year</span></div><div><b>4.8★</b><span>Patient rating</span></div></div>
-      <div class="space"><img src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?auto=format&fit=crop&w=1000&h=440&q=70" alt="Bright, modern clinic waiting room" loading="lazy"></div>
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <p class="avail" id="pill">✓ Same-day appointments available</p>
+        <h1>Book your doctor in under a minute.</h1>
+        <p class="lead">Live availability for every doctor. Instant confirmation, SMS reminders and easy rescheduling.</p>
+        <dl class="trust"><div><dt>Specialist doctors</dt><dd>25+</dd></div><div><dt>Patients a year</dt><dd>12k</dd></div><div><dt>Patient rating</dt><dd>4.8★</dd></div></dl>
+      </div>
+      <section class="wizard" aria-labelledby="w-title">
+        <ol class="steps" id="steps"></ol>
+        <div class="w-body" id="w-body" aria-live="polite"></div>
+        <div class="w-foot" id="w-foot"><button class="btn ghost" id="w-back">Back</button><button class="btn" id="w-next">Continue</button></div>
+      </section>
     </div>
-    <section class="wizard" aria-labelledby="w-title">
-      <ol class="steps" id="steps"></ol>
-      <div class="w-body" id="w-body" aria-live="polite"></div>
-      <div class="w-foot" id="w-foot"><button class="btn ghost" id="w-back">Back</button><button class="btn" id="w-next">Continue</button></div>
-    </section>
-  </div>
+  </section>
+
+  <figure class="space"><img src="https://images.unsplash.com/photo-1762625570087-6d98fca29531?auto=format&fit=crop&w=2000&h=700&q=70" alt="Bright, modern clinic waiting room" loading="lazy"></figure>
+
   <section class="block"><div class="wrap">
     <div class="sec-title"><h2>Meet our doctors</h2><p>Live next-available times.</p></div>
     <div class="docs" id="docs"></div>
@@ -54,7 +59,15 @@
   <div class="wrap"><div class="manage" id="manage"></div></div>
 </div>
 
-<div class="wrap"><footer><span>© CarePoint Clinic · <a href="clinic-admin.html">Staff sign-in</a></span><span>Sample content — your clinic, doctors and branding go here. Bookings save in this browser. <button class="kit-reset" id="reset">Reset demo</button></span></footer></div>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><a class="logo" href="#/book"><i aria-hidden="true">+</i>CarePoint</a><p>Family and specialist care, booked online.</p></div>
+    <div><h3>Clinic</h3><p>12 Garden Road<br>Mon – Sat 08:00 – 20:00</p></div>
+    <div><h3>Patients</h3><p><a href="#/mine">My appointments</a><br><a href="#/manage">Manage booking</a></p></div>
+    <div><h3>Staff</h3><p><a href="clinic-admin.html">Staff sign-in</a></p></div>
+  </div>
+  <div class="wrap legal"><span>© CarePoint Clinic</span><span>Sample content — your clinic, doctors and branding go here. Bookings save in this browser. <button class="kit-reset" id="reset">Reset demo</button></span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="js/clinic-data.js"></script>

@@ -38,7 +38,7 @@
 
   <div class="bar"><h2 id="count"></h2><div class="r"><select class="sel" id="sort" aria-label="Sort"><option value="new">Newest</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="size">Largest</option></select><div class="seg" role="group" aria-label="View"><button aria-pressed="true" data-v="list">List</button><button aria-pressed="false" data-v="map">Map</button></div><button class="btn line" id="cmp-go" hidden>Compare (0)</button></div></div>
   <div class="layout" id="layout"><div class="listings" id="list"></div><div class="map" id="map" hidden></div></div>
-  <div class="alert-box"><span><b>🔔 Get new listings first.</b> We'll email you when homes matching this search go live.</span><button class="btn dark" id="alert">Save this search</button></div>
+  <div class="alert-box"><span><b>Get new listings first.</b> We'll email you when homes matching this search go live.</span><button class="btn dark" id="alert">Save this search</button></div>
 
   <div class="tools">
     <div class="tool"><h2>Mortgage calculator</h2><p>Estimate your monthly payment.</p>
@@ -48,9 +48,17 @@
       <div class="grid2"><label style="color:var(--navy)">Area<select id="v-a"></select></label><label style="color:var(--navy)">Size (m²)<input id="v-s" type="number" value="120" min="20"></label></div>
       <p class="out" id="v-out" style="color:var(--navy)" aria-live="polite"></p><button class="btn dark" id="v-book" style="margin-top:14px">Book a free valuation</button></div>
   </div>
-<section data-paykit aria-label="Payment methods"></section>
-  <footer><span>© Keystone Homes</span><span>Sample content — your listings and brand go here.</span></footer>
 </div>
+<section data-paykit aria-label="Payment methods"></section>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo"><i></i>Keystone Homes</span><p>Verified apartments, villas and offices with agents who answer.</p></div>
+    <div><h3>Search</h3><p>Buy<br>Rent<br>Commercial</p></div>
+    <div><h3>Owners</h3><p>List your property<br>Free valuation</p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>hello@keystonehomes.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Keystone Homes</span><span>Sample content — your listings and brand go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

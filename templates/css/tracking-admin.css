@@ -1,6 +1,6 @@
 /* Parcelo Merchant — styles */
 :root { --ink: #111; --yellow: #FFD23F; --blue: #4D96FF; --green: #1F9D5C; --red: #E5484D;
-  --kit-surface: #fff; --kit-ink: #111; --kit-muted: #5F6470; --kit-line: #E6E3DA; --kit-accent: #111; --kit-accent-ink: #FFD23F; --kit-radius: 14px;
+  --kit-surface: #fff; --kit-ink: #111; --kit-muted: #5F6470; --kit-line: #E6E3DA; --kit-accent: #111; --kit-accent-ink: #FFD23F; --kit-radius: 6px; --kit-pill: 4px;
   --adm-bg: #FBF8F0; --adm-side: #111; --adm-side-ink: #CFCAB8; color-scheme: light; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--adm-bg); color: var(--ink); font: 15px/1.5 "Work Sans", system-ui, sans-serif; }
@@ -11,12 +11,12 @@ button, input, select, textarea { font-family: inherit; }
 .adm-side a[aria-current="page"] { background: var(--yellow); color: #111; }
 .adm-brand i { background: var(--yellow); color: #111; }
 
-.tag { display: inline-block; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.tag { display: inline-block; border-radius: 4px; padding: 3px 10px; font-size: 12px; font-weight: 700; white-space: nowrap; }
 .t-label_created { background: #EEE; } .t-picked_up, .t-in_transit { background: #E0EBFF; color: #1D4ED8; } .t-out_for_delivery { background: #FFF3C4; color: #7A5B00; } .t-delivered { background: #E3F5EC; color: #1C7C3A; } .t-exception { background: #FDE7E7; color: #C53030; }
 .bar { height: 8px; border-radius: 6px; background: #EFECE3; overflow: hidden; min-width: 90px; }
 .bar i { display: block; height: 100%; background: var(--blue); }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-.chip { min-height: 36px; padding: 0 12px; border: 1px solid var(--kit-line); border-radius: 999px; background: #fff; font-weight: 600; font-size: 13px; cursor: pointer; }
+.chip { min-height: 36px; padding: 0 12px; border: 1px solid var(--kit-line); border-radius: 4px; background: #fff; font-weight: 600; font-size: 13px; cursor: pointer; }
 .chip[aria-pressed="true"] { background: #111; border-color: #111; color: var(--yellow); }
 .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--kit-line); }
 .timeline li { position: relative; padding: 0 0 14px 18px; }
@@ -24,7 +24,7 @@ button, input, select, textarea { font-family: inherit; }
 .timeline li:first-child::before { background: var(--yellow); border-color: #111; }
 .timeline small { display: block; color: var(--kit-muted); }
 .ship-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
-.ship-meta div { background: var(--adm-bg); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--kit-muted); }
+.ship-meta div { background: var(--adm-bg); border-radius: 6px; padding: 10px 12px; font-size: 13px; color: var(--kit-muted); }
 .ship-meta b { display: block; color: var(--ink); font-size: 14px; }
 .adm-feed .ic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; background: #fff; border: 1px solid var(--kit-line); font-size: 14px; }
 .adm-feed li > div { flex: 1; min-width: 0; }
@@ -37,7 +37,7 @@ button, input, select, textarea { font-family: inherit; }
 
 .notif { display: grid; gap: 12px; }
 .notif .adm-card { padding: 16px 18px; display: grid; grid-template-columns: 1fr auto auto; gap: 12px 18px; align-items: center; }
-.notif textarea { grid-column: 1 / -1; width: 100%; min-height: 64px; border: 1px solid var(--kit-line); border-radius: 10px; padding: 10px; font: inherit; font-size: 14px; }
+.notif textarea { grid-column: 1 / -1; width: 100%; min-height: 64px; border: 1px solid var(--kit-line); border-radius: 6px; padding: 10px; font: inherit; font-size: 14px; }
 .notif .kit-hint { grid-column: 1 / -1; }
 .notif label { display: flex; gap: 8px; align-items: center; font-weight: 600; font-size: 14px; }
 

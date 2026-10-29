@@ -1,6 +1,6 @@
 /* IronPulse — styles */
 :root { --bg: #0A0B0F; --panel: #12141B; --card: #181B24; --line: #262A36; --ink: #F2F4F8; --muted: #8C93A6; --neon: #FF3D5A; --cyan: #29E6D4; --amber: #FFB020;
-  --kit-surface: #151821; --kit-ink: #F2F4F8; --kit-muted: #8C93A6; --kit-line: #2A2F3C; --kit-accent: #FF3D5A; --kit-accent-ink: #fff; --kit-radius: 4px; color-scheme: dark; }
+  --kit-surface: #151821; --kit-ink: #F2F4F8; --kit-muted: #8C93A6; --kit-line: #2A2F3C; --kit-accent: #FF3D5A; --kit-accent-ink: #fff; --kit-radius: 6px; --kit-pill: 4px; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 Inter, system-ui, sans-serif; }
 h1, h2, h3 { font-family: "Chakra Petch", sans-serif; margin: 0; line-height: 1.1; text-transform: uppercase; letter-spacing: .02em; }
@@ -14,7 +14,7 @@ aside { background: var(--panel); border-right: 1px solid var(--line); padding: 
 .brand b { color: var(--neon); }
 aside a { display: block; padding: 11px 12px; color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: .06em; border-left: 3px solid transparent; }
 aside a:hover { color: var(--ink); }
-aside a[aria-current="page"] { color: var(--ink); border-left-color: var(--neon); background: linear-gradient(90deg, rgba(255,61,90,.12), transparent); }
+aside a[aria-current="page"] { color: var(--ink); border-left-color: var(--neon); background: rgba(255,61,90,.1); }
 aside .foot { margin-top: auto; padding: 10px; color: var(--muted); font-size: 12px; display: grid; gap: 6px; }
 aside .kit-reset { text-align: left; padding: 0; }
 main { padding: 22px; min-width: 0; }

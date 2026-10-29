@@ -1,7 +1,7 @@
 /* Ledgerly — styles */
 /* Style: Swiss minimalism — strict grid, black rules, one red accent */
 :root { --ink: #111; --muted: #6B6B6B; --line: #111; --soft: #E5E5E2; --red: #E3241B; --bg: #FAFAF8; --green: #1C7C3A;
-  --kit-surface: #FAFAF8; --kit-ink: #111; --kit-muted: #6B6B6B; --kit-line: #D6D6D2; --kit-accent: #111; --kit-accent-ink: #fff; --kit-radius: 0px; color-scheme: light; }
+  --kit-surface: #FAFAF8; --kit-ink: #111; --kit-muted: #6B6B6B; --kit-line: #D6D6D2; --kit-accent: #111; --kit-accent-ink: #fff; --kit-radius: 0px; --kit-pill: 0px; color-scheme: light; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 "IBM Plex Sans", system-ui, sans-serif; }
 h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
@@ -9,7 +9,7 @@ p { margin: 0; }
 button, input, select, textarea { font-family: inherit; }
 .num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-.shell { max-width: 1280px; margin: 0 auto; padding: 0 32px 64px; }
+.shell { max-width: 1600px; margin: 0 auto; padding: 0 40px 64px; }
 
 header.app { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--line); padding: 20px 0; gap: 16px; flex-wrap: wrap; }
 .logo { font-weight: 700; font-size: 20px; letter-spacing: -0.03em; }
@@ -75,7 +75,7 @@ input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--ink); }
 .items .rm { background: none; border: 0; font-size: 20px; cursor: pointer; color: var(--muted); width: 30px; }
 .add-line { background: none; border: 0; font: 600 14px "IBM Plex Sans", sans-serif; cursor: pointer; padding: 10px 0; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
 
-.doc { background: #fff; border: 1px solid var(--soft); padding: 44px; box-shadow: 0 20px 50px rgba(0,0,0,.06); position: sticky; top: 16px; font-size: 14px; }
+.doc { background: #fff; border: 1px solid var(--ink); padding: 48px; position: sticky; top: 68px; font-size: 14px; }
 .in-thumb .doc { position: static; }
 .doc .d-top { display: flex; justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 18px; margin-bottom: 18px; gap: 16px; }
 .doc h2 { font-size: 36px; }
@@ -87,7 +87,7 @@ input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--ink); }
 .doc .tot { margin-left: auto; width: 60%; margin-top: 14px; display: grid; gap: 4px; }
 .doc .tot div { display: flex; justify-content: space-between; }
 .doc .tot .g { border-top: 2px solid var(--ink); padding-top: 8px; font-size: 20px; font-weight: 700; }
-.stamp { display: inline-block; border: 3px solid currentColor; padding: 2px 10px; font-weight: 700; letter-spacing: .1em; transform: rotate(-6deg); font-size: 18px; }
+.stamp { display: inline-block; border: 2px solid currentColor; padding: 2px 10px; font-weight: 700; letter-spacing: .1em; font-size: 18px; }
 .doc .notes { margin-top: 26px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--soft); padding-top: 12px; }
 
 /* Reports */

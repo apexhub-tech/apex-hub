@@ -16,17 +16,19 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Fitness club website</span><a class="tpl-use" href="../index.html?template=Fitness%20club#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main"><span class="logo">FORGE<span>.</span></span><ul><li><a href="#classes">Classes</a></li><li><a href="#programs">Programs</a></li><li><a href="#plans">Membership</a></li></ul><span class="member" id="member"></span><a class="btn" href="#plans">Join now</a></nav>
-  <header class="hero">
-    <div>
-      <h1>Stronger<span>every day.</span></h1>
+<header class="site">
+  <nav class="top wrap" aria-label="Main"><span class="logo">FORGE<span>.</span></span><ul><li><a href="#classes">Classes</a></li><li><a href="#programs">Programs</a></li><li><a href="#plans">Membership</a></li></ul><span class="member" id="member"></span><a class="btn" href="#plans">Join now</a></nav>
+</header>
+<section class="hero" aria-labelledby="hero-t">
+  <div class="hero-img" role="img" aria-label="Athlete preparing to lift a barbell"></div>
+  <div class="wrap hero-in">
+    <h1 id="hero-t">Stronger<span>every day.</span></h1>
+    <div class="hero-foot">
       <p>Coaching, classes and equipment built for real results. Book classes online — your first day is on us.</p>
       <div class="acts"><button class="btn" id="trial">Get a free day pass</button><a class="btn ghost" href="#classes">Book a class</a></div>
     </div>
-    <div class="hero-img" role="img" aria-label="Athlete preparing to lift a barbell"></div>
-  </header>
-</div>
+  </div>
+</section>
 <div class="ticker-wrap"><div class="ticker" aria-hidden="true"><span>STRENGTH · HIIT · BOXING · MOBILITY · CONDITIONING · OPEN 24/7 · STRENGTH · HIIT · BOXING · MOBILITY · CONDITIONING · OPEN 24/7 ·&nbsp;</span></div></div>
 
 <section id="classes" style="padding-top:20px">
@@ -58,7 +60,15 @@
   </div>
 </section>
 <section data-paykit aria-label="Payment methods"></section>
-<footer><span>© Forge Fitness Club</span><span>Sample content — your gym, coaches and prices go here.</span></footer>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">FORGE<span>.</span></span><p>Coaching, classes and equipment. Open 24/7.</p></div>
+    <div><h3>Train</h3><p><a href="#classes">Class timetable</a><br><a href="#programs">Programs</a></p></div>
+    <div><h3>Join</h3><p><a href="#plans">Membership</a><br>Free day pass</p></div>
+    <div><h3>Club</h3><p>9 Foundry Road<br>hello@forgefit.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Forge Fitness Club</span><span>Sample content — your gym, coaches and prices go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

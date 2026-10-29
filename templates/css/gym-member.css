@@ -1,8 +1,8 @@
 /* IronPulse member app — styles */
 :root { --bg: #0A0B0F; --panel: #12141B; --card: #181B24; --line: #262A36; --ink: #F2F4F8; --muted: #8C93A6; --neon: #FF3D5A; --cyan: #29E6D4; --amber: #FFB020;
-  --kit-surface: #151821; --kit-ink: #F2F4F8; --kit-muted: #8C93A6; --kit-line: #2A2F3C; --kit-accent: #FF3D5A; --kit-accent-ink: #fff; --kit-radius: 14px; color-scheme: dark; }
+  --kit-surface: #151821; --kit-ink: #F2F4F8; --kit-muted: #8C93A6; --kit-line: #2A2F3C; --kit-accent: #FF3D5A; --kit-accent-ink: #fff; --kit-radius: 6px; --kit-pill: 4px; color-scheme: dark; }
 * { box-sizing: border-box; }
-body { margin: 0; background: radial-gradient(60% 50% at 80% 10%, rgba(255,61,90,.16), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(41,230,212,.1), transparent 60%), var(--bg); color: var(--ink); font: 15px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
 h1, h2, h3 { font-family: "Chakra Petch", sans-serif; margin: 0; line-height: 1.1; text-transform: uppercase; letter-spacing: .02em; }
 p { margin: 0; }
 button, input { font-family: inherit; }
@@ -10,20 +10,20 @@ a { color: var(--cyan); }
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .brand { font: 700 20px "Chakra Petch", sans-serif; letter-spacing: .04em; }
 .brand b { color: var(--neon); }
-.btn { min-height: 46px; padding: 0 18px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: 700 14px "Chakra Petch", sans-serif; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; border-radius: 12px; }
+.btn { min-height: 46px; padding: 0 18px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: 700 14px "Chakra Petch", sans-serif; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; border-radius: 6px; }
 .btn.hot { background: var(--neon); border-color: var(--neon); color: #fff; }
 .btn.ghost { background: transparent; }
 .btn.sm { min-height: 38px; padding: 0 12px; font-size: 12px; }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
 .tag { font-size: 11px; font-weight: 700; padding: 3px 8px; text-transform: uppercase; letter-spacing: .05em; border-radius: 6px; white-space: nowrap; }
 .t-active { background: rgba(41,230,212,.14); color: var(--cyan); } .t-frozen { background: rgba(140,147,166,.18); color: var(--muted); } .t-expired { background: rgba(255,61,90,.16); color: var(--neon); } .t-soon { background: rgba(255,176,32,.16); color: var(--amber); }
-.av { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font: 700 15px "Chakra Petch", sans-serif; background: #232838; color: var(--cyan); }
+.av { width: 40px; height: 40px; border-radius: 6px; display: grid; place-items: center; font: 700 15px "Chakra Petch", sans-serif; background: #232838; color: var(--cyan); }
 
-.stage { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 56px; max-width: 1100px; margin: 0 auto; padding: 40px 24px; align-items: center; }
-.pitch h1 { font-size: clamp(36px, 5vw, 60px); margin: 18px 0 14px; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 64px; max-width: 1280px; margin: 0 auto; padding: 48px 40px; align-items: center; }
+.pitch h1 { font-size: clamp(40px, 5.6vw, 80px); margin: 16px 0; line-height: 1; }
 .pitch p { color: var(--muted); font-size: 17px; max-width: 460px; }
 .pitch .hint { font-size: 14px; margin-top: 16px; }
-.phone { width: 100%; max-width: 400px; height: min(820px, calc(100vh - 140px)); min-height: 620px; background: var(--panel); border: 1px solid var(--line); border-radius: 36px; box-shadow: 0 30px 80px rgba(0,0,0,.6), inset 0 0 0 6px #050608; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+.phone { width: 100%; max-width: 400px; height: min(820px, calc(100vh - 140px)); min-height: 620px; background: var(--panel); border: 1px solid var(--line); border-radius: 36px; box-shadow: inset 0 0 0 6px #050608; overflow: hidden; position: relative; display: flex; flex-direction: column; }
 .in-thumb .phone { height: 760px; }
 .screen { display: flex; flex-direction: column; height: 100%; }
 .ph-top { display: flex; justify-content: space-between; align-items: center; padding: 26px 22px 12px; }
@@ -33,7 +33,7 @@ a { color: var(--cyan); }
 .ph-body h2 { font-size: 14px; color: var(--muted); margin: 22px 0 10px; letter-spacing: .1em; }
 .ph-body h2.pg { font-size: 22px; color: var(--ink); margin-top: 6px; }
 .tabbar { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); background: #0E1016; padding: 6px 6px 14px; }
-.tabbar a { display: grid; justify-items: center; gap: 2px; padding: 8px 0; color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 600; border-radius: 10px; }
+.tabbar a { display: grid; justify-items: center; gap: 2px; padding: 8px 0; color: var(--muted); text-decoration: none; font-size: 11px; font-weight: 600; border-radius: 6px; }
 .tabbar a span { font-size: 18px; line-height: 1; }
 .tabbar a[aria-current="page"] { color: var(--neon); }
 
@@ -42,42 +42,42 @@ a { color: var(--cyan); }
 .signin p { color: var(--muted); }
 .signin form { display: grid; gap: 10px; margin-top: 10px; }
 .signin label { font-weight: 600; font-size: 13px; }
-.signin input { min-height: 56px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 0 16px; font: 700 20px "Chakra Petch", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.signin input { min-height: 56px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 0 16px; font: 700 20px "Chakra Petch", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
 .signin input[aria-invalid="true"] { border-color: var(--neon); }
 .err { color: var(--neon); font-size: 13px; min-height: 18px; }
 .demo { display: grid; gap: 6px; margin-top: 12px; }
 .demo small { color: var(--muted); }
-.demo button { display: flex; justify-content: space-between; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px dashed var(--line); background: none; color: var(--ink); cursor: pointer; font-weight: 600; }
+.demo button { display: flex; justify-content: space-between; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1px dashed var(--line); background: none; color: var(--ink); cursor: pointer; font-weight: 600; }
 .demo em { font-style: normal; color: var(--muted); font-size: 12px; }
 
-.mc { border-radius: 22px; padding: 18px; background: linear-gradient(145deg, #1D2130, #12141B); border: 1px solid var(--line); display: grid; gap: 10px; justify-items: center; text-align: center; position: relative; overflow: hidden; }
-.mc::before { content: ""; position: absolute; inset: -40% -40% auto auto; width: 220px; height: 220px; background: radial-gradient(circle, rgba(255,61,90,.35), transparent 65%); }
+.mc { border-radius: 6px; padding: 16px; background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--neon); display: grid; gap: 10px; justify-items: center; text-align: center; position: relative; overflow: hidden; }
+
 .mc.expired, .mc.frozen { filter: saturate(.4); }
 .mc-top { display: flex; justify-content: space-between; align-items: center; width: 100%; position: relative; }
-.qr { display: grid; grid-template-columns: repeat(11, 1fr); width: 150px; height: 150px; padding: 10px; background: #fff; border-radius: 12px; gap: 0; position: relative; }
+.qr { display: grid; grid-template-columns: repeat(11, 1fr); width: 150px; height: 150px; padding: 10px; background: #fff; border-radius: 6px; gap: 0; position: relative; }
 .qr i { background: #fff; } .qr i.on { background: #0A0B0F; }
 .code { font: 700 24px "Chakra Petch", sans-serif; letter-spacing: .12em; }
 .mc p { color: var(--muted); font-size: 13px; }
 .mc .in { color: var(--cyan); font-weight: 700; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
-.stats div { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.stats div { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
 .stats b { display: block; font: 700 24px "Chakra Petch", sans-serif; }
 .stats span { color: var(--muted); font-size: 11px; }
-.busy { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; align-items: end; height: 110px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 10px 6px; }
+.busy { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; align-items: end; height: 110px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px 10px 6px; }
 .busy div { display: grid; grid-template-rows: 1fr auto; height: 100%; justify-items: center; }
 .busy i { align-self: end; width: 100%; background: #2E3446; border-radius: 4px 4px 0 0; }
 .busy .now i { background: var(--neon); }
 .busy small { font-size: 10px; color: var(--muted); }
 .busy p { grid-column: 1 / -1; color: var(--muted); font-size: 12px; margin-top: 6px; }
-.empty { color: var(--muted); padding: 14px; background: var(--card); border-radius: 14px; border: 1px dashed var(--line); list-style: none; }
+.empty { color: var(--muted); padding: 14px; background: var(--card); border-radius: 6px; border: 1px dashed var(--line); list-style: none; }
 
 .days { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 12px; }
-.days button { min-width: 54px; min-height: 58px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.days button { min-width: 54px; min-height: 58px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
 .days button small { color: var(--muted); font-size: 11px; }
 .days button b { font: 700 18px "Chakra Petch", sans-serif; }
 .days button[aria-selected="true"] { background: var(--neon); border-color: var(--neon); } .days button[aria-selected="true"] small { color: #fff; }
 .cl { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.ci { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.ci { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
 .ci.mine { border-color: var(--cyan); }
 .ci.past { opacity: .5; }
 .ci time { font: 700 16px "Chakra Petch", sans-serif; color: var(--cyan); min-width: 50px; }
@@ -86,11 +86,11 @@ a { color: var(--cyan); }
 .ci small { display: block; color: var(--muted); font-size: 12px; }
 .fill { height: 4px; background: var(--line); margin-top: 6px; border-radius: 2px; overflow: hidden; }
 .fill i { display: block; height: 100%; background: var(--cyan); } .fill i.full { background: var(--neon); }
-.pill { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
-.visits { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--line); border-radius: 12px; overflow: hidden; }
+.pill { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; white-space: nowrap; }
+.visits { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--line); border-radius: 6px; overflow: hidden; }
 .visits li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 14px; background: var(--card); font-size: 14px; }
 .rq-open { color: var(--amber); } .rq-approved { color: var(--cyan); } .rq-declined { color: var(--neon); }
-.acct { display: grid; gap: 1px; background: var(--line); border-radius: 14px; overflow: hidden; }
+.acct { display: grid; gap: 1px; background: var(--line); border-radius: 6px; overflow: hidden; }
 .acct div { display: flex; justify-content: space-between; gap: 12px; padding: 13px 14px; background: var(--card); }
 .acct span { color: var(--muted); }
 .acts { display: grid; gap: 8px; margin-top: 14px; }

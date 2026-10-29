@@ -16,17 +16,19 @@
 <body>
 <div class="tpl-bar"><a href="../index.html#templates">← Apex Hub templates</a><span>Spa &amp; salon website</span><a class="tpl-use" href="../index.html?template=Spa%20%26%20salon#contact" target="_top">Use this template</a></div>
 
-<div class="wrap">
-  <nav class="top" aria-label="Main"><span class="logo">Serenity</span><ul><li><a href="#book">Treatments</a></li><li><a href="#book">Booking</a></li><li><a href="#gift">Gift cards</a></li></ul><a class="btn" href="#book">Book now</a></nav>
-  <header class="hero">
-    <div>
-      <h1>Breathe out. You're in good hands.</h1>
+<header class="site">
+  <nav class="top wrap" aria-label="Main"><span class="logo">Serenity</span><ul><li><a href="#book">Treatments</a></li><li><a href="#book">Booking</a></li><li><a href="#gift">Gift cards</a></li></ul><a class="btn" href="#book">Book now</a></nav>
+</header>
+<section class="hero" aria-labelledby="hero-t">
+  <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=2000&h=1200&q=75" alt="Hot stone massage">
+  <div class="wrap hero-in">
+    <h1 id="hero-t">Breathe out. You're in good hands.</h1>
+    <div class="hero-foot">
       <p>Massages, facials and rituals designed to slow you down. Book online in a minute — pay at the spa.</p>
-      <a class="btn" href="#book">Book a treatment</a>
+      <div class="hero-act"><a class="btn light" href="#book">Book a treatment</a><span class="rating"><b>4.9</b> from 2,300+ guests on Google</span></div>
     </div>
-    <div class="blob"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=900&h=900&q=75" alt="Hot stone massage"><div class="badge"><i>4.9</i><div><b>2,300+ happy guests</b><span>Rated on Google</span></div></div></div>
-  </header>
-</div>
+  </div>
+</section>
 
 <section id="book">
   <div class="wrap">
@@ -40,7 +42,15 @@
 
 <section id="gift" style="padding-top:0"><div class="wrap"><div class="gift"><div><h2>Give the gift of calm</h2><p>Digital gift cards from $50, sent instantly by email. Valid for 12 months on any treatment.</p></div><button class="btn" id="gift-btn">Buy a gift card</button></div></div></section>
 <section data-paykit aria-label="Payment methods"></section>
-<footer><span>© Serenity Spa</span><span>Sample content — your treatments, prices and photos go here.</span></footer>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">Serenity</span><p>Massages, facials and rituals to slow you down.</p></div>
+    <div><h3>Visit</h3><p>5 Willow Lane<br>Daily 10:00–21:00</p></div>
+    <div><h3>Book</h3><p><a href="#book">Treatments</a><br><a href="#gift">Gift cards</a></p></div>
+    <div><h3>Contact</h3><p>+00 000 000 000<br>relax@serenityspa.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© Serenity Spa</span><span>Sample content — your treatments, prices and photos go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>

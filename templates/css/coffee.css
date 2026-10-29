@@ -1,70 +1,112 @@
 /* Daily Grind — styles */
-/* Style: Coffee-chain warmth — deep green + cream, friendly rounded UI, rewards & store finder */
+/* Style: Coffee-chain warmth — deep green + cream, serif headlines, full-bleed split hero, hairline lists */
 :root { --green: #0F5132; --green-2: #1E7A4C; --cream: #F7F2EA; --ink: #1E2B24; --muted: #5E6B63; --gold: #C9A227; --card: #fff; --line: #E3DCCD;
-  --kit-surface: #FFFDF9; --kit-ink: #1E2B24; --kit-muted: #5E6B63; --kit-line: #E3DCCD; --kit-accent: #0F5132; --kit-accent-ink: #fff; --kit-radius: 20px; color-scheme: light; }
+  --kit-surface: #FFFDF9; --kit-ink: #1E2B24; --kit-muted: #5E6B63; --kit-line: #E3DCCD; --kit-accent: #0F5132; --kit-accent-ink: #fff; --kit-radius: 4px; --kit-pill: 4px; --kit-max: 1360px; color-scheme: light; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--cream); color: var(--ink); font: 16px/1.6 "Nunito Sans", system-ui, sans-serif; }
-h1, h2, h3 { font-family: Lora, Georgia, serif; margin: 0; line-height: 1.12; }
+h1, h2, h3 { font-family: Lora, Georgia, serif; font-weight: 600; margin: 0; line-height: 1.08; }
 p { margin: 0; }
+a { color: inherit; }
+img { display: block; }
 button, input { font-family: inherit; }
-:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 10px; }
-.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--green); color: #fff; font: 800 15px "Nunito Sans", sans-serif; border: 1.5px solid var(--green); cursor: pointer; text-decoration: none; }
-.btn:hover { background: var(--green-2); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.wrap { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 4px; background: var(--green); color: #fff; font: 700 15px "Nunito Sans", sans-serif; border: 1px solid var(--green); cursor: pointer; text-decoration: none; }
+.btn:hover { background: var(--green-2); border-color: var(--green-2); }
 .btn.o { background: transparent; color: var(--green); }
 
-nav.top { display: flex; justify-content: space-between; align-items: center; height: 80px; border-bottom: 1px solid var(--line); background: var(--card); padding: 0 24px; gap: 12px; position: sticky; top: 0; z-index: 20; }
+/* Header */
+nav.top { display: flex; align-items: center; gap: 32px; height: 72px; border-bottom: 1px solid var(--line); background: var(--card); padding: 0 40px; position: sticky; top: 52px; z-index: 20; }
 .in-thumb nav.top { position: static; }
-.logo { display: flex; align-items: center; gap: 10px; font: 600 22px Lora, serif; color: var(--green); }
-.logo i { width: 40px; height: 40px; border-radius: 50%; background: var(--green); display: grid; place-items: center; color: var(--cream); font-style: normal; font-weight: 800; }
-nav.top ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-weight: 800; letter-spacing: .04em; font-size: 14px; text-transform: uppercase; }
+.logo { display: flex; align-items: center; gap: 8px; font: 600 22px Lora, serif; color: var(--green); white-space: nowrap; }
+.logo i { width: 36px; height: 36px; border-radius: 50%; background: var(--green); display: grid; place-items: center; color: var(--cream); font-style: normal; font-weight: 800; font-size: 16px; }
+nav.top ul { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; font-weight: 700; letter-spacing: .04em; font-size: 14px; text-transform: uppercase; }
 nav.top a { color: var(--ink); text-decoration: none; }
-.nr { display: flex; gap: 8px; align-items: center; }
+nav.top ul a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.nr { display: flex; gap: 16px; align-items: center; margin-left: auto; }
 .pickup { font-size: 13px; color: var(--muted); text-align: right; line-height: 1.3; }
 .pickup b { display: block; color: var(--ink); font-size: 14px; }
 
-.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-.hero-copy { background: var(--green); color: #fff; padding: 60px 56px; display: flex; flex-direction: column; justify-content: center; }
-.hero-copy small { color: #BFE3CE; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-.hero h1 { font-size: clamp(40px, 5vw, 66px); margin: 14px 0 18px; }
-.hero h1 em { color: var(--gold); }
-.hero p { color: #D7EBDF; font-size: 18px; max-width: 420px; margin-bottom: 28px; }
+/* Hero: green copy panel + photo, edge to edge */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: min(78svh, 800px); }
+.hero-copy { background: var(--green); color: #fff; padding: 64px 64px 64px max(40px, calc((100vw - 1440px) / 2 + 40px)); display: flex; flex-direction: column; justify-content: flex-end; }
+.hero-copy small { color: #BFE3CE; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; }
+.hero h1 { font-size: clamp(48px, 6.4vw, 104px); margin: 16px 0 24px; letter-spacing: -0.01em; }
+.hero h1 em { color: var(--gold); font-weight: 500; }
+.hero p { color: #D7EBDF; font-size: 18px; max-width: 42ch; margin-bottom: 32px; }
 .hero .btn { background: var(--cream); color: var(--green); border-color: var(--cream); align-self: flex-start; }
-.hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero .btn:hover { background: #fff; }
+.hero img { width: 100%; height: 100%; object-fit: cover; }
 
-section { padding: 60px 0; }
-.sec-h { display: flex; justify-content: space-between; align-items: end; margin-bottom: 22px; gap: 16px; flex-wrap: wrap; }
-.sec-h h2 { font-size: clamp(30px, 3.6vw, 44px); }
-.cats { display: flex; gap: 8px; flex-wrap: wrap; }
-.cat { min-height: 42px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; font: 800 14px "Nunito Sans", sans-serif; cursor: pointer; color: var(--ink); }
-.cat[aria-pressed="true"] { background: var(--green); color: #fff; border-color: var(--green); }
-.drinks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-.drink { text-align: center; display: flex; flex-direction: column; align-items: center; }
-.drink .cup { width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--card); border: 6px solid var(--card); box-shadow: 0 10px 30px rgba(30,43,36,.1); padding: 0; cursor: pointer; }
-.drink img { width: 100%; height: 100%; object-fit: cover; }
-.drink h3 { font-size: 20px; margin-top: 14px; }
+/* Sections */
+section { padding: 96px 0; }
+.sec-h { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding-bottom: 16px; margin-bottom: 32px; border-bottom: 1px solid var(--ink); }
+.sec-h h2, .rewards h2, .stores h2 { font-size: clamp(40px, 5vw, 64px); }
+.cats { display: flex; gap: 24px; flex-wrap: wrap; }
+.cat { min-height: 40px; padding: 0; border: 0; border-bottom: 2px solid transparent; background: none; font: 700 14px "Nunito Sans", sans-serif; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; color: var(--muted); }
+.cat:hover { color: var(--ink); }
+.cat[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--green); }
+
+/* Drinks: square photo tiles, left-aligned text */
+.drinks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 24px; }
+.drink { display: flex; flex-direction: column; align-items: flex-start; }
+.drink .cup { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--card); border: 0; padding: 0; cursor: pointer; }
+.drink img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.drink .cup:hover img { transform: scale(1.03); }
+.drink h3 { font-size: 22px; margin-top: 16px; }
 .drink p { color: var(--muted); font-size: 14px; }
-.drink .pr { display: block; font-weight: 800; margin: 6px 0 10px; }
-.drink .seasonal { font-size: 12px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; }
+.drink .pr { display: block; font-weight: 700; margin: 8px 0 12px; font-variant-numeric: tabular-nums; }
+.drink .seasonal { font-size: 12px; font-weight: 700; color: #8A6D12; text-transform: uppercase; letter-spacing: .1em; }
 
-.rewards { background: var(--card); border-radius: 28px; padding: 36px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; border: 1px solid var(--line); }
-.rewards h2 { font-size: 36px; }
-.rewards p { color: var(--muted); margin: 10px 0 20px; }
-.card { background: linear-gradient(135deg, var(--green), #0A3A24); color: #fff; border-radius: 22px; padding: 26px; aspect-ratio: 1.6; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 20px 40px rgba(15,81,50,.3); }
-.card .track { height: 12px; border-radius: 6px; background: rgba(255,255,255,.2); overflow: hidden; margin-top: 10px; }
+/* Rewards: full-width band */
+#rewards { padding: 0; }
+.rewards { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 480px); gap: 64px; align-items: center; padding: 64px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.rewards p { color: var(--muted); margin: 16px 0 24px; max-width: 52ch; }
+.card { background: var(--green); color: #fff; padding: 24px; aspect-ratio: 1.6; display: flex; flex-direction: column; justify-content: space-between; }
+.card > span { font-size: 12px; letter-spacing: .16em; font-weight: 700; }
+.card .track { height: 8px; background: rgba(255, 255, 255, .2); overflow: hidden; margin-top: 8px; }
 .card .track i { display: block; height: 100%; background: var(--gold); transition: width .5s; }
-.card b { font: 600 30px Lora, serif; }
+.card b { font: 600 32px Lora, serif; }
 
-.stores { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; }
-.stores input { width: 100%; min-height: 50px; border-radius: 999px; border: 1.5px solid var(--line); padding: 0 20px; font: 16px "Nunito Sans", sans-serif; background: var(--card); }
-.list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
-.list li { background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.list li.sel { border-color: var(--green); }
+/* Stores: list on hairlines next to a photo */
+.stores { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 64px; }
+.stores h2 { margin-bottom: 24px; }
+.stores input { width: 100%; min-height: 48px; border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; padding: 0 2px; font: 16px "Nunito Sans", sans-serif; background: transparent; color: var(--ink); }
+.stores input:focus { outline: none; border-bottom-width: 2px; }
+.list { list-style: none; margin: 16px 0 0; padding: 0; }
+.list li { padding: 16px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.list li.sel { box-shadow: inset 3px 0 0 var(--green); padding-left: 16px; }
 .list li span { color: var(--muted); font-size: 14px; display: block; }
-.open { color: var(--green-2); font-weight: 800; font-size: 13px; }
-.closed { color: #A33; font-weight: 800; font-size: 13px; }
-.stores img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; border-radius: 24px; }
-footer { padding: 30px 24px 48px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+.open { color: var(--green-2); font-weight: 700; font-size: 13px; }
+.closed { color: #A33; font-weight: 700; font-size: 13px; }
+.stores img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; }
 
-@media (max-width: 960px) { nav.top ul, .pickup { display: none; } .hero, .rewards, .stores { grid-template-columns: 1fr; } .hero img { height: 320px; } .hero-copy { padding: 44px 24px; } .drinks { grid-template-columns: 1fr 1fr; } .rewards { padding: 24px; } }
-@media (max-width: 480px) { .wrap { padding: 0 14px; } nav.top { padding: 0 14px; } .logo { font-size: 18px; } }
+/* Footer */
+.site-foot { background: var(--green); color: #BFE3CE; padding: 64px 0 32px; font-size: 14px; }
+.foot { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
+.foot .logo { color: #fff; margin-bottom: 8px; }
+.foot .logo i { background: var(--cream); color: var(--green); }
+.foot h3 { font: 700 13px "Nunito Sans", sans-serif; text-transform: uppercase; letter-spacing: .08em; color: #fff; margin-bottom: 8px; }
+.foot a { text-decoration: none; } .foot a:hover { text-decoration: underline; }
+.legal { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 48px; padding-top: 24px; border-top: 1px solid #2C6B4B; font-size: 13px; }
+
+@media (max-width: 960px) {
+  nav.top ul, .pickup { display: none; }
+  .hero, .rewards, .stores { grid-template-columns: 1fr; }
+  .hero { min-height: 0; }
+  .hero img { height: 360px; }
+  .hero-copy { padding: 48px 40px; }
+  .drinks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rewards, .stores { gap: 40px; }
+  .foot { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  nav.top { padding: 0 16px; height: 64px; }
+  .logo { font-size: 18px; }
+  .hero-copy { padding: 40px 16px; }
+  section { padding: 64px 0; }
+  .drinks { gap: 32px 12px; }
+  .rewards { padding: 48px 0; }
+  .foot { grid-template-columns: 1fr; }
+}

@@ -11,7 +11,11 @@ desktop.ini
 # Logs and temp files
 *.log
 *.tmp
+__pycache__/
 node_modules/
 
 # Lottie player used to preview logo-animation.json
 logo-animation/
+
+# Local server data (leads, logins, dashboard)
+data/

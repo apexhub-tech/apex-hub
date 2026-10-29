@@ -29,12 +29,10 @@
   </nav>
 </div></header>
 
-<div class="wrap">
-  <section class="hero">
-    <div class="hero-img"><img src="https://images.unsplash.com/photo-1508964801641-4b2410705b73?auto=format&fit=crop&w=1200&q=75" alt="Black and white campaign photo of a model leaning on a wall"></div>
-    <div class="hero-copy"><small>Autumn / Winter collection</small><h1>Wear the quiet.</h1><p>Clean cuts, natural fabrics and colours that go with everything you already own.</p><a class="btn" href="#shop">Shop the collection</a></div>
-  </section>
-</div>
+<section class="hero">
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1508964801641-4b2410705b73?auto=format&fit=crop&w=1600&q=75" alt="Black and white campaign photo of a model leaning on a wall"></div>
+  <div class="hero-copy"><small>Autumn / Winter collection</small><h1>Wear the quiet.</h1><p>Clean cuts, natural fabrics and colours that go with everything you already own.</p><a class="btn" href="#shop">Shop the collection</a></div>
+</section>
 
 <section class="shop" id="shop">
   <div class="wrap">
@@ -55,9 +53,17 @@
 <div class="wrap">
   <div class="perks"><div><b>Free shipping</b>On orders over $75</div><div><b>30-day returns</b>No questions asked</div><div><b>Secure checkout</b>Cards &amp; cash on delivery</div></div>
 </div>
-<section class="news"><h2>10% off your first order</h2><p style="color:var(--muted);margin-top:8px">Join the list for new drops and private sales.</p><form id="news" novalidate><input type="email" id="news-e" placeholder="Your email" aria-label="Email address" autocomplete="email"><button class="btn" type="submit">Sign up</button></form><p class="msg" id="news-m" role="status"></p></section>
+<section class="news"><div class="wrap news-in"><div><h2>10% off your first order</h2><p>Join the list for new drops and private sales.</p></div><div><form id="news" novalidate><input type="email" id="news-e" placeholder="Your email" aria-label="Email address" autocomplete="email"><button class="btn" type="submit">Sign up</button></form><p class="msg" id="news-m" role="status"></p></div></div></section>
 <section data-paykit aria-label="Payment methods"></section>
-<div class="wrap"><footer><span>© NOIR Studio</span><span>Sample content — your products, photos and brand go here.</span></footer></div>
+<footer class="site-foot">
+  <div class="wrap foot">
+    <div><span class="logo">NOIR</span><p>Clean cuts and natural fabrics, made to last.</p></div>
+    <div><h3>Shop</h3><p>Women<br>Men<br>New in</p></div>
+    <div><h3>Help</h3><p>Delivery &amp; returns<br>Size guide<br>Contact us</p></div>
+    <div><h3>Studio</h3><p>8 Mercer Lane<br>hello@noirstudio.com</p></div>
+  </div>
+  <div class="wrap legal"><span>© NOIR Studio</span><span>Sample content — your products, photos and brand go here.</span></div>
+</footer>
 
 <script src="shared/app-kit.js"></script>
 <script src="shared/pay-kit.js"></script>
